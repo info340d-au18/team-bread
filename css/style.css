@@ -1,11 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap');
+
 #nav-items {
     display: none;
 }
 
 body {
-    /* margin: 1em; */
     font-size: 16px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-image: url('../img/plain_map.png');
 }
 
@@ -14,43 +15,43 @@ p {
 }
 
 nav {
-    background-color: black;
     padding: 1rem;
     top: 0px;
     left: 0px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #007bff;
+}
+
+a:hover, a:focus, .btn:hover, #hamburger-menu:hover {
+    color: cornflowerblue;
 }
 
 #hamburger-menu {
     font-size: 2rem;
+    margin-right: 1rem;
 }
 
-#nav-items, div h1 {
-    display: inline;
+#hamburger-menu, #links {
+    display: inline-block;
 }
 
-div #begin .d-flex {
+
+#nav-items {
+    float: right;
+    font-size: 16pt;
+}
+
+#begin.d-flex {
     margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    box-shadow: black 10rem;
 }
 
-div #begin .card {
-    width: 18rem;
-    height: 10rem;
-}
-
-div #begin .card-body {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-} 
-
-a #begin .btn {
+a.btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -67,6 +68,15 @@ a #begin .btn {
     padding-bottom:1rem;
 }
 
+.container {
+    padding: 1rem 1rem 1rem 1rem;
+    flex-direction: col;
+}
+
+.row .card {
+    margin: 1rem 1rem 1rem 1rem;
+    background-color:white;
+}
 
 footer p {
     font-size: x-small;
@@ -79,24 +89,45 @@ footer {
     bottom: 0;
 }
 
+/* small screens */
 @media screen and (min-width: 598px) {
     #nav-items {
         display: none;
     }
-    #nav-items, div h1 {
-        display: none;
-    }
-    #hamburger-menu {
-        display: none;
-    }
+    
 }
 
+/* medium screens */
 @media screen and (min-width: 768px) {
-    #nav-items {
-        display: block;
+    #logo-title {
+        display: inline;
+    }
+    
+    #title, #nav-items {
+        display: inline-block;
+    }
+
+    #links {
+        display: inline;
     }
 
     #hamburger-menu {
         display: none;
+    }
+
+    .row .card-body {
+        padding: 2rem 2rem 2rem 2rem;
+    }
+
+    
+}
+
+@media screen and (min-width: 992px) {
+    #nav-items {
+        font-size: 20pt;
+    }
+
+    .row .card-body {
+        padding: 3rem 3rem 3rem 3rem;
     }
 }
