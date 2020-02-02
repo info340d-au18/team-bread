@@ -2,105 +2,44 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <title>Stage 2 Main Page</title>
+    <meta name="author" content="Jocelyn Afandi & Anna Zhou">
+    <meta name="description" content="Stage 2 main page">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>Stress Free Walking</title>
 </head>
 
 <body>
-    <section>
-        <h1>A Stress Free Walking App</h1>
-        <img alt="Walking through the city" src="img/walking.jpg">
-        <a href="https://unsplash.com/@akeenster?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge"
-            target="_blank" rel="noopener noreferrer">Image by Abigail Keenan From Unsplash</a>
-    </section>
-    <section>
-        <h1>Topic Overview</h1>
-        <p>
-            For our project, we’d like to build a website to plan walking or jogging routes with an emphasis on
-            encountering places one would enjoy. Life can get stressful, and a great way to cope with that and destress
-            is to go on walks. A study in Germany showed that mindful walking could reduce stress levels on adults.
-            Going to places can help to brighten one’s day, but at the same time, we want to ensure that one does not
-            encounter something stressful along the way. Studies have shown that physically avoiding external stressors
-            like certain environments or locations can help individuals cope with stress. For example, imagine being a
-            UW student during finals week trying to destress trying to get to your favorite bakery for a chocolate
-            croissant. Google maps tells you the only way to get there is to walk past your regular, study spot. Do you
-            trust Google maps or do you decide to walk around the block to avoid that area? Especially during a period
-            where time is of the essence, a walking app that helps plans a route ensuring an enjoyable walk while also
-            maximizes your time would be a great tool. Map sites like Google Maps are accurate, but their main focus is
-            getting you from point A to point B. Route planners for runners do a good job showing potential obstacles
-            and road closures, but the main focus is different. Runners care more about distances, interval times,
-            elevation and many more. However, there is no way for casual way to plan routes for enjoyment.People only
-            know of nice walking paths from experience or word of mouth. Destressing comes in many forms, and for
-            different populations they will have different versions of stress. The goal is to find stress points like
-            car traffic, noise, or people, and use this data to find the user’s ideal walking paths.
-        </p>
-    </section>
-    <section>
-        <h1>Potential Applications</h1>
-        <ul>
-            <li>Local Route Planner</li>
-            <li>Find Places to Destress</li>
-            <li>Plan Day Trips or Vacations</li>
-        </ul>
-        <h2>The Local Route Planner</h2>
-        <p>In creating a local route planner, our main goal is to ensure relaxing walks around one’s local area. It
-            would allow users to put in a destination, and the app would generate a route that avoids stressful places
-            (ie: study spots at school) and brings them to stress-free places in their local area. Users would take a
-            survey to figure out what they deem stressful, and the application would adjust accordingly. Additionally,
-            the emphasis on one’s local area means that even in an environment that one is very comfortable, this app
-            would allow them to explore and find enjoyment that is close to them.
-        </p>
-        <h2>Find Places to Destress</h2>
-        <p>For this application, the goal is for people to explore their surrounding area and find new places to
-            destress. They will likely use the application during their lunch breaks at work or after a long day of
-            class. After a long few hours of work, walking around and changing the pace of one’s environment can help
-            refresh and energize people to finish their day strong. Based on the user’s input on what places they like
-            to go to, the app will generate some nearby places for the user to pick and visit. The goal is to find a
-            comforting place in one’s surrounding area to explore within walking distance of their current location.
-            Once they find and visit the place they can rate the areas based on stress levels. The rating system will be
-            a short survey we provide that could ask the user about how noisy or busy the place was for future users.
-            The users can filter out locations based on distance, category, and stress factors. This way the application
-            can provide a list of the most relevant places the user would prefer.
-        </p>
-        <h2>Plan Day Trips of Vacations</h2>
-        <p>This application allows users to plan walking or hiking routes in farther destinations, so they can enjoy a
-            day trip to Vancouver, Canada or plan their days on a European vacation. Some people/families enjoy roaming
-            around a foreign city, exploring local foods, and visiting attractions. Or for some who want a local walking
-            spot to complete on the weekend, they can also find places within a certain driving distance. Users can
-            input the distance they would be willing to walk, types of places they would like to see, and the typical
-            pedestrian traffic level. Users would search the city they are planning to walk around in and input the
-            above factors to find the ideal places for them. One can go online and find places to walk in a city, but it
-            barely gives users directions or surrounding attractions. For example, this <a
-                href="https://fitt.co/seattle/articles/take-these-walks-seattle">website</a> just lists cool places in
-            Seattle to take a
-            walk, but it just lists a short description of the place and one picture. This does not inform aspiring
-            Seattle traveler’s much, and if they wanted to look for other places, they would have to re-search for a
-            different city.
-        </p>
-    </section>
+    <nav>
+        <div id="hamburger-menu"><a href="#"><i class="fa fas fa-bars" aria-label="menu"></i></a></div>
+        <div id="nav-items">
+            <h1><a href="#"><span class="logo" aria-hidden="true"></span>Title Here</a></h1>
+            <ul class="nav nav-pills float-right">
+                <li class="nav-link"><a class="nav-link" href="#popularRoutes">Popular Routes</a></li>
+                <li class="nav-link"><a class="nav-link" href="places.html">Favorites</a></li>
+                <li class="nav-link"><a class="nav-link" href="#logIn">Log In</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <section>
-        <h1>References</h1>
-        <ul>
-            <li>
-                <a href=http://downloads.hindawi.com/journals/ecam/2013/489856.pdf>Mindful Walking in Psychologically
-                    Distressed Individuals: A Randomized Controlled Trial </a> </li> <li>
-                    <a
-                        href="https://www.mayoclinic.org/healthy-lifestyle/stress-management/in-depth/stress-management/art-20044151">Mayo
-                        Clinic Stress Management
-                    </a>
-            </li>
+    <main>
+        <div id = "begin" class="d-flex">
+            <div class="card bg-light border-light text-center p-1 shadow">
+                <div class="card-body">
+                    <h5 class="card-title pb-3">Let's Take a Walk...</h5>
+                    <a href="#" class="btn btn-primary btn-lg shadow-sm">Begin</a>
+                </div>
+            </div>
+        </div>
 
-            <li>
-                <a href="https://fitt.co/seattle/articles/take-these-walks-seattle">Beautiful Walks in Seattle</a>
-            </li>
-        </ul>
-    </section>
+    </main>
+
+    <footer>
+        <p>© 2020 Jocelyn Afandi & Anna Zhou</p>
+    </footer>
 </body>
 
 </html>

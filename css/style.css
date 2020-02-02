@@ -1,15 +1,102 @@
+#nav-items {
+    display: none;
+}
+
 body {
-    margin: 1em;
+    /* margin: 1em; */
     font-size: 16px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-image: url('../img/plain_map.png');
 }
 
 p {
     line-height: 1.5;
 }
 
-img {
-    width: 100%;
-    max-height: 600px;
-    object-fit: cover;
+nav {
+    background-color: black;
+    padding: 1rem;
+    top: 0px;
+    left: 0px;
+}
+
+#hamburger-menu {
+    font-size: 2rem;
+}
+
+#nav-items, div h1 {
+    display: inline;
+}
+
+div #begin .d-flex {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+div #begin .card {
+    width: 18rem;
+    height: 10rem;
+}
+
+div #begin .card-body {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+} 
+
+a #begin .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardImage {
+    max-width: 200px;
+    padding-bottom: 1rem;
+}
+
+.cardRating {
+    max-width: 150px;
+    max-height: 35px;
+    padding-bottom:1rem;
+}
+
+
+footer p {
+    font-size: x-small;
+}
+
+footer {
+    display: block;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+@media screen and (min-width: 598px) {
+    #nav-items {
+        display: none;
+    }
+    #nav-items, div h1 {
+        display: none;
+    }
+    #hamburger-menu {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #nav-items {
+        display: block;
+    }
+
+    #hamburger-menu {
+        display: none;
+    }
 }
