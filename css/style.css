@@ -1,15 +1,176 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap');
+
+#nav-items {
+    display: none;
+}
+
 body {
-    margin: 1em;
     font-size: 16px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-image: url('../img/plain_map.png');
 }
 
 p {
     line-height: 1.5;
 }
 
-img {
-    width: 100%;
-    max-height: 600px;
-    object-fit: cover;
+nav {
+    padding: 0.75rem;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #007bff;
+    height: 4rem;
+}
+
+a:hover, a:focus, .btn:hover, #hamburger-menu:hover {
+    color: cornflowerblue;
+}
+
+#hamburger-menu {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+#hamburger-menu, #links {
+    display: inline-block;
+}
+
+
+#nav-items {
+    float: right;
+    font-size: 16pt;
+    align-items: center;
+    transform: translateY(-20%);
+}
+
+#begin{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    box-shadow: black 10rem;
+}
+
+#begin .card{
+    width: 50vw;
+    height: 25vh;
+    justify-content: center;
+}
+
+.login {
+    width: 75vw;
+    height: 25vh;
+    justify-content: center;
+    margin: 0;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.form-group {
+    padding: 1em;
+}
+
+#begin .card-title {
+    font-size: 12pt;
+}
+
+#begin a.btn {
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, 30%);
+    transform: translate(-50%, 30%);
+}
+
+.login.btn {
+    justify-content: center;
+}
+
+.cardRating {
+    max-width: 150px;
+    max-height: 35px;
+    padding-bottom:1rem;
+}
+
+.container {
+    padding: 1rem 1rem 1rem 1rem;
+    flex-direction: col;
+}
+
+.row .card {
+    margin: 1rem 1rem 1rem 1rem;
+    background-color:white;
+}
+
+footer p {
+    font-size: x-small;
+}
+
+footer {
+    display: block;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+/* small screens */
+@media screen and (min-width: 598px) {
+    #begin .card-title, #begin a.btn {
+        font-size: 20pt;
+    }
+    
+}
+
+/* medium screens */
+@media screen and (min-width: 768px) {
+    #logo-title {
+        display: inline;
+    }
+    
+    #title, #nav-items {
+        display: inline-block;
+    }
+
+    #links {
+        display: inline;
+    }
+
+    #hamburger-menu {
+        display: none;
+    }
+
+    .row .card-body {
+        padding: 2rem 2rem 2rem 2rem;
+    }
+
+    
+
+    
+}
+
+@media screen and (min-width: 992px) {
+    #nav-items {
+        font-size: 20pt;
+    }
+
+    .row .card-body {
+        padding: 3rem 3rem 3rem 3rem;
+    }
+
+    #begin .card-title, #begin .a.btn {
+        font-size: 24pt;
+    }
+
 }
