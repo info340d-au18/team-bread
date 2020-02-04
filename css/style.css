@@ -15,11 +15,12 @@ p {
 }
 
 nav {
-    padding: 1rem;
+    padding: 0.75rem;
     top: 0px;
     left: 0px;
     background-color: rgba(255, 255, 255, 0.8);
     color: #007bff;
+    height: 4rem;
 }
 
 a:hover, a:focus, .btn:hover, #hamburger-menu:hover {
@@ -39,9 +40,11 @@ a:hover, a:focus, .btn:hover, #hamburger-menu:hover {
 #nav-items {
     float: right;
     font-size: 16pt;
+    align-items: center;
+    transform: translateY(-20%);
 }
 
-#begin.d-flex {
+#begin{
     margin: 0;
     position: absolute;
     top: 50%;
@@ -51,15 +54,48 @@ a:hover, a:focus, .btn:hover, #hamburger-menu:hover {
     box-shadow: black 10rem;
 }
 
-a.btn {
-    display: flex;
-    align-items: center;
+#begin .card{
+    width: 50vw;
+    height: 25vh;
     justify-content: center;
 }
 
-.cardImage {
-    max-width: 200px;
-    padding-bottom: 1rem;
+.login {
+    width: 75vw;
+    height: 25vh;
+    justify-content: center;
+    margin: 0;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.form-group {
+    padding: 1em;
+}
+
+#begin .card-title {
+    font-size: 12pt;
+}
+
+#begin a.btn {
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, 30%);
+    transform: translate(-50%, 30%);
+}
+
+.login.btn {
+    justify-content: center;
 }
 
 .cardRating {
@@ -91,8 +127,8 @@ footer {
 
 /* small screens */
 @media screen and (min-width: 598px) {
-    #nav-items {
-        display: none;
+    #begin .card-title, #begin a.btn {
+        font-size: 20pt;
     }
     
 }
@@ -120,6 +156,8 @@ footer {
     }
 
     
+
+    
 }
 
 @media screen and (min-width: 992px) {
@@ -130,4 +168,9 @@ footer {
     .row .card-body {
         padding: 3rem 3rem 3rem 3rem;
     }
+
+    #begin .card-title, #begin .a.btn {
+        font-size: 24pt;
+    }
+
 }
