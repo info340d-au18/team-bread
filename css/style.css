@@ -125,6 +125,86 @@ footer {
     bottom: 0;
 }
 
+.bg-img-1, .bg-img-2, .bg-img-3, .bg-img-4 {
+    position: relative;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-img-1 {
+    background-image: url("../img/walking.jpg");
+    min-height: 100vh;
+}
+
+.bg-img-2 {
+    background-image: url("../img/many-sign-posts.jpg");
+    min-height: 100vh;
+}
+
+.bg-img-3 {
+    background-image: url("../img/coffee.jpg");
+    min-height: 100vh;
+}
+
+.bg-img-4 {
+    background-image: url("../img/park.jpg");
+    min-height: 100vh;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+}
+
+.desc-text {
+    background-color: white;
+    min-width: 100%;
+    min-height: 50vh;
+    display: table;
+}
+
+.desc-wrapper {
+    height: 100%;
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+}
+
+.desc-text h1 {
+    font-size:20px;
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+.desc-text p {
+    text-align: left;
+    padding:0 6rem 0 6rem;
+}
+
+.unsplash-credit {
+    position: absolute;
+    width:100%;
+    bottom:0;
+}
+
+/* .desc-wrapper .d-flex {
+    justify-content-center: center;
+
+} */
+
 /* small screens */
 @media screen and (min-width: 598px) {
     #begin .card-title, #begin a.btn {
