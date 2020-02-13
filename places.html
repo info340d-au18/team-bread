@@ -12,128 +12,210 @@
     </head>
 <body>
     <!-- nav bar -->
-    <nav>
-        <div class="logo-left">
-            <div id="hamburger-menu">
-                <a href="#"><i class="fa fas fa-bars" aria-label="menu"></i></a>
-            </div>
-            <div id="links">
-                <div id="title">
-                    <h1>
-                        <a href="index.html"><span class="logo" aria-hidden="true"></span>Title Here</a>
-                    </h1>
-                </div>
-                
-                <div id="nav-items">
-                    <ul class="nav nav-pills float-right">
-                        <li class="nav-link"><a class="nav-link" href="#popularRoutes">Popular Routes</a></li>
-                        <li class="nav-link"><a class="nav-link" href="places.html">Favorites</a></li>
-                        <li class="nav-link"><a class="nav-link" href="login.html">Log In</a></li>
-                    </ul>
-                <div>
-            </div>
+    <nav class="navbar navbar-light light-blue navbar-expand-sm">
+
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="index.html">Walk Buddy</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fa fas fa-bars fa-1x"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="navbar">
+
+            <!-- Links -->
+            <ul class="nav navbar-nav">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="how-to.html">How-To</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="places.html">Places<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">Log-In</a>
+                </li>
+            </ul>
+            <!-- Links -->
         </div>
-        
+        <!-- Collapsible content -->
     </nav>
     
-    <div class="container">
-        <div class="row">
-            <!-- Arboretum -->
-            <div class="card col-xs-auto col-s-4 col-md-5 col-l-6 col-xl-12">
-                <div class="card-body">
+    <main>
+        <div class="container d-flex" id="car">
+            <div class="row justify-content-center" id="car">
+                <div id="myCarousel" class="carousel slide col-12 col-md-12 col-lg-10 col-xl-9" data-ride="carousel">
+                    <div class="popTitle">
+                        <h2>Popular Routes</h2>
+                    </div>
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+                    
+                    <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active">
+                            <div class="wrap-item">
+                                <img class="img-fluid d-block w-100" src="img/burke.jpg" data-src="holder.js/900x400?theme=social" alt="burke trail map" data-holder-rendered="true">
+                                <div class="place-des">
+                                    <h3>Burke Gilman Trail</h3>
+                                    <p> A 19.8 mile long trail for bikers, walkers, and runners. Stops on the trail include Gas Works Park, The Fremont Troll, and University of Washington</p>
+                                    <a href="#" class="btn btn-dark text-white">Navigate</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-item">
+                            <div class="wrap-item">
+                                <!-- <img class="img-fluid d-block w-100" src="img/ravenna_park_trail_map.jpg" data-src="holder.js/900x400?theme=industrial" alt="900x400" data-holder-rendered="true"> -->
+                                <img class="img-fluid d-block w-100" src="img/ravenna.jpg" data-src="holder.js/900x400?theme=industrial" alt="ravenna trail map" data-holder-rendered="true">
 
-                    <img src="img/arboretum.jpg" alt="Japanese Garden in Washington Park Arboretum" class="card-img-top">
-                    <h3 class="card-title">Washington Park Arboretum</h3>
-                    <img src="img/rating.png" alt="rating" class="cardRating">
-                    <p class="card-text">
-                        <strong>Note: </strong>
-                        Chill nature walk among lots of pretty trees and plants. (Don't go when it's raining)
-                    </p>
-                    <a href="#" class="btn btn-dark text-white">Navigate</a>
+                                <div class="place-des">
+                                    <h3>Ravenna Park Trail</h3>
+                                    <p> A 1.7 mile loop with wild flower features. Good for an hour's walk! Near the University District and a perfect place to take your dog on a short walk.</p>
+                                    <a href="#" class="btn btn-dark text-white">Navigate</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-item">
+                            <div class="wrap-item">
+                                <img class="img-fluid d-block w-100" src="img/rattlesnake.jpg" data-src="holder.js/900x400?theme=industrial" alt="rattlesnake view" data-holder-rendered="true">
+                                <div class="place-des">
+                                    <h3>Rattlesnake Ridge Trail</h3>
+                                    <p> A 4.0 mile roundtrip hiking trail in the North Bend Area. Perfect for beginning hikers. Short hike with a beautiful view</p>
+                                    <a href="#" class="btn btn-dark text-white">Navigate</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             </div>
-            <!-- Gas Works -->
-            <div class="card col-xs-auto col-s-4 col-md-5 col-l-6 col-xl-12">
-                <div class="card-body">
-
-                    <img src="img/GasWorksPark3.jpg" alt="Factory at Gas Works" class="card-img-top">
-                    <h3 class="card-title">Gas Works Park</h3>
-                    <img src="img/rating.png" alt="rating" class="cardRating">
-                    <p class="card-text">
-                        <strong>Note: </strong>
-                        Flat walk on the Burke Gilman to see Gas Works Park. Really great views at the top of the hill but often crowded on weekends
-                    </p>
-                    <a href="#" class="btn btn-dark text-white">Navigate</a>
-
-                </div>
-            </div>
-            <!-- Green Lake -->
-            <div class="card col-xs-auto col-s-4 col-md-5 col-l-6 col-xl-12">
-                <div class="card-body">
-
-                    <img src="img/green-lake-park-03.jpg" alt="People boating in Sunny Green Lake" class="card-img-top">
-                    <h3 class="card-title">Green Lake Park</h3>
-                    <img src="img/rating.png" alt="rating" class="cardRating">
-                    <p class="card-text">
-                        <strong>Note: </strong>
-                        Hilly walk up, but worth it to see the local park at Green Lake. Watch out for the geese
-                    </p>
-                    <a href="#" class="btn btn-dark text-white">Navigate</a>
-
-                </div>
-            </div>
-            <!-- Pie Bar -->
-            <div class="card col-xs-auto col-s-4 col-md-5 col-l-6 col-xl-12">
-                <div class="card-body">
-
-                    <img src="img/piebar.jpeg" alt="slice of cherry pie" class="card-img-top">
-                    <h3 class="card-title">Pie Bar</h3>
-                    <img src="img/rating.png" alt="rating" class="cardRating">
-                    <p class="card-text">
-                        <strong>Note: </strong>
-                        A big of a long walk from the University District, but well worth for the pie! Underage foodies be ready to eat outside :'(
-                    </p>
-                    <a href="#" class="btn btn-dark text-white">Navigate</a>
-
-                </div>
-            </div>
-            <!-- Sea Wolf -->
-            <div class="card col-xs-auto col-s-4 col-md-5 col-l-6 col-xl-12">
-                <div class="card-body">
-
-                    <img src="img/seawolf.png" alt="cafe at Sea Wolf Bakery" class="card-img-top">
-                    <h3 class="card-title">Sea Wolf Bakery</h3>
-                    <img src="img/rating.png" alt="rating" class="cardRating">
-                    <p class="card-text">
-                        <strong>Note: </strong>
-                        Sea Wolf Bakers is the most amazing bakery in the whole world. Their sourdough is amazing, their chocolate croissants are amazing...tough walk but worth it for the carbs
-                    </p>
-                    <a href="#" class="btn btn-dark text-white">Navigate</a>
-
-                </div>
-            </div>
-            <!-- Amazon Books  -->
-            <div class="card col-xs-auto col-s-4 col-md-5 col-l-6 col-xl-12">
-                <div class="card-body">
-                    <img src="img/uvill.jpg" alt="Amazon Books at University Village" class="card-img-top">
-                    <h3 class="card-title">University Village</h3>
-                    <img src="img/rating.png" alt="rating" class="cardRating">
-                    <p class="card-text">
-                        <strong>Note: </strong>
-                        Walk to shop! Walking to U-Ville is very hilly, but it makes it feel like you deserve to shop now
-                    </p>
-                    <a href="#" class="btn btn-dark text-white">Navigate</a>
-
-                </div>
-            </div>
-
         </div>
-    </div>
+          
+        <div class="container">
+            <div class="favs">
+                <h2>
+                    <i class="fa fas fa-heart" aria-label="heart"></i>
+                    Favorites
+                </h2>
+            </div>
+            <div class="row justify-content-center">
+                <!-- Arboretum -->
+                <div class="card col-xs-auto col-s-4 col-md-5 col-lg-5 col-xl-3">
+                    <div class="card-body">
+                        <img src="img/arboretum.jpg" alt="Japanese Garden in Washington Park Arboretum" class="card-img-top">
+                        <h3 class="card-title">Washington Park Arboretum</h3>
+                        <img src="img/rating.png" alt="rating" class="cardRating">
+                        <p class="card-text">
+                            <strong>Note: </strong>
+                            Chill nature walk among lots of pretty trees and plants. (Don't go when it's raining)
+                        </p>
+                        <a href="#" class="btn btn-dark text-white">Navigate</a>
+
+                    </div>
+                </div>
+                <!-- Gas Works -->
+                <div class="card col-xs-auto col-s-4 col-md-5 col-lg-5 col-xl-3">
+                    <div class="card-body">
+                        <img src="img/GasWorksPark3.jpg" alt="Factory at Gas Works" class="card-img-top">
+                        <h3 class="card-title">Gas Works Park</h3>
+                        <img src="img/rating.png" alt="rating" class="cardRating">
+                        <p class="card-text">
+                            <strong>Note: </strong>
+                            Flat walk on the Burke Gilman to see Gas Works Park. Really great views at the top of the hill but often crowded on weekends
+                        </p>
+                        <a href="#" class="btn btn-dark text-white">Navigate</a>
+
+                    </div>
+                </div>
+                <!-- Green Lake -->
+                <div class="card col-xs-auto col-s-4 col-md-5 col-lg-5 col-xl-3">
+                    <div class="card-body">
+                        <img src="img/green-lake-park-03.jpg" alt="People boating in Sunny Green Lake" class="card-img-top embed-responsive-item">
+                        <h3 class="card-title">Green Lake Park</h3>
+                        <img src="img/rating.png" alt="rating" class="cardRating">
+                        <p class="card-text">
+                            <strong>Note: </strong>
+                            Hilly walk up, but worth it to see the local park at Green Lake. Watch out for the geese
+                        </p>
+                        <a href="#" class="btn btn-dark text-white">Navigate</a>
+
+                    </div>
+                </div>
+                <!-- Pie Bar -->
+                <div class="card col-xs-auto col-s-4 col-md-5 col-lg-5 col-xl-3">
+                    <div class="card-body">
+                        <img src="img/piebar.jpeg" alt="slice of cherry pie" class="card-img-top">
+                        <h3 class="card-title">Pie Bar</h3>
+                        <img src="img/rating.png" alt="rating" class="cardRating">
+                        <p class="card-text">
+                            <strong>Note: </strong>
+                            A big of a long walk from the University District, but well worth for the pie! Underage foodies be ready to eat outside :'(
+                        </p>
+                        <a href="#" class="btn btn-dark text-white">Navigate</a>
+
+                    </div>
+                </div>
+                <!-- Sea Wolf -->
+                <div class="card col-xs-auto col-s-4 col-md-5 col-lg-5 col-xl-3">
+                    <div class="card-body">
+                        <img src="img/seawolf.png" alt="cafe at Sea Wolf Bakery" class="card-img-top">
+                        <h3 class="card-title">Sea Wolf Bakery</h3>
+                        <img src="img/rating.png" alt="rating" class="cardRating">
+                        <p class="card-text">
+                            <strong>Note: </strong>
+                            Sea Wolf Bakers is the most amazing bakery in the whole world. Their sourdough is amazing, their chocolate croissants are amazing...tough walk but worth it for the carbs
+                        </p>
+                        <a href="#" class="btn btn-dark text-white">Navigate</a>
+
+                    </div>
+                </div>
+                <!-- Amazon Books  -->
+                <div class="card col-xs-auto col-s-4 col-md-5 col-lg-5 col-xl-3">
+                    <div class="card-body">
+                        <img src="img/uvill.jpg" alt="Amazon Books at University Village" class="card-img-top">
+                        <h3 class="card-title">University Village</h3>
+                        <img src="img/rating.png" alt="rating" class="cardRating">
+                        <p class="card-text">
+                            <strong>Note: </strong>
+                            Walk to shop! Walking to U-Ville is very hilly, but it makes it feel like you deserve to shop now
+                        </p>
+                        <a href="#" class="btn btn-dark text-white">Navigate</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <footer>
         <p>© 2020 Jocelyn Afandi & Anna Zhou</p>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
