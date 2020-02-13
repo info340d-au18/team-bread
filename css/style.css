@@ -1,47 +1,28 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap');
 
-#nav-items {
-    display: none;
-}
-
 body {
     font-size: 16px;
     font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-image: url('../img/plain_map.png');
 }
 
 p {
     line-height: 1.5;
 }
 
-nav {
-    padding: 0.75rem;
+/* nav {
+    padding: 1rem;
     top: 0px;
     left: 0px;
     background-color: rgba(255, 255, 255, 0.8);
-    color: #007bff;
-    height: 4rem;
-}
+    font-size: 16px;
+} */
 
-a:hover, a:focus, .btn:hover, #hamburger-menu:hover {
+/* a:hover, a:focus, .btn:hover, #hamburger-menu:hover {
     color: cornflowerblue;
-}
+} */
 
-#hamburger-menu {
-    font-size: 2rem;
-    margin-right: 1rem;
-}
-
-#hamburger-menu, #links {
-    display: inline-block;
-}
-
-
-#nav-items {
-    float: right;
-    font-size: 16pt;
-    align-items: center;
-    transform: translateY(-20%);
+.popTitle, .favs {
+    text-align: center;
 }
 
 #begin{
@@ -205,6 +186,73 @@ footer {
 
 } */
 
+.carousel-indicators .active {
+    background-color: black;
+}
+
+.place-des {
+    visibility: hidden;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background-color: #F7F7F7;
+    color: black;
+    padding: 1rem;
+    width: 100%;
+}
+
+.place-des h3 {
+    text-align: center;
+}
+
+.place-des p {
+    font-size: 2vh;
+}
+
+/* .wrap-item:hover .place-des, .wrap-item:focus .place-des { */
+.wrap-item:hover .place-des {
+    visibility: visible;
+    transition: 0.3s;
+
+}
+
+.wrap-item:hover img {
+    opacity: 50%;
+    transition: 0.3s;
+}
+
+/* #car {
+    justify-content: center;
+} */
+
+/* .carousel-control-prev {
+    outline-color: black;
+} */
+
+
+#myCarousel {
+    margin: 1rem;
+    border: none;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+
+#myCarousel img {
+    /* width: 800px;
+    height: 200px; */
+    margin: 0 auto;
+}
+
+
+h2 i {
+    color: #F3504B;
+}
+
+.favs h2 {
+    justify-content: center;
+}
+
 /* small screens */
 @media screen and (min-width: 598px) {
     #begin .card-title, #begin a.btn {
@@ -219,21 +267,17 @@ footer {
         display: inline;
     }
     
-    #title, #nav-items {
+    /* #title, #nav-items {
         display: inline-block;
-    }
+    } */
 
     #links {
         display: inline;
     }
 
-    #hamburger-menu {
-        display: none;
-    }
-
-    .row .card-body {
+    /* .row .card-body {
         padding: 2rem 2rem 2rem 2rem;
-    }
+    } */
 
     
 
@@ -241,16 +285,23 @@ footer {
 }
 
 @media screen and (min-width: 992px) {
-    #nav-items {
+    /* #nav-items {
         font-size: 20pt;
-    }
+    } */
 
-    .row .card-body {
+    /* .row .card-body {
         padding: 3rem 3rem 3rem 3rem;
-    }
+    } */
 
     #begin .card-title, #begin .a.btn {
         font-size: 24pt;
     }
 
+}
+
+@media screen and (min-width: 1698px) {
+    #car.row {
+        justify-content: center;
+        align-items: center;
+    }
 }
