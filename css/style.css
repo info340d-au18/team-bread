@@ -237,7 +237,11 @@ footer {
     float: left;
 }
 
-#favbut, .favb {
+#favbut {
+    float: right;
+}
+
+.favb {
     float: right;
 }
 
