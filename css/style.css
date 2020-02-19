@@ -241,6 +241,10 @@ footer {
     float: right;
 }
 
+.addFav {
+    float: left;
+}
+
 .favb {
     float: right;
 }
