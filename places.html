@@ -6,8 +6,19 @@
         <meta name="author" content="Jocelyn Afandi & Anna Zhou">
         <meta name="description" content="Stage 2 main page">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <!-- Leaflet CSS -->
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+            integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+            crossorigin=""/>
+                <!-- Leaflet JS -->
+            <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+            crossorigin=""></script>
+            <!-- Google Places API -->
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4keP_OR3biVwXDH2BM8JtzsEH5URQ7iU&libraries=places">
+            </script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://kit.fontawesome.com/c5a728aca8.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/style.css">
     </head>
 <body>
@@ -66,7 +77,19 @@
                                 <div class="place-des">
                                     <h3>Burke Gilman Trail</h3>
                                     <p> A 19.8 mile long trail for bikers, walkers, and runners. Stops on the trail include Gas Works Park, The Fremont Troll, and University of Washington</p>
-                                    <a href="#" class="btn btn-dark text-white">Navigate</a>
+                                    <div>
+                                        <a href="#" class="btn btn-dark text-white navb">
+                                            <h3>Navigate</h3>
+                                        </a>
+                                        <div id="favbut">
+                                            <a href="#" class="btn btn-dark text-white navb addFav">
+                                                <h3 class="unfav">
+                                                    <i class="far fa-heart favb"></i>
+                                                    Favorite
+                                                </h3>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +102,19 @@
                                 <div class="place-des">
                                     <h3>Ravenna Park Trail</h3>
                                     <p> A 1.7 mile loop with wild flower features. Good for an hour's walk! Near the University District and a perfect place to take your dog on a short walk.</p>
-                                    <a href="#" class="btn btn-dark text-white">Navigate</a>
+                                    <div>
+                                        <a href="#" class="btn btn-dark text-white navb">
+                                            <h3>Navigate</h3>
+                                        </a>
+                                        <div id="favbut">
+                                            <a href="#" class="btn btn-dark text-white navb addFav">
+                                                <h3 class="unfav">
+                                                    <i class="far fa-heart favb"></i>
+                                                    Favorite
+                                                </h3>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +125,19 @@
                                 <div class="place-des">
                                     <h3>Rattlesnake Ridge Trail</h3>
                                     <p> A 4.0 mile roundtrip hiking trail in the North Bend Area. Perfect for beginning hikers. Short hike with a beautiful view</p>
-                                    <a href="#" class="btn btn-dark text-white">Navigate</a>
+                                    <div>
+                                        <a href="#" class="btn btn-dark text-white navb">
+                                            <h3>Navigate</h3>
+                                        </a>
+                                        <div id="favbut">
+                                            <a href="#" class="btn btn-dark text-white navb addFav">
+                                                <h3 class="unfav">
+                                                    <i class="far fa-heart favb"></i>
+                                                    Favorite
+                                                </h3>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +162,7 @@
                     Favorites
                 </h2>
             </div>
-            <div class="row justify-content-center">
+            <div id = 'favorite' class="row justify-content-center">
                 <!-- Arboretum -->
                 <div class="card col-xs-auto col-s-4 col-md-5 col-lg-5 col-xl-3">
                     <div class="card-body">
@@ -126,8 +173,12 @@
                             <strong>Note: </strong>
                             Chill nature walk among lots of pretty trees and plants. (Don't go when it's raining)
                         </p>
-                        <a href="#" class="btn btn-dark text-white">Navigate</a>
-
+                        <div>
+                            <a href="#" class="btn btn-dark text-white navb">Navigate</a>
+                            <h2 class="favb">
+                                <i class="fa fas fa-heart" aria-label="heart"></i>
+                            </h2>
+                        </div>
                     </div>
                 </div>
                 <!-- Gas Works -->
@@ -140,8 +191,12 @@
                             <strong>Note: </strong>
                             Flat walk on the Burke Gilman to see Gas Works Park. Really great views at the top of the hill but often crowded on weekends
                         </p>
-                        <a href="#" class="btn btn-dark text-white">Navigate</a>
-
+                        <div>
+                            <a href="#" class="btn btn-dark text-white navb">Navigate</a>
+                            <h2 class="favb">
+                                <i class="fa fas fa-heart" aria-label="heart"></i>
+                            </h2>
+                        </div>
                     </div>
                 </div>
                 <!-- Green Lake -->
@@ -154,7 +209,12 @@
                             <strong>Note: </strong>
                             Hilly walk up, but worth it to see the local park at Green Lake. Watch out for the geese
                         </p>
-                        <a href="#" class="btn btn-dark text-white">Navigate</a>
+                        <div>
+                            <a href="#" class="btn btn-dark text-white navb">Navigate</a>
+                            <h2 class="favb">
+                                <i class="fa fas fa-heart" aria-label="heart"></i>
+                            </h2>
+                        </div>
 
                     </div>
                 </div>
@@ -168,7 +228,12 @@
                             <strong>Note: </strong>
                             A big of a long walk from the University District, but well worth for the pie! Underage foodies be ready to eat outside :'(
                         </p>
-                        <a href="#" class="btn btn-dark text-white">Navigate</a>
+                        <div>
+                            <a href="#" class="btn btn-dark text-white navb">Navigate</a>
+                            <h2 class="favb">
+                                <i class="fa fas fa-heart" aria-label="heart"></i>
+                            </h2>
+                        </div>
 
                     </div>
                 </div>
@@ -182,7 +247,12 @@
                             <strong>Note: </strong>
                             Sea Wolf Bakers is the most amazing bakery in the whole world. Their sourdough is amazing, their chocolate croissants are amazing...tough walk but worth it for the carbs
                         </p>
-                        <a href="#" class="btn btn-dark text-white">Navigate</a>
+                        <div>
+                            <a href="#" class="btn btn-dark text-white navb">Navigate</a>
+                            <h2 class="favb">
+                                <i class="fa fas fa-heart" aria-label="heart"></i>
+                            </h2>
+                        </div>
 
                     </div>
                 </div>
@@ -196,7 +266,12 @@
                             <strong>Note: </strong>
                             Walk to shop! Walking to U-Ville is very hilly, but it makes it feel like you deserve to shop now
                         </p>
-                        <a href="#" class="btn btn-dark text-white">Navigate</a>
+                        <div>
+                            <a href="#" class="btn btn-dark text-white navb">Navigate</a>
+                            <h2 class="favb">
+                                <i class="fa fas fa-heart" aria-label="heart"></i>
+                            </h2>
+                        </div>
 
                     </div>
                 </div>
@@ -216,6 +291,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
         integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous">
     </script>
+    <script src="js/index.js"></script>
 </body>
 
 </html>

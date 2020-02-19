@@ -14,18 +14,6 @@ p {
     line-height: 1.5;
 }
 
-/* nav {
-    padding: 1rem;
-    top: 0px;
-    left: 0px;
-    background-color: rgba(255, 255, 255, 0.8);
-    font-size: 16px;
-} */
-
-/* a:hover, a:focus, .btn:hover, #hamburger-menu:hover {
-    color: cornflowerblue;
-} */
-
 .popTitle, .favs {
     text-align: center;
 }
@@ -186,11 +174,6 @@ footer {
     bottom:0;
 }
 
-/* .desc-wrapper .d-flex {
-    justify-content-center: center;
-
-} */
-
 .carousel-indicators .active {
     background-color: black;
 }
@@ -214,7 +197,6 @@ footer {
     font-size: 2vh;
 }
 
-/* .wrap-item:hover .place-des, .wrap-item:focus .place-des { */
 .wrap-item:hover .place-des {
     visibility: visible;
     transition: 0.3s;
@@ -226,31 +208,18 @@ footer {
     transition: 0.3s;
 }
 
-/* #car {
-    justify-content: center;
-} */
-
-/* .carousel-control-prev {
-    outline-color: black;
-} */
-
-
 #myCarousel {
     margin: 1rem;
     border: none;
-    /* justify-content: center;
-    align-items: center; */
 }
 
 
 #myCarousel img {
-    /* width: 800px;
-    height: 200px; */
     margin: 0 auto;
 }
 
 
-h2 i {
+.fa-heart {
     color: #F3504B;
 }
 
@@ -264,6 +233,15 @@ h2 i {
 
 }
 
+.navb {
+    float: left;
+}
+
+#favbut, .favb {
+    float: right;
+}
+
+/* .favbut  */
 /* small screens */
 @media screen and (min-width: 598px) {
     #begin .card-title, #begin a.btn {
@@ -285,18 +263,10 @@ h2 i {
     #logo-title {
         display: inline;
     }
-    
-    /* #title, #nav-items {
-        display: inline-block;
-    } */
 
     #links {
         display: inline;
     }
-
-    /* .row .card-body {
-        padding: 2rem 2rem 2rem 2rem;
-    } */
 
     .navbar-brand {
         font-size: 24px;
@@ -311,14 +281,6 @@ h2 i {
 
 
 @media screen and (min-width: 992px) {
-    /* #nav-items {
-        font-size: 20pt;
-    } */
-
-    /* .row .card-body {
-        padding: 3rem 3rem 3rem 3rem;
-    } */
-
     #begin .card-title, #begin .a.btn {
         font-size: 24pt;
     }

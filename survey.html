@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Stage 2 Main Page</title>
     <meta name="author" content="Jocelyn Afandi & Anna Zhou">
@@ -9,23 +10,130 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-    crossorigin=""/>
-        <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-    crossorigin=""></script>
-
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4keP_OR3biVwXDH2BM8JtzsEH5URQ7iU&libraries=places">
-    </script>
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW0Q3Mg_HlbVQrVR1cu1nkBtTE6bToTu4&libraries=places">
-    </script> -->
-</head>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
 
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            /* padding: 2em; */
+        }
+
+        body {
+            padding: 0 !important;
+        }
+
+        table {
+            font-size: 12px;
+        }
+
+        .search {
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            background: #fff;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            /* left: 0;
+            position: absolute;
+            top: 0; */
+            width: 440px;
+            z-index: 1;
+        }
+
+        #map {
+            margin-top: 40px;
+            width: 100%;
+            height: 40%;
+            /* padding: 1em; */
+            align-items: center;
+            /* margin: 1em 1em 1em 1em; */
+            margin-left: 1em;
+            margin-right: 1em;
+            margin-bottom: 2em;
+        }
+
+        main, .form {
+            padding: 1em;
+        }
+
+        /* #listing {
+            position: relative;
+            width: 200px;
+            height: 470px;
+            overflow: auto;
+            left: 442px; */
+            /* top: 0px;
+            cursor: pointer;
+            overflow-x: hidden;
+        } */
+
+        #find {
+            font-size: 14px;
+        }
+
+        #locationField {
+            -webkit-box-flex: 1 1 190px;
+            -ms-flex: 1 1 190px;
+            flex: 1 1 190px;
+            margin: 0 8px;
+        }
+
+        #controls {
+            -webkit-box-flex: 1 1 140px;
+            -ms-flex: 1 1 140px;
+            flex: 1 1 140px;
+        }
+
+        #autocomplete {
+            width: 100%;
+        }
+
+        #country {
+            width: 100%;
+        }
+
+        .placeIcon {
+            width: 20px;
+            height: 34px;
+            margin: 4px;
+        }
+
+        .hotelIcon {
+            width: 24px;
+            height: 24px;
+        }
+
+        #resultsTable {
+            border-collapse: collapse;
+            width: 240px;
+        }
+
+        #rating {
+            font-size: 13px;
+            font-family: Arial Unicode MS;
+        }
+
+        .iw_table_row {
+            height: 18px;
+        }
+
+        .iw_attribute_name {
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .iw_table_icon {
+            text-align: right;
+        }
+    </style>
+</head>
 
 <body>
     <!-- nav bar -->
@@ -62,32 +170,60 @@
         </div>
         <!-- Collapsible content -->
     </nav>
-
+    
+    <div id="map"></div>
+    
+    
     <main>
+        <div id="listing">
+            <table id="resultsTable" style="display: none">
+                <tbody id="results"></tbody>
+            </table>
+        </div>
+
+        <div style="display: none">
+            <div id="info-content">
+                <table>
+                    <tr id="iw-url-row" class="iw_table_row">
+                        <td id="iw-icon" class="iw_table_icon"></td>
+                        <td id="iw-url"></td>
+                    </tr>
+                    <tr id="iw-address-row" class="iw_table_row">
+                        <td class="iw_attribute_name">Address:</td>
+                        <td id="iw-address"></td>
+                    </tr>
+                    <tr id="iw-phone-row" class="iw_table_row">
+                        <td class="iw_attribute_name">Telephone:</td>
+                        <td id="iw-phone"></td>
+                    </tr>
+                    <tr id="iw-rating-row" class="iw_table_row">
+                        <td class="iw_attribute_name">Rating:</td>
+                        <td id="iw-rating"></td>
+                    </tr>
+                    <tr id="iw-website-row" class="iw_table_row">
+                        <td class="iw_attribute_name">Website:</td>
+                        <td id="iw-website"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
         <div class="form">
-            <h1>The Walk Budddy Route Generator</h1>
+            <h2>The Walk Buddy Route Generator</h2>
             <p>Please fill out a couple of questions, and soon you'll be on your way!</p>
-            <div class="form-group distance">
-                <label for="locationInput">Where are you currently located?</label>
-                <input type="text" class="form-control" id="locationInput" placeholder="Example: Mary Gates Hall">
 
-            </div>
-
-            <div class="form-group">
-                <label for="distanceInput">How far would you like to walk today?</label>
-                <div class="row">
-                    <input type="text" class="form-control col-sm-2" placeholder="Example: 5" id="distanceInput">
-                    <div class="col-sm-10">
-                        <select class="form-control" id="distance-units">
-                            <option>Minutes</option>
-                            <option>Miles</option>
-                        </select>
+            <!-- <div class="form-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="text" class="form-control" placeholder="Example: 5" id="distanceInput">
                     </div>
+                    <input type="text" class="form-control" aria-label="miles" placeholder="Miles"
+                        readonly>
                 </div>
-            </div>
+            </div> -->
 
             <!-- radio buttons for purpose of walk -->
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="placeCategory">What is your main purpose for wanting to take a walk today?</label>
                 <div class="input-group-prepend">
                     <div class="input-group-text">
@@ -108,23 +244,23 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <input class="radio" type="radio" aria-label="Radio for following text input" name="purpose"
-                            value="no-reason">
-                    </div>
-                    <input type="text" class="form-control" aria-label="Text input with radio"
-                        placeholder="No reason...just want to get out of the house" readonly>
-                </div>
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <input class="radio" type="radio" aria-label="Radio for following text input" name="purpose"
                             value="excercise">
                     </div>
                     <input type="text" class="form-control" aria-label="Text input with radio"
                         placeholder="I'm out of shape and walking is easier than running :)" readonly>
                 </div>
-            </div>
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input class="radio" type="radio" aria-label="Radio for following text input" name="purpose"
+                            value="no-reason">
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with radio"
+                        placeholder="No reason...just want to get out of the house" readonly>
+                </div>
+            </div> -->
 
             <!-- checkboxes for types of places -->
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="placeCategory">What types of places would you like to go to?</label>
                 <div class="input-group-prepend">
                     <div class="input-group-text">
@@ -150,29 +286,420 @@
                     <input type="text" class="form-control" aria-label="Text input with checkbox"
                         placeholder="Large Stores (ie: department store)" readonly>
                 </div>
+            </div> -->
+
+
+            <div class="form-group">
+                <label for="placeCategory">Are you interested in interacting with nature (plants or animals)?</label>
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input class="radio" type="radio" aria-label="Checkbox for following text input"
+                            value="park" name="nature">
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Park"
+                        readonly>
+                </div>
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input class="radio" type="radio" aria-label="Checkbox for following text input"
+                            value="cemetary" name="nature">
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with checkbox"
+                        placeholder="Cemetary" readonly>
+                </div>
+                <!-- <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input class="radio" type="radio" aria-label="Checkbox for following text input"
+                            value="zoo" name="nature">
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with checkbox"
+                        placeholder="Zoo" readonly>
+                </div> -->
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input class="radio" type="radio" aria-label="Checkbox for following text input"
+                            value="none" name="nature">
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with checkbox"
+                        placeholder="Not Today" readonly>
+                </div>
+
+                <label for="placeCategory">Are you interested in visiting some small stores?</label>
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input class="radio" type="radio" aria-label="Checkbox for following text input"
+                            value="bakery" name="small-store">
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Bakery"
+                        readonly>
+                </div>
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input class="radio" type="radio" aria-label="Checkbox for following text input"
+                            value="book_store" name="small-store">
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with checkbox"
+                        placeholder="Book Store" readonly>
+                </div>
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input class="radio" type="radio" aria-label="Checkbox for following text input"
+                            value="cafe" name="small-store">
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with checkbox"
+                        placeholder="Cafe" readonly>
+                </div>
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input class="radio" type="radio" aria-label="Checkbox for following text input"
+                            value="none" name="small-store">
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with checkbox"
+                        placeholder="Not Today" readonly>
+                </div>
+
+                <label for="placeCategory">What about visiting some larger establishments?</label>
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input class="radio" type="radio" aria-label="Checkbox for following text input"
+                            value="art_gallery" name="large-store">
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Art Gallery"
+                        readonly>
+                </div>
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input class="radio" type="radio" aria-label="Checkbox for following text input"
+                            value="movie_theater" name="large-store">
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with checkbox"
+                        placeholder="Movie Theater" readonly>
+                </div>
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input class="radio" type="radio" aria-label="Checkbox for following text input"
+                            value="library" name="large-store">
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with checkbox"
+                        placeholder="Library" readonly>
+                </div>
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input class="radio" type="radio" aria-label="Checkbox for following text input"
+                            value="none" name="large-store">
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with checkbox"
+                        placeholder="Not Today" readonly>
+                </div>
             </div>
 
+            <!-- <div class="form-group distance">
+                <label for="locationInput">Where are you currently located?</label>
+                <input type="text" class="form-control" id="locationInput" placeholder="Example: Mary Gates Hall">
+
+            </div> -->
+
+            <div class="form-group distance search">
+
+                <!-- <input type="text" class="form-control" id="locationInput" placeholder="Example: Mary Gates Hall"> -->
+                <div id="find">
+                    <label for="locationInput">Where are you currently located?</label>
+                </div>
+
+                <div id="locationField">
+                    <input id="autocomplete" class="form-control" placeholder="Enter a start location" type="text" />
+                </div>
+            </div>
+            <p>Note: entering a location will kickstart our search to begin</p>
+            <p>Scroll back to the top to see some places!</p>
+
+
 
         </div>
-        <div>
+        <!-- <div>
             <button type="button" id="submit" class="btn btn-success">Submit</button>
-        </div>
+        </div> -->
     </main>
 
-    <footer>
-        <p>© 2020 Jocelyn Afandi & Anna Zhou</p>
-    </footer>
-    <script src="js/index.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
-        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous">
-    </script>
 
+    
+
+    <script>
+        // Most code taken from Google Maps API example page
+        //
+        // This example uses the autocomplete feature of the Google Places API.
+        // It allows the user to find all hotels in a given place, within a given
+        // country. It then displays markers for all the hotels returned,
+        // with on-click details for each hotel.
+
+        // This example requires the Places library. Include the libraries=places
+        // parameter when you first load the API. For example:
+        // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+        var map, places, infoWindow;
+        var markers = [];
+        var autocomplete;
+        var countryRestrict = {
+            'country': 'us'
+        };
+        var MARKER_PATH = 'https://developers.google.com/maps/documentation/javascript/images/marker_green';
+        var hostnameRegexp = new RegExp('^https?://.+?/');
+
+        var countries = {
+            'us': {
+                center: {
+                    lat: 37.1,
+                    lng: -95.7
+                },
+                zoom: 3
+            }
+        };
+
+        // submit.addEventListener('click', newRoute);
+
+        // later --> disable submit if no cur location input
+        // autocomplete.addEventListener('input', () => {
+        //     if ()
+        // })
+        let checkboxes = document.querySelectorAll('input.radio');
+
+        function selectCheckboxes(domName) {
+            let temp = [];
+            for (let i = 0; i < domName.length; i++) {
+                if (domName[i].checked & domName[i].value != 'none') {
+                    temp.push(domName[i].value);
+                }
+            }
+            console.log(temp);
+            return temp;
+        }
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: countries['us'].zoom,
+                center: countries['us'].center,
+                mapTypeControl: false,
+                panControl: true,
+                zoomControl: true,
+                streetViewControl: false
+            });
+
+            infoWindow = new google.maps.InfoWindow({
+                content: document.getElementById('info-content')
+            });
+
+            // Create the autocomplete object and associate it with the UI input control.
+            // Restrict the search to the default country, and to place type "cities".
+            autocomplete = new google.maps.places.Autocomplete(
+                // /** @type {!HTMLInputElement} */ 
+                (
+                    document.getElementById('autocomplete')), {
+                    // types: ['(establishment)'],
+                    componentRestrictions: countryRestrict
+                });
+            places = new google.maps.places.PlacesService(map);
+
+            autocomplete.addListener('place_changed', onPlaceChanged);
+
+            // Add a DOM event listener to react when the user selects a country.
+            // document.getElementById('country').addEventListener(
+            //     'change', setAutocompleteCountry);
+        }
+
+        // When the user selects a location, get the place details for the city and
+        // zoom the map in on the location.
+        function onPlaceChanged() {
+            var place = autocomplete.getPlace();
+            if (place.geometry) {
+                map.panTo(place.geometry.location);
+                map.setZoom(15);
+                search();
+            } else {
+                document.getElementById('autocomplete').placeholder = 'Enter a start location';
+            }
+        }
+        
+        // Search for hotels in the selected city, within the viewport of the map.
+        function search() {
+            var blahblah = selectCheckboxes(checkboxes);
+            console.log(blahblah);
+            var search = {
+                bounds: map.getBounds(),
+                //types: ['lodging']
+                types: blahblah,
+            };
+
+            places.nearbySearch(search, function (results, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    clearResults();
+                    clearMarkers();
+                    // Create a marker for each hotel found, and
+                    // assign a letter of the alphabetic to each marker icon.
+                    for (var i = 0; i < results.length; i++) {
+                        var markerLetter = String.fromCharCode('A'.charCodeAt(0) + (i % 26));
+                        var markerIcon = MARKER_PATH + markerLetter + '.png';
+                        // Use marker animation to drop the icons incrementally on the map.
+                        markers[i] = new google.maps.Marker({
+                            position: results[i].geometry.location,
+                            animation: google.maps.Animation.DROP,
+                            icon: markerIcon
+                        });
+                        // If the user clicks a hotel marker, show the details of that hotel
+                        // in an info window.
+                        markers[i].placeResult = results[i];
+                        google.maps.event.addListener(markers[i], 'click', showInfoWindow);
+                        setTimeout(dropMarker(i), i * 100);
+                        addResult(results[i], i);
+                    }
+                }
+            });
+        }
+
+        function clearMarkers() {
+            for (var i = 0; i < markers.length; i++) {
+                if (markers[i]) {
+                    markers[i].setMap(null);
+                }
+            }
+            markers = [];
+        }
+
+        // Set the country restriction based on user input.
+        // Also center and zoom the map on the given country.
+        function setAutocompleteCountry() {
+            var country = document.getElementById('country').value;
+            if (country == 'all') {
+                autocomplete.setComponentRestrictions({
+                    'country': []
+                });
+                map.setCenter({
+                    lat: 15,
+                    lng: 0
+                });
+                map.setZoom(2);
+            } else {
+                autocomplete.setComponentRestrictions({
+                    'country': country
+                });
+                map.setCenter(countries[country].center);
+                map.setZoom(countries[country].zoom);
+            }
+            clearResults();
+            clearMarkers();
+        }
+
+        function dropMarker(i) {
+            return function () {
+                markers[i].setMap(map);
+            };
+        }
+
+        function addResult(result, i) {
+            var results = document.getElementById('results');
+            var markerLetter = String.fromCharCode('A'.charCodeAt(0) + (i % 26));
+            var markerIcon = MARKER_PATH + markerLetter + '.png';
+
+            var tr = document.createElement('tr');
+            tr.style.backgroundColor = (i % 2 === 0 ? '#F0F0F0' : '#FFFFFF');
+            tr.onclick = function () {
+                google.maps.event.trigger(markers[i], 'click');
+            };
+
+            var iconTd = document.createElement('td');
+            var nameTd = document.createElement('td');
+            var icon = document.createElement('img');
+            icon.src = markerIcon;
+            icon.setAttribute('class', 'placeIcon');
+            icon.setAttribute('className', 'placeIcon');
+            var name = document.createTextNode(result.name);
+            iconTd.appendChild(icon);
+            nameTd.appendChild(name);
+            tr.appendChild(iconTd);
+            tr.appendChild(nameTd);
+            results.appendChild(tr);
+        }
+
+        function clearResults() {
+            var results = document.getElementById('results');
+            while (results.childNodes[0]) {
+                results.removeChild(results.childNodes[0]);
+            }
+        }
+
+        // Get the place details for a hotel. Show the information in an info window,
+        // anchored on the marker for the hotel that the user selected.
+        function showInfoWindow() {
+            var marker = this;
+            places.getDetails({
+                    placeId: marker.placeResult.place_id
+                },
+                function (place, status) {
+                    if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                        return;
+                    }
+                    infoWindow.open(map, marker);
+                    buildIWContent(place);
+                });
+        }
+
+        // Load the place information into the HTML elements used by the info window.
+        function buildIWContent(place) {
+            document.getElementById('iw-icon').innerHTML = '<img class="hotelIcon" ' +
+                'src="' + place.icon + '"/>';
+            document.getElementById('iw-url').innerHTML = '<b><a href="' + place.url +
+                '">' + place.name + '</a></b>';
+            document.getElementById('iw-address').textContent = place.vicinity;
+
+            if (place.formatted_phone_number) {
+                document.getElementById('iw-phone-row').style.display = '';
+                document.getElementById('iw-phone').textContent =
+                    place.formatted_phone_number;
+            } else {
+                document.getElementById('iw-phone-row').style.display = 'none';
+            }
+
+            // Assign a five-star rating to the hotel, using a black star ('&#10029;')
+            // to indicate the rating the hotel has earned, and a white star ('&#10025;')
+            // for the rating points not achieved.
+            if (place.rating) {
+                var ratingHtml = '';
+                for (var i = 0; i < 5; i++) {
+                    if (place.rating < (i + 0.5)) {
+                        ratingHtml += '&#10025;';
+                    } else {
+                        ratingHtml += '&#10029;';
+                    }
+                    document.getElementById('iw-rating-row').style.display = '';
+                    document.getElementById('iw-rating').innerHTML = ratingHtml;
+                }
+            } else {
+                document.getElementById('iw-rating-row').style.display = 'none';
+            }
+
+            // The regexp isolates the first part of the URL (domain plus subdomain)
+            // to give a short URL for displaying in the info window.
+            if (place.website) {
+                var fullUrl = place.website;
+                var website = hostnameRegexp.exec(place.website);
+                if (website === null) {
+                    website = 'http://' + place.website + '/';
+                    fullUrl = website;
+                }
+                document.getElementById('iw-website-row').style.display = '';
+                document.getElementById('iw-website').textContent = website;
+            } else {
+                document.getElementById('iw-website-row').style.display = 'none';
+            }
+        }
+    </script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5jUIVbV3Skp3ArHd_b5YXzdPpRgGhdpU&libraries=places&callback=initMap"
+        async defer></script>
+
+    <!-- anna's link -->
+    <!-- <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW0Q3Mg_HlbVQrVR1cu1nkBtTE6bToTu4&libraries=places&callback=initMap"
+        async defer></script> -->
 </body>
 
 </html>
