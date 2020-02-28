@@ -31,52 +31,91 @@
 
 // initMap();
 
-// var mymap = L.map('mapid').setView([47.606209, -122.332069], 13);
-// console.log('hello');
+// Leaflet map
+var mymap = L.map('mapid').setView([47.606209, -122.332069], 13);
+console.log('hello');
 
-// L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-//     maxZoom: 18,
-//     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-//         '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-//         'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-//     id: 'mapbox/streets-v11',
-//     tileSize: 512,
-//     zoomOffset: -1,
-//     accessToken: 'pk.eyJ1IjoiYW5uYXF6aG91IiwiYSI6ImNrNnJoNXRxNzAwbWszbXNieGFkYzcwdTkifQ.LtCGfbNE6CMEeMYQWW0H7A'
-// }).addTo(mymap);
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+    maxZoom: 18,
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1IjoiYW5uYXF6aG91IiwiYSI6ImNrNnJoNXRxNzAwbWszbXNieGFkYzcwdTkifQ.LtCGfbNE6CMEeMYQWW0H7A'
+}).addTo(mymap);
 
-// // Search Bar to Map
-// var GooglePlacesSearchBox = L.Control.extend({
-//     onAdd: function() {
-//         var element = document.createElement("input");
-//         element.id = "searchBox";
-//         return element;
-//     }
-// });
+// make Favorite button
+function makeHeart() {
+    let fav = document.createElement('button');
+    // let fav = document.createElement('')
+    fav.classList.add('btn', 'btn-primary');
+    fav.setAttribute('type', 'button');
+    fav.innerHTML = 'hello';
+    console.log(fav);
+    return fav;
+}
 
-// (new GooglePlacesSearchBox).addTo(mymap);
+// var marker = L.marker([45.52036,-122.67279]).addTo(mymap);
+fetch('http://overpass-api.de/api/interpreter?data=[out:json];node[amenity=ice_cream]%20(47.481002,,-122.459696,%2047.734136,%20-122.224433);out;').then(
+    function(response) {
+        let dp = response.json();
+        return dp;
+    }
+).then(function(data) {
+    // console.log(data);
+    let y = data;
+    console.log(y.elements);
+    for (let i = 0; i < 100; i++) {
+        let lat = y.elements[i].lat;
+        let long = y.elements[i].lon;
+        console.log(lat);
+        console.log(long);
+        var marker = L.marker([lat, long]).addTo(mymap);
+        // thank you tim lohnes for the help!
+        marker.bindPopup(y.elements[i].tags.name + '<br><button id = "navTo" type="button" class="btn btn-primary">hello</button> <button id = "saveFav" type="button" class="btn btn-primary">bye</button>');
+    }
+})
 
-// var input = document.getElementById("searchBox");
-// var searchBox = new google.maps.places.SearchBox(input);
+// var popup = L.popup()
+//     .setLatLng([51.5, -0.09])
+//     // .setContent("I am a standalone popup.")
+//     // .setContent(this.makeHeart())
+//     .openOn(mymap);
 
-// searchBox.addListener('places_changed', function() {
-//     var places = searchBox.getPlaces();
-//     if (places.length == 0) {
-//         return;
-//     }
+// Search Bar to Map
+var GooglePlacesSearchBox = L.Control.extend({
+    onAdd: function() {
+        var element = document.createElement("input");
+        element.id = "searchBox";
+        return element;
+    }
+});
 
-//     var group = L.featureGroup();
-//     places.forEach(function(place) {
-//         var marker = L.marker([
-//             place.geometry.location.lat(),
-//             place.geometry.location.lng()
-//         ]);
-//         group.addLayer(marker);
-//     });
+(new GooglePlacesSearchBox).addTo(mymap);
 
-//     group.addTo(mymap);
-//     mymap.fitBounds(group.getBounds());
-// });
+var input = document.getElementById("searchBox");
+var searchBox = new google.maps.places.SearchBox(input);
+
+searchBox.addListener('places_changed', function() {
+    var places = searchBox.getPlaces();
+    if (places.length == 0) {
+        return;
+    }
+
+    var group = L.featureGroup();
+    places.forEach(function(place) {
+        var marker = L.marker([
+            place.geometry.location.lat(),
+            place.geometry.location.lng()
+        ]);
+        group.addLayer(marker);
+    });
+
+    group.addTo(mymap);
+    mymap.fitBounds(group.getBounds());
+});
 
 // form js
 let state = {
