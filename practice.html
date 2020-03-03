@@ -21,11 +21,11 @@
     <script src="leaflet-routing-machine.js"></script>
 </body>
 <script>
-    var map = L.map('map').setView([57.74, 11.94], 13);
-    // var map = L.map('map').setView([47.606209, -122.332069]);
+    // var map = L.map('map').setView([57.74, 11.94], 13);
+    var map = L.map('map').setView([47.606209, -122.332069], 13);
     // var map = L.map('map').fitBounds([57.7972, 11.9227], [57.6827, 11.9569]);
 
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}{r}.png', {
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
@@ -34,16 +34,18 @@
 
     L.Routing.control({
         waypoints: [
-            L.latLng(57.74, 11.94),
-            L.latLng(57.6792, 11.949)
+            // L.latLng(57.74, 11.94),
+            // L.latLng(57.6792, 11.949)
+            L.latLng(47.649920, -122.349999),
+            L.latLng(47.651261, -122.343106)
         ],
         routeWhileDragging: true
-    }).addTo(map);
-    // }).on('routesfound', function(e) {
-    //         routes = e.routes;
-    //         // alert('Found ' + routes.length + ' route(s).');
+    // }).addTo(map);
+    }).on('routesfound', function(e) { // creates variable with routing information ie distance and time!
+            routes = e.routes;
+            // alert('Found ' + routes.length + ' route(s).');
 
-    //     })
-    // .addTo(map);
+        })
+    .addTo(map);
 </script>
 </html>
