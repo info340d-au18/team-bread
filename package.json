@@ -1,42 +1,34 @@
 {
-  "name": "info340-project",
-  "version": "1.0.0",
+  "name": "team-bread",
+  "version": "0.1.0",
   "private": true,
-  "description": "",
-  "scripts": {
-    "test": "jest"
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.1",
+    "@testing-library/user-event": "^7.2.1",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-scripts": "3.4.0"
   },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "jest-style-matchers": "^0.1.1"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "parserOptions": {
-      "ecmaVersion": 6
-    },
-    "env": {
-      "browser": true,
-      "node": true,
-      "shared-node-browser": true,
-      "jquery": true
-    },
-    "extends": "eslint:recommended",
-    "rules": {
-      "no-console": "off",
-      "semi": [
-        "off",
-        "always",
-        {
-          "omitLastInOneLineBlock": true
-        }
-      ],
-      "camelcase": [
-        "error"
-      ]
-    }
+    "extends": "react-app"
   },
-  "dependencies": {
-    "openrouteservice-js": "^0.1.3"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
