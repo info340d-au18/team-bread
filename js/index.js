@@ -227,7 +227,7 @@ function makeFavCard(place, heart, navButton) {
     // adding the elements to the body
     cb.appendChild(ig);
     cb.appendChild(n);
-    cb.appendChild(rate);
+    // cb.appendChild(rate);
     cb.appendChild(notes);
     cb.appendChild(buttons);
     c.appendChild(cb);
@@ -238,49 +238,6 @@ function makeFavCard(place, heart, navButton) {
 let favCon = document.getElementById('favorite');
 // console.log(favCon);
 
-function makeFavFromMap() {
-    let c = document.createElement('div');
-    c.classList.add('card', 'col-xs-auto', 'col-s-4', 'col-md-5', 'col-lg-5', 'col-xl-3');
-    // card body
-    let cb = document.createElement('div');
-    cb.classList.add('card-body');
-    // card name
-    let n = document.createElement('h3');
-    n.classList.add('card-title');
-    n.textContent = placeState.clickedPlace.name;
-    // rating
-    let rate = document.createElement('img');
-    rate.classList.add('cardRating');
-    rate.setAttribute('src', '../img/rating.png');
-    rate.setAttribute('alt', 'rating');
-    // note
-    let notes = document.createElement('p');
-    notes.classList.add('card-text');
-    notes.innerHTML = '<strong>Note: </strong>';
-    // nav button
-    let but = document.createElement('a');
-    but.classList.add('btn', 'btn-dark', 'text-white');
-    but.textContent = 'Navigate';
-    but.setAttribute('href', '#');
-    // heart 
-    let hrt = document.createElement('h2');
-    hrt.classList.add('favb');
-    let icon = document.createElement('i');
-    icon.classList.add('fa', 'fas', 'fa-heart');
-    icon.setAttribute('aria-label', 'heart');
-    hrt.appendChild(icon);
-    // buttons
-    let buttons = document.createElement('div');
-    buttons.appendChild(but);
-    buttons.appendChild(hrt);
-    // add card elements to body
-    cb.appendChild(n);
-    cb.appendChild(rate);
-    cb.appendChild(notes);
-    cb.appendChild(buttons);
-    c.appendChild(cb);
-    return c;
-}
 
 // making carousel places
 function makeCarousel(place, index, favB) {
