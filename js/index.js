@@ -203,10 +203,6 @@ function makeFavCard(place, heart, navButton) {
     n.classList.add('card-title');
     n.textContent = info.name;
     // rating
-    let rate = document.createElement('img');
-    rate.classList.add('cardRating');
-    rate.setAttribute('src', '../img/rating.png');
-    rate.setAttribute('alt', 'rating');
     // note
     let notes = document.createElement('p');
     notes.classList.add('card-text');
