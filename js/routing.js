@@ -281,7 +281,7 @@ function calculateBB(lat, long, radius) {
     let mapBbox = [[upperLat,upperLong],[lowerLat,lowerLong]];
 
     // add the bounding box to the map, and set the map extent to it
-    L.rectangle(mapBbox).addTo(mymap);
+    // L.rectangle(mapBbox).addTo(mymap);
     mymap.fitBounds(mapBbox);
 
     return '(' + upperLat + ',' + upperLong + ',' + lowerLat + ',' + lowerLong + ')';
