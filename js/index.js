@@ -358,7 +358,7 @@ for (let i = 0; i < caro.length; i++) {
 }
 
 // add card favs from csv file to page
-fetch('../data/cardPlaces.json').then(
+fetch('https://info340d-au18.github.io/team-bread/data/cardPlaces.json').then(
     function(response) {
         let dp = response.json();
         return dp;
@@ -399,7 +399,7 @@ fetch('../data/cardPlaces.json').then(
 })
 
 // carousel images
-fetch('../data/carouselPlaces.json').then(
+fetch('https://info340d-au18.github.io/team-bread/data/carouselPlaces.json').then(
     function(response) {
         let dp = response.json();
         return dp;
