@@ -3,6 +3,9 @@ import logo from './logo.svg';
 import './App.css';
 import {Loggin} from './Loggin.js';
 
+import {NavBar} from './NavBar.js';
+import {StartSurvey} from './StartSurvey.js'
+
 // function App() {
 //   return (
 //     <div className="App">
@@ -27,7 +30,13 @@ import {Loggin} from './Loggin.js';
 export class App extends React.Component {
   render() {
     return (
-      <Loggin />
+      
+      // <Loggin />
+      <body>
+        <NavBar />
+        <StartSurvey />
+      
+      </body>
     );
   }
 }
