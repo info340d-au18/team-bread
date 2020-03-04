@@ -244,7 +244,7 @@ function findRandom100(data) {
 // let amenityTypes = ["bar", "park", "ice_cream", "restaurant"];
 
 function typeStrings(amenitiesList, leisureList, lat, long, radius) {
-    let link = 'http://overpass-api.de/api/interpreter?data=[out:json];';
+    let link = 'https://overpass-api.de/api/interpreter?data=[out:json];';
     //l et bounds = '(47.481002,-122.459696,47.734136,-122.224433);' // should be a separate function call in the futuer
 
     let bounds = calculateBB(lat, long, radius / 2) + ';';
