@@ -18,9 +18,18 @@ p {
     text-align: center;
 }
 
-#begin{
+#begin {
     margin: 0;
     position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    box-shadow: black 10rem;
+}
+
+#modal {
+    margin: 0;
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
@@ -228,8 +237,10 @@ footer {
 }
 
 #mapid {
-    height: 400px;
-    width: 600px;
+    height: 800px;
+    width: 1150px;
+    /* height: 70%; */
+    /* width: 100%; */
 
 }
 
@@ -242,11 +253,60 @@ footer {
 }
 
 .addFav {
-    float: left;
+    float: right;
 }
 
 .favb {
     float: right;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    height: 600px;
+    width: 600px;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.x .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.x h4 {
+    float: left;
+}
+
+.close:hover, .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#pMap {
+    height: 300px;
+}
+
+#wrapwrap {
+    display: none;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: fixed;
+    transition: 0.3s;
 }
 
 /* .favbut  */
@@ -262,6 +322,20 @@ footer {
         left: 0px;
         background-color: rgba(255, 255, 255, 0.8);
         font-size: 20px;
+    }
+
+    .modal {
+        /* display: none; */
+        /* position: fixed; */
+        /* z-index: 1; */
+        /* padding-top: 100px; */
+        height: 800px;
+        width: 800px;
+        align-items: center;
+    }
+
+    #pMap {
+        height: 400px;
     }
     
 }
@@ -284,6 +358,20 @@ footer {
         font-size: 22px;
     }
 
+    .modal {
+        /* display: none; */
+        /* position: fixed; */
+        /* z-index: 1; */
+        /* padding-top: 100px; */
+        height: 900px;
+        width: 900px;
+        align-items: center;
+    }
+
+    #pMap {
+        height: 450px;
+    }
+
     
 }
 
@@ -300,11 +388,39 @@ footer {
     nav {
         font-size: 26px;
     }
+
+    .modal {
+        /* display: none; */
+        /* position: fixed; */
+        /* z-index: 1; */
+        padding-top: 100px;
+        height: 1000px;
+        width: 1000px;
+        align-items: center;
+    }
+
+    #pMap {
+        height: 500px;
+    }
 }
 
 @media screen and (min-width: 1698px) {
     #car.row {
         justify-content: center;
         align-items: center;
+    }
+
+    .modal {
+        /* display: none; */
+        /* position: fixed; */
+        /* z-index: 1; */
+        padding-top: 100px;
+        height: 1200px;
+        width: 1200px;
+        align-items: center;
+    }
+
+    #pMap {
+        height: 600px;
     }
 }

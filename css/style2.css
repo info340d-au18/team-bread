@@ -10,13 +10,117 @@
     position: relative;
 } */
 
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap');
+
 body {
-    height: 100%;
+    font-size: 16px;
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.form-group {
+    padding: 4em;
+}
+
+h1 {
+    font-size:30px;
+}
+
+.form {
     position: relative;
+    /* center the element */
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 2em;
+    /* give it dimensions */
+    width: 50%;
+
+    /* width: 60%; 
+    text-align: center;
+    margin: 4em;
+     */
+    background-color: #ededed;
+}
+.form-group {
+    padding: 0.5em;
+}
+
+footer p {
+    font-size: x-small;
+}
+
+footer {
+    display: block;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+#locationField, #blahblah, #mapWrap{
+    text-align: center;
+}
+#searchBox, #blah, #mapid {
+    width: 50%;
+    margin:0 auto;
 }
 
 #mapid {
-    height: 400px;
-    width: 600px;
+    /* visibility:none; */
+    /* 
+    ; */
+    height: 90vh;
+    width: 80%;
+    position:relative;
+    /* display:none; */
+    margin-top: 5em;
+}
 
+/* small screens */
+@media screen and (min-width: 598px) {
+    #begin .card-title, #begin a.btn {
+        font-size: 20pt;
+    }
+
+    nav {
+        padding: 1rem;
+        top: 0px;
+        left: 0px;
+        background-color: rgba(255, 255, 255, 0.8);
+        font-size: 20px;
+    }
+    
+}
+
+/* medium screens */
+@media screen and (min-width: 768px) {
+    #logo-title {
+        display: inline;
+    }
+
+    #links {
+        display: inline;
+    }
+
+    .navbar-brand {
+        font-size: 24px;
+    }
+
+    nav {
+        font-size: 22px;
+    }
+}
+
+
+@media screen and (min-width: 992px) {
+    .navbar-brand {
+        font-size: 30px;
+    }
+
+    nav {
+        font-size: 26px;
+    }
+}
+
+@media screen and (min-width: 1698px) {
 }

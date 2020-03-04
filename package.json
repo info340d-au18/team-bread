@@ -35,5 +35,8 @@
         "error"
       ]
     }
+  },
+  "dependencies": {
+    "openrouteservice-js": "^0.1.3"
   }
 }
