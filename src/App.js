@@ -20,11 +20,7 @@ export class App extends React.Component {
 			<main>
 				{/* <StartSurvey />*/}
 				
-				<FindRoute />
-				<ResultsMap />
-				<HowTo />
-				<CarouselPlace />
-				<PlaceGroup place={cardPlaces}/>
+				<NavBar />
 			</main>
     	);
   	}

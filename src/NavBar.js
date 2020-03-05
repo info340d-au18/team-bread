@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
 import {Navbar, NavItem, Nav, NavLink} from 'react-bootstrap';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from 'react-router-dom';
+import {App} from './App.js';
+import {HowTo} from './HowTo.js';
 import './surveyStyle.css';
 
 // export class Global extends React.Component {
@@ -17,18 +25,25 @@ import './surveyStyle.css';
 export class NavBar extends React.Component {
     render() {
         return (
-            <Navbar bg="light" expand="sm">
-                <Navbar.Brand href="#Home" id="navbar-brand">Walk Buddy</Navbar.Brand>
-                <Navbar.Toggle area-controls="basic-navbar-nav" />
-                <Navbar.Collapse>
-                    <Nav>
-                        <NavLink href="#Home">Home</NavLink>
-                        <NavLink href="#How-To">How-To</NavLink>
-                        <NavLink href="#Places">Places</NavLink>
-                        <NavLink href="#Login">Login</NavLink>
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
+            <Router>
+                <div>
+                    <Navbar bg="light" expand="sm">
+                        <Navbar.Brand href="#Home" id="navbar-brand">Walk Buddy</Navbar.Brand>
+                        <Navbar.Toggle area-controls="basic-navbar-nav" />
+                        <Navbar.Collapse>
+                            <Nav>
+                                <Link to="/" exact>Home</Link>
+                                <Link to="/howto" exact>How-To</Link>
+                                <Link to="/places" exact>Places</Link>
+                                <Link to="/login" exact>Login</Link>
+                            </Nav>
+                        </Navbar.Collapse>
+                    </Navbar>
+                    <Route exact path="/" component={App}/>
+                    <Route exact path="/howto" component={HowTo}/>
+
+                </div>
+            </Router>
         );
     }
 }
