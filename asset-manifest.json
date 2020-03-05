@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/team-bread/static/css/main.ae8b2bb9.chunk.css",
+    "main.js": "/team-bread/static/js/main.7286d85e.chunk.js",
+    "main.js.map": "/team-bread/static/js/main.7286d85e.chunk.js.map",
+    "runtime-main.js": "/team-bread/static/js/runtime-main.d3b39b16.js",
+    "runtime-main.js.map": "/team-bread/static/js/runtime-main.d3b39b16.js.map",
+    "static/css/2.67123b20.chunk.css": "/team-bread/static/css/2.67123b20.chunk.css",
+    "static/js/2.b74bc882.chunk.js": "/team-bread/static/js/2.b74bc882.chunk.js",
+    "static/js/2.b74bc882.chunk.js.map": "/team-bread/static/js/2.b74bc882.chunk.js.map",
+    "index.html": "/team-bread/index.html",
+    "precache-manifest.2dffbfb924dd00ddbe39ce9f4e60cbb2.js": "/team-bread/precache-manifest.2dffbfb924dd00ddbe39ce9f4e60cbb2.js",
+    "service-worker.js": "/team-bread/service-worker.js",
+    "static/css/2.67123b20.chunk.css.map": "/team-bread/static/css/2.67123b20.chunk.css.map",
+    "static/css/main.ae8b2bb9.chunk.css.map": "/team-bread/static/css/main.ae8b2bb9.chunk.css.map",
+    "static/js/2.b74bc882.chunk.js.LICENSE.txt": "/team-bread/static/js/2.b74bc882.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/team-bread/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d3b39b16.js",
+    "static/css/2.67123b20.chunk.css",
+    "static/js/2.b74bc882.chunk.js",
+    "static/css/main.ae8b2bb9.chunk.css",
+    "static/js/main.7286d85e.chunk.js"
+  ]
+}
