@@ -4,39 +4,22 @@ import './App.css';
 import {Loggin} from './Loggin.js';
 
 import {NavBar} from './NavBar.js';
-import {StartSurvey} from './StartSurvey.js'
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
+import {StartSurvey} from './StartSurvey.js';
+import {HowTo} from './HowTo.js';
+import {FindRoute} from './FindRoute.js';
+import {ResultsMap} from './ResultsMap.js';
 
 export class App extends React.Component {
-  render() {
-    return (
+	render() {
+    	return (
       
       // <Loggin />
-      <body>
-        <NavBar />
-        <StartSurvey />
-      
-      </body>
-    );
-  }
+			<main>
+				{/* <StartSurvey />*/}
+				<FindRoute />
+				<ResultsMap />
+				{/* <HowTo /> */}
+			</main>
+    	);
+  	}
 }
