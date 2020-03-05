@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
+import {Card,Button} from 'react-bootstrap';
+
 
 export class StartSurvey extends React.Component {
     render() {
         return (
-            <div id="begin" className="d-flex">
-                <div className="card bg-light border-light text-center p-1">
-                    <div className="card-body">
-                        <p className="card-title">Let's Take a Walk...</p>
-                        <a className="btn btn-primary shadow">Begin</a>
-                    </div>
+            
+            <div id="beginWrap">
+                <div id="begin" className="d-flex">
+                    <Card className="bg-light border-light text-center p-1">
+                        <Card.Body>
+                            <Card.Title className="text-center">Let's Take a Walk...</Card.Title>
+                            <Button variant="primary" className="shadow" id="BEGINNN" href="#">Begin</Button>
+                        </Card.Body>
+                    </Card>
                 </div>
             </div>
         );
