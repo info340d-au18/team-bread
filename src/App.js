@@ -8,6 +8,9 @@ import {StartSurvey} from './StartSurvey.js';
 import {HowTo} from './HowTo.js';
 import {FindRoute} from './FindRoute.js';
 import {ResultsMap} from './ResultsMap.js';
+import {PlaceGroup} from './PlaceCards';
+import cardPlaces from './data/cardPlaces.json';
+import {CarouselPlace} from './Carousel.js';
 
 export class App extends React.Component {
 	render() {
@@ -16,9 +19,12 @@ export class App extends React.Component {
       // <Loggin />
 			<main>
 				{/* <StartSurvey />*/}
+				
 				<FindRoute />
 				<ResultsMap />
-				{/* <HowTo /> */}
+				<HowTo />
+				<CarouselPlace />
+				<PlaceGroup place={cardPlaces}/>
 			</main>
     	);
   	}
