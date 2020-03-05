@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Washington Park Arboretum",
+    "description": "Chill nature walk among lots of pretty trees and plants. (Don't go when it's raining)",
+    "source": "https://info340d-au18.github.io/team-bread/img/arboretum.jpg",
+    "alt": "Japanese Garden in Washington Park Arboretum",
+    "lat":47.639774,
+    "long":-122.294524
+  },
+  {
+    "name": "Gas Works Park",
+    "description": "Flat walk on the Burke Gilman to see Gas Works Park. Really great views at the top of the hill but often crowded on weekends",
+    "source": "https://info340d-au18.github.io/team-bread/img/GasWorksPark3.jpg",
+    "alt": "Factory at Gas Works",
+    "lat":47.645746,
+    "long":-122.334900
+  },
+  {
+    "name": "Green Lake Park",
+    "description": "Hilly walk up, but worth it to see the local park at Green Lake. Watch out for the geese",
+    "source": "https://info340d-au18.github.io/team-bread/img/green-lake-park-03.jpg",
+    "alt": "People boating in Sunny Green Lake",
+    "lat":47.680315,
+    "long":-122.328810
+  },
+  {
+    "name": "Pie Bar",
+    "description": "A big of a long walk from the University District, but well worth for the pie! Underage foodies be ready to eat outside 😢",
+    "source": "https://info340d-au18.github.io/team-bread/img/piebar.jpeg",
+    "alt": "slice of cherry pie",
+    "lat":47.672349,
+    "long":-122.386435
+  },
+  {
+    "name": "Sea Wolf Bakery",
+    "description": "Sea Wolf Bakers is the most amazing bakery in the whole world. Their sourdough is amazing, their chocolate croissants are amazing...tough walk but worth it for the carbs",
+    "source": "https://info340d-au18.github.io/team-bread/img/seawolf.png",
+    "alt": "café at Sea Wolf Bakery",
+    "lat":47.651221,
+    "long":-122.343110
+  },
+  {
+    "name": "University Village",
+    "description": "Walk to shop! Walking to U-Ville is very hilly, but it makes it feel like you deserve to shop now",
+    "source": "https://info340d-au18.github.io/team-bread/img/uvill.jpg",
+    "alt": "Amazon Books at University Village",
+    "lat":47.662095,
+    "long":-122.300170
+  }
+]
