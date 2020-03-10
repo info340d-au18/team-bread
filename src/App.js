@@ -11,7 +11,9 @@ import {ResultsMap} from './ResultsMap.js';
 // import {PlaceGroup} from './PlaceCards';
 import {PlaceGroup} from './PlaceCardGroup';
 import cardPlaces from './data/cardPlaces.json';
-import {CarouselPlace} from './Carousel.js';
+// import {CarouselPlace} from './Carousel.js';
+import {Place} from './Places.js';
+
 
 import {
     BrowserRouter as Router,
@@ -46,7 +48,8 @@ export class App extends React.Component {
 							<Route exact path="/team-bread" component={StartSurvey}/>
 							<Route exact path="/" component={StartSurvey}/>
 							<Route exact path="/howto" component={HowTo}/>
-							<Route exact path="/places"> <PlaceGroup place = {cardPlaces} /></Route>
+							{/* <Route exact path="/places"> <PlaceGroup place = {cardPlaces} /></Route> */}
+							<Route exact path="/places" component={Place} />
 							<Route exact path="/login" component={Loggin}/>
 						</Switch>
 					</div>
