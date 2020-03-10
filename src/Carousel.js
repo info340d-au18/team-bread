@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import {useState} from 'react';
-import { Button } from 'react-bootstrap';
 import {Carousel} from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {library} from '@fortawesome/fontawesome-svg-core';
-import {faHeart} from '@fortawesome/free-regular-svg-icons';
 import './index.css';
-import { NavButton } from './PlaceCards';
-library.add(faHeart);
+import {CarouselItemP} from './CarouselItemP.js';
+import {Button} from 'react-bootstrap';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faHeart} from '@fortawesome/free-regular-svg-icons';
+// library.add(faHeart);
 
 // add to favorites button
 export class FavButton extends React.Component {
@@ -24,30 +23,20 @@ export class FavButton extends React.Component {
 }
 
 // place information
-export class PlaceHover extends React.Component {
-    render() {
-        return (
-            <div className = 'place-des'>
-                <h3>Hello</h3>
-                <h4>Description</h4>
-                <div>
-                    <FavButton />
-                </div>
-            </div>
-        );
-    }
-}
+// export class PlaceHover extends React.Component {
+//     render() {
+//         return (
+//             <div className = 'place-des'>
+//                 <h3>Hello</h3>
+//                 <h4>Description</h4>
+//                 <div>
+//                     <FavButton />
+//                 </div>
+//             </div>
+//         );
+//     }
+// }
 
-export class CarouselItemP extends React.Component {
-    render() {
-        return (
-            <Carousel.Item>
-                <img className="d-block w-100" src = "https://info340d-au18.github.io/team-bread/img/arboretum.jpg" alt = 'first'></img>
-                <PlaceHover />
-            </Carousel.Item>
-        )
-    }
-}
 
 export class CarouselPlace extends React.Component {
     render() {
