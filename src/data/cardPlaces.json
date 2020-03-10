@@ -2,7 +2,7 @@
   {
     "name": "Washington Park Arboretum",
     "description": "Chill nature walk among lots of pretty trees and plants. (Don't go when it's raining)",
-    "source": "https://info340d-au18.github.io/team-bread/img/arboretum.jpg",
+    "source": "./img/arboretum.jpg",
     "alt": "Japanese Garden in Washington Park Arboretum",
     "lat":47.639774,
     "long":-122.294524
