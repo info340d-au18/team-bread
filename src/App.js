@@ -19,7 +19,8 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+	Link,
+	Redirect
 } from 'react-router-dom';
 import {Navbar, NavItem, Nav, NavLink} from 'react-bootstrap';
 
@@ -51,6 +52,9 @@ export class App extends React.Component {
 							{/* <Route exact path="/places"> <PlaceGroup place = {cardPlaces} /></Route> */}
 							<Route exact path="/places" component={Place} />
 							<Route exact path="/login" component={Loggin}/>
+							<Route exact path="/findroute" component={FindRoute} />
+							<Redirect from="findroute" to="/resultsmap" />
+							<Route exact path="/resultsmap" component={ResultsMap} />
 						</Switch>
 					</div>
 

@@ -5,21 +5,31 @@ import {Button} from 'react-bootstrap';
 import {InputGroup} from 'react-bootstrap';
 import {SearchBar} from './SearchBar.js';
 import {ResultsMap} from './ResultsMap.js';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+	Link,
+	Redirect
+} from 'react-router-dom';
 import './surveyStyle.css';
 
+// export class FindRoute extends React.Component {
+
+//     render() {
+//         if (this.state.redirect) {
+//             return <Redirect to="/resultsmap" />;
+//         }
+//         return (
+//             <div>
+//                 {/* <NavBar /> */}
+//                 <CreateForm />
+//             </div>
+//         );
+//     }
+// }
+
 export class FindRoute extends React.Component {
-
-    render() {
-        return (
-            <div>
-                <NavBar />
-                <CreateForm />
-            </div>
-        );
-    }
-}
-
-class CreateForm extends React.Component {
     constructor () {
         super();
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,12 +38,16 @@ class CreateForm extends React.Component {
         this.state = {
             amenityTypes: ["bar", "cafe", "cinema", "grave_yard", "ice_cream", "library", "restaurant"],
             //leisureTypes: ["amusement_arcade","dog_park", "fitness_centre", "garden", "park"],
-            amenity: {}
+            amenity: {},
+            redirect: false
             //leisure: []
         };
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to="/resultsmap" />;
+        }
         return (
             <Form id="form">
                 <Form.Group id="form-group">
@@ -100,6 +114,7 @@ class CreateForm extends React.Component {
     }
 
     handleSubmit(e) {
+        this.setState({redirect: true});
         console.log(e.target);
         console.log(e);
         console.log(e.target.elements);
