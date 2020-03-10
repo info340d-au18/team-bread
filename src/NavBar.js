@@ -28,7 +28,7 @@ export class NavBar extends React.Component {
             <Router>
                 <div>
                     <Navbar bg="light" expand="sm">
-                        <Navbar.Brand href="#Home" id="navbar-brand">Walk Buddy</Navbar.Brand>
+                        {/* <Navbar.Brand href="#Home" id="navbar-brand">Walk Buddy</Navbar.Brand> */}
                         <Navbar.Toggle area-controls="basic-navbar-nav" />
                         <Navbar.Collapse>
                             <Nav>
