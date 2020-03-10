@@ -8,7 +8,8 @@ import {StartSurvey} from './StartSurvey.js';
 import {HowTo} from './HowTo.js';
 import {FindRoute} from './FindRoute.js';
 import {ResultsMap} from './ResultsMap.js';
-import {PlaceGroup} from './PlaceCards';
+// import {PlaceGroup} from './PlaceCards';
+import {PlaceGroup} from './PlaceCardGroup';
 import cardPlaces from './data/cardPlaces.json';
 import {CarouselPlace} from './Carousel.js';
 
@@ -42,16 +43,17 @@ export class App extends React.Component {
 
 					<div>
 						<Switch>
-							<Route exact path="" component={StartSurvey}/>
+							<Route exact path="/team-bread" component={StartSurvey}/>
 							<Route exact path="/" component={StartSurvey}/>
 							<Route exact path="/howto" component={HowTo}/>
-							<Route exact path="/places" component={PlaceGroup}/>
+							<Route exact path="/places"> <PlaceGroup place = {cardPlaces} /></Route>
 							<Route exact path="/login" component={Loggin}/>
 						</Switch>
 					</div>
 
 				</div>
 			</Router>
+			// <PlaceGroup place = {cardPlaces} />
     	);
   	}
 }
