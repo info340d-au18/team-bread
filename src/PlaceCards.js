@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Card} from 'react-bootstrap';
 import {NavButton} from './NavButton.js';
 import {Heart} from './Heart.js';
-import Img from 'react-image';
+// import Img from 'react-image';
 // import cardPlaces from './data/cardPlaces.json';
 
 export class PlaceCards extends React.Component {
