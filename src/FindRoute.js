@@ -30,7 +30,7 @@ import './surveyStyle.css';
 // }
 
 const amenityTypes = ["bar", "cafe", "cinema", "grave_yard", "ice_cream", "library", "restaurant"];
-const leisureTypes = ["amusement_arcade","dog_park", "fitness_centre", "garden", "park"];
+//const leisureTypes = ["amusement_arcade","dog_park", "fitness_centre", "garden", "park"];
 
 export class FindRoute extends React.Component {
     constructor () {
@@ -41,10 +41,12 @@ export class FindRoute extends React.Component {
         this.handleDistance = this.handleDistance.bind(this);
 
         this.state = {
-            amenity: {},
             redirect: false,
-            start: {},
-            distance: 5
+            start: {name: "USC Village", lat: 34.0256262, long: -118.285044},
+            distance: 5,
+            //amenity: {cafe: true, restaurant:true}
+            amenity: "cafe",
+            BB: [["34.003104", "-118.312219"]["34.048149", "-118.257869"]]
             //leisure: []
         };
     }
@@ -91,7 +93,8 @@ export class FindRoute extends React.Component {
                 </Form.Group>
 
                 <Form.Group id="form-group">
-                    <Button variant="primary" type="submit" onClick={this.handleSubmit}>Submit</Button>
+                    {/* <Button variant="primary" type="submit" onClick={this.handleSubmit}>Submit</Button> */}
+                    <Button variant="primary" type="button" onClick={this.handleSubmit}>Submit</Button>
                 </Form.Group>
             </Form>
         )
@@ -105,11 +108,13 @@ export class FindRoute extends React.Component {
                     {placeTypes.map(type => (
                         <InputGroup>
                             <Form.Check 
-                                type="checkbox"
+                                type="radio"
                                 label={type.charAt(0).toUpperCase() + type.slice(1)}
                                 onClick={this.handleChecks}
                                 defaultChecked={false}
-                                name={type}
+                                // name={type}
+                                name={overpassType}
+                                value={type}
                             />
                         </InputGroup>
                     ))}
@@ -119,21 +124,28 @@ export class FindRoute extends React.Component {
     }
 
     handleSubmit(e) {
-        // this.setState({redirect: true});
-       
         console.log("handle submit");
         console.log(this.state);
+        this.getData();
     }
 
     handleChecks(e) {
         console.log("handle checks");
+        // let name = e.target.name;
+        // let checked = e.target.checked;
+        // let temp = {};
+        // temp[name] = checked;
 
-        // let pT = e.target.name;
-
-
-        // this.setState(prevState => ({
-        //     amenity: {pT: e.target.checked}
-        // }));
+        // const {name, checked} = e.target;
+        // console.log(this.state);
+        // return this.setState({
+        //     amenity: {[name]: checked}
+        // })
+        //const {name, checked} = e.target;
+        console.log(this.state);
+        return this.setState({
+            amenity: e.target.value
+        })
     }
 
     handleSearch(startLocation) {
@@ -146,4 +158,97 @@ export class FindRoute extends React.Component {
         console.log(e.target.value);
         return this.setState({distance:e.target.value});
     }
+
+    getData() {
+        let oLink = this.typeStrings(this.state.amenity, this.state.start.lat, this.state.start.long, this.state.distance);
+
+		fetch(oLink).then((response) =>{
+			let r = response.json();
+			return r;
+		}).then((data) => {
+			let result = [];
+			let y = data.elements;
+			console.log(y);
+			if (y.length > 100) {
+				y = this.findRandom100(y);
+			}
+
+			for(let i = 0; i < y.length; i++) {
+				if (y[i] == undefined){
+					i++;
+				} else {
+					let info = {name: y[i].tags.name, lat: y[i].lat, long: y[i].lon};
+					//console.log(info);
+					// result.push(<ResultsMarkers info={info} icon={icon} start={false}/>);
+					result.push(info);
+				}
+			}
+			console.log(result);
+			// this.setState({results: result});
+			return result;
+		}).then((placeResults)=>{
+            this.props.getResults(this.state.start, this.state.distance, placeResults);
+            return this.setState({redirect: true});
+        });
+    }
+
+    findRandom100(data) {
+		let places = [];
+		let length = data.length;
+		let numsUsed = [];
+		for (let i = 0; i < 100; i++) {
+			let index = Math.round(Math.random() * length);
+			while (numsUsed.includes(index)) {
+				index = Math.round(Math.random() * length);
+			}
+			numsUsed.push(index);
+			places.push(data[index]);
+		}
+		return places;
+	}
+
+    typeStrings(amenity, lat, long, radius) {
+		let link = 'https://overpass-api.de/api/interpreter?data=[out:json];';
+		//l et bounds = '(47.481002,-122.459696,47.734136,-122.224433);' // should be a separate function call in the futuer
+	
+		let bounds = this.calculateBB(lat, long, radius / 2, "overpass") + ';';
+		console.log(bounds);
+		let end = 'out'
+		
+		link += 'node[amenity=' + amenity + ']' + bounds + end + ';';
+		console.log(link);
+		return link;
+    }
+    
+    calculateBB(lat, long, radius, type) {
+		let upperLat = (lat - this.getLatDiff(radius)).toFixed(6);
+		let upperLong = (long - this.getLongDiff(radius, lat)).toFixed(6);
+	
+		let lowerLat = (lat + this.getLatDiff(radius)).toFixed(6);
+		let lowerLong = (long + this.getLongDiff(radius, lat)).toFixed(6);
+	
+		// https://gis.stackexchange.com/questions/172554/calculating-bounding-box-of-given-set-of-coordinates-from-leaflet-draw
+		// create a bounding rectangle that can be used in leaflet
+        let mapBbox = [[upperLat,upperLong],[lowerLat,lowerLong]];
+        console.log('bb');
+        console.log(mapBbox);
+        this.setState({BB: mapBbox});
+	
+		// add the bounding box to the map, and set the map extent to it
+		// L.rectangle(mapBbox).addTo(mymap);
+		//mymap.fitBounds(mapBbox);
+        return '(' + upperLat + ',' + upperLong + ',' + lowerLat + ',' + lowerLong + ')';
+        //return [[upperLat,upperLong],[lowerLat,lowerLong]];
+    }
+    
+
+	getLongDiff(radius, lat) {
+		// return (radius) * Math.cos(((Math.PI/ 180) * lat));
+		return radius / (111 * Math.cos((Math.PI / 180) * lat));
+	}
+	
+	// function dY(radius) {
+	getLatDiff(radius) {
+		return radius / 111;
+	}
 }
