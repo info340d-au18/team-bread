@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import {useState} from 'react';
 import {Carousel} from 'react-bootstrap';
-import {FavButton} from './FavButton.js';
+import {Button} from 'react-bootstrap';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faHeart} from '@fortawesome/free-regular-svg-icons';
 import './index.css';
 
 export class CarouselPlace extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
+    
+    handleClick(event) {
+        this.props.addToGroups(this.props.place)
+    }
 
-    //     }
-    // }
     render() {
         return (
             <div className = 'container d-flex justify-content-center'>
@@ -30,7 +31,15 @@ export class CarouselPlace extends React.Component {
                                     <div className = 'place-des'>
                                         <h3>{carPlace.name}</h3>
                                         <p>{carPlace.description}</p>
-                                        <FavButton />
+                                        <div className='favbut'>
+                                            <Button variant = 'dark' 
+                                                    size = 'lg' 
+                                                    className = 'addFav' 
+                                                    onClick = {this.handleClick.bind(this)}>
+                                                <FontAwesomeIcon icon = {faHeart} />
+                                                Favorite
+                                            </Button>
+                                        </div>
                                     </div>
                                 </div>
                             </Carousel.Item>
