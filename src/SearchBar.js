@@ -11,7 +11,7 @@ export class SearchBar extends React.Component {
         this.searchInput = React.createRef();
         this.search = null;
         this.handlePlaceChanged = this.handlePlaceChanged.bind(this);
-        this.state = {};
+        // this.state = {};
     }
 
     componentDidMount() {

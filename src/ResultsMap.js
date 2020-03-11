@@ -5,10 +5,15 @@ import {
 	Map,
 	TileLayer,
 	Marker,
-	Popup
+	Popup,
+	FeatureGroup
 } from 'react-leaflet';
+import {Button} from 'react-bootstrap';
+
 
 import L from 'leaflet';
+import {ResultsMarkers} from './ResultsMarkers.js';
+//import MarkerClusterGroup from 'react-leaflet-markercluster';
 
 import './surveyStyle.css';
 
@@ -19,30 +24,27 @@ import './surveyStyle.css';
 // }
 // <{}, State> arg for Component?
 
-let dummyState = {
-	start: {name: "USC Village", lat: 34.0256262, long: -118.285044},
-	distance: 5,
-	amenity: {restaurant: true},
-	//leisure: {},
-	end: {name: "Little Galen Center", lat: 34.0228165, long: -118.2870715}
-}
+// let dummyState = {
+// 	start: {name: "USC Village", lat: 34.0256262, long: -118.285044},
+// 	distance: 5,
+// 	amenity: {restaurant: true},
+// 	//leisure: {},
+// 	end: {name: "Little Galen Center", lat: 34.0228165, long: -118.2870715}
+// }
 
 
 export class ResultsMap extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		// this.state = {
 		// 	lat: 51.505,
 		// 	lng: -0.09,
 		// 	zoom: 13,
 		// }
 		//this.state = {test: true};
-		this.state = dummyState;
-		console.log(this.state);
-	}
-
-	render() {
-		let startPosition = [this.state.start.lat, this.state.start.long]
+		// this.state = dummyState;
+		// console.log("props");
+		// console.log(this.props);
 		let redIcon = new L.Icon({
 			iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
 			shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -51,7 +53,22 @@ export class ResultsMap extends React.Component {
 			popupAnchor: [1, -34],
 			shadowSize: [41, 41]
 		  });
-		let blueIcon = new L.Icon({
+		this.state = {
+			results: [<ResultsMarkers info={this.props.start} icon={redIcon} start={true}/>]
+			//rerender: true
+		}
+	}
+
+	render() {
+		let redIcon = new L.Icon({
+			iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+			shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+			iconSize: [35, 51],
+			iconAnchor: [12, 41],
+			popupAnchor: [1, -34],
+			shadowSize: [41, 41]
+		  });
+		  let blueIcon = new L.Icon({
 			iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
 			shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
 			iconSize: [25, 41],
@@ -59,35 +76,94 @@ export class ResultsMap extends React.Component {
 			popupAnchor: [1, -34],
 			shadowSize: [41, 41]
 		  });
-		console.log(this.state);
 		return (
-			// <Map center={startPosition} zoom={16}>
-			// 	<TileLayer
-			// 		attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-			// 		url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-			// 	<Marker position={startPosition} icon={redIcon}>
-			// 		<Popup>
-			// 			{this.state.start.name}
-			// 		</Popup>
-			// 	</Marker>
-			// 	<Marker position={[this.state.end.lat, this.state.end.long]} icon={blueIcon}>
-			// 		<Popup>
-			// 			{this.state.end.name}
-			// 		</Popup>
-			// 	</Marker>
-			// </Map>
-			<h1>HIIIIIII</h1>
-		)
+			<Map center={[this.props.start.lat, this.props.start.long]} zoom={16}>
+				<TileLayer
+					attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+				
+				{/* <ResultsMarkers info={this.props.start} icon={redIcon} start={true}/> */}
+				<FeatureGroup>
+					{/* {	console.log(this.markerCreator(blueIcon))
+						// <ResultsMarkers info={this.props.start} icon={redIcon} start={true}/>
+						this.markerCreator(blueIcon).map((a) => {
+							return a
+							// <Marker position={[a.lat, a.long]} icon={blueIcon}>
+							// 	<Popup>
+							// 		{info.name}
+							// 		<br></br>
+							// 		<Button variant="dark" type="button">Navigate</Button>
+							// 	</Popup>
+							// </Marker>
+						
+						})
+					} */}
+					{<ResultsMarkers info={this.props.start} icon={redIcon} start={true}/>}
+					{<ResultsMarkers info={this.props.start} icon={redIcon} start={false}/>}
+				</FeatureGroup>
+				
+				{/* {this.state.results} */}
+				{/* <Marker position={[this.props.end.lat, this.props.end.long]} icon={blueIcon}>
+					<Popup>
+						{this.props.end.name}
+					</Popup>
+				</Marker> */}
+			</Map>
+			// <div>
+			// 	{this.markerCreator()}
+			// </div>
+			
+		);
 	}
 
-	componentDidMount() {
-		let oLink = this.typeStrings(Object.keys(this.state.amenity), Object.keys(this.state.leisure), this.state.start.lat, this.state.start.long, this.state.distance);
-		fetch(oLink).then(
-			function(response) {
-				let dp = response.json();
-				return dp;
+	// componentDidMount() {
+	// 	let blueIcon = new L.Icon({
+	// 		iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+	// 		shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+	// 		iconSize: [25, 41],
+	// 		iconAnchor: [12, 41],
+	// 		popupAnchor: [1, -34],
+	// 		shadowSize: [41, 41]
+	// 	  });
+	// 	let r = this.markerCreator(blueIcon);
+	// 	//return this.setState({results: r})
+	// }
+
+	markerCreator(icon) {
+		console.log(this.props.amenity);
+		
+		let oLink = this.typeStrings(this.props.amenity, this.props.start.lat, this.props.start.long, this.props.distance);
+
+		fetch(oLink).then((response) =>{
+			let r = response.json();
+			return r;
+		}).then((data) => {
+			let result = [];
+			let y = data.elements;
+			console.log(y);
+			if (y.length > 100) {
+				y = this.findRandom100(y);
 			}
-		);
+			// var markerGroup;
+			// if (y.length > 30) {
+			// 	markerGroup = L.markerClusterGroup();
+			// } else {
+			// 	markerGroup = L.featureGroup();
+			// }
+			for(let i = 0; i < y.length; i++) {
+				if (y[i] == undefined){
+					i++;
+				} else {
+					let info = {name: y[i].tags.name, lat: y[i].lat, long: y[i].lon};
+					//console.log(info);
+					result.push(<ResultsMarkers info={info} icon={icon} start={false}/>);
+					//result.push(info);
+				}
+			}
+			console.log(result);
+			// this.setState({results: result});
+			return result;
+		});
 	}
 
 	findRandom100(data) {
@@ -105,28 +181,27 @@ export class ResultsMap extends React.Component {
 		return places;
 	}
 
-	typeStrings(amenitiesList, leisureList, lat, long, radius) {
+	typeStrings(amenity, lat, long, radius) {
 		let link = 'https://overpass-api.de/api/interpreter?data=[out:json];';
 		//l et bounds = '(47.481002,-122.459696,47.734136,-122.224433);' // should be a separate function call in the futuer
 	
 		let bounds = this.calculateBB(lat, long, radius / 2) + ';';
 		console.log(bounds);
-		let end = 'out;'
+		let end = 'out'
 		
-		if (amenitiesList.length > 0) {
-			for (let i = 0; i < amenitiesList.length; i++) {
-				link += 'node[amenity=' + amenitiesList[i] + ']' + bounds;
-			}
-			link += end;
-		}
-		if (leisureList.length > 0) {
-			for (let i = 0; i < leisureList.length; i++) {
-				link += 'node[leisure=' + leisureList[i] + ']' + bounds;
-			}
-			link += end;
-		}
-		
-		//link += ';';
+		// if (amenitiesList.length > 0) {
+		// 	for (let i = 0; i < amenitiesList.length; i++) {
+		// 		link += 'node[amenity=' + amenitiesList[i] + ']' + bounds;
+		// 	}
+		// 	link += end;
+		// }
+		// if (leisureList.length > 0) {
+		// 	for (let i = 0; i < leisureList.length; i++) {
+		// 		link += 'node[leisure=' + leisureList[i] + ']' + bounds;
+		// 	}
+		// 	link += end;
+		// }
+		link += 'node[amenity=' + amenity + ']' + bounds + end + ';';
 		console.log(link);
 		return link;
 	}

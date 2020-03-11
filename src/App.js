@@ -25,6 +25,25 @@ import {
 import {Navbar, NavItem, Nav, NavLink} from 'react-bootstrap';
 
 export class App extends React.Component {
+	constructor() {
+		super();
+		this.getResults = this.getResults.bind(this);
+		this.state = {
+			start: {name: "USC Village", lat: 34.0256262, long: -118.285044},
+			distance: 5,
+			amenities: {restaurant: true}
+		};
+	}
+
+	getResults(start, distance, amenity) {
+		console.log("getResults");
+		return this.setState({
+			start: start,
+			distance: distance,
+			amenity: amenity
+		});
+	}
+
 	render() {
     	return (				
 			<Router>
@@ -52,7 +71,11 @@ export class App extends React.Component {
 							{/* <Route exact path="/places"> <PlaceGroup place = {cardPlaces} /></Route> */}
 							<Route exact path="/places" component={Place} />
 							<Route exact path="/login" component={Loggin}/>
-							<Route exact path="/findroute" component={FindRoute} />
+							{/* <Route exact path="/findroute" component={FindRoute} /> */}
+
+							<Route exact path="/findroute"> <FindRoute getResults={this.getResults}/> </Route>
+							<Redirect from="findroute" to="/resultsmap" />
+							<Route exact path="/resultsmap"> <ResultsMap start={this.state.start} distance={this.state.distance} amenity={this.state.amenity}/> </Route>
 							{/* 
 							<Redirect from="findroute" to="/resultsmap" />
 							<Route exact path="/resultsmap" component={ResultsMap} /> */}

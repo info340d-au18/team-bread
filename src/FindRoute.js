@@ -30,7 +30,7 @@ import './surveyStyle.css';
 // }
 
 const amenityTypes = ["bar", "cafe", "cinema", "grave_yard", "ice_cream", "library", "restaurant"];
-const leisureTypes = ["amusement_arcade","dog_park", "fitness_centre", "garden", "park"];
+//const leisureTypes = ["amusement_arcade","dog_park", "fitness_centre", "garden", "park"];
 
 export class FindRoute extends React.Component {
     constructor () {
@@ -41,10 +41,11 @@ export class FindRoute extends React.Component {
         this.handleDistance = this.handleDistance.bind(this);
 
         this.state = {
-            amenity: {},
             redirect: false,
-            start: {},
-            distance: 5
+            start: {name: "USC Villageasdf", lat: 34.0256262, long: -118.285044},
+            distance: 5,
+            //amenity: {cafe: true, restaurant:true}
+            amenity: "cafe"
             //leisure: []
         };
     }
@@ -91,7 +92,8 @@ export class FindRoute extends React.Component {
                 </Form.Group>
 
                 <Form.Group id="form-group">
-                    <Button variant="primary" type="submit" onClick={this.handleSubmit}>Submit</Button>
+                    {/* <Button variant="primary" type="submit" onClick={this.handleSubmit}>Submit</Button> */}
+                    <Button variant="primary" type="button" onClick={this.handleSubmit}>Submit</Button>
                 </Form.Group>
             </Form>
         )
@@ -105,11 +107,13 @@ export class FindRoute extends React.Component {
                     {placeTypes.map(type => (
                         <InputGroup>
                             <Form.Check 
-                                type="checkbox"
+                                type="radio"
                                 label={type.charAt(0).toUpperCase() + type.slice(1)}
                                 onClick={this.handleChecks}
                                 defaultChecked={false}
-                                name={type}
+                                // name={type}
+                                name={overpassType}
+                                value={type}
                             />
                         </InputGroup>
                     ))}
@@ -119,21 +123,29 @@ export class FindRoute extends React.Component {
     }
 
     handleSubmit(e) {
-        // this.setState({redirect: true});
-       
         console.log("handle submit");
         console.log(this.state);
+        this.props.getResults(this.state.start, this.state.distance, this.state.amenity);
+        return this.setState({redirect: true});
     }
 
     handleChecks(e) {
         console.log("handle checks");
+        // let name = e.target.name;
+        // let checked = e.target.checked;
+        // let temp = {};
+        // temp[name] = checked;
 
-        // let pT = e.target.name;
-
-
-        // this.setState(prevState => ({
-        //     amenity: {pT: e.target.checked}
-        // }));
+        // const {name, checked} = e.target;
+        // console.log(this.state);
+        // return this.setState({
+        //     amenity: {[name]: checked}
+        // })
+        //const {name, checked} = e.target;
+        console.log(this.state);
+        return this.setState({
+            amenity: e.target.value
+        })
     }
 
     handleSearch(startLocation) {
