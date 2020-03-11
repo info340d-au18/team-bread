@@ -13,7 +13,7 @@ export class FavButton extends React.Component {
     render() {
         return (
             <div className='favbut'>
-                <Button variant = 'dark' size = 'm'>
+                <Button variant = 'dark' size = 'lg'>
                     <FontAwesomeIcon icon = {faHeart} />
                     Favorite
                 </Button>
@@ -51,7 +51,7 @@ export class CarouselPlace extends React.Component {
                     <div className = 'wrap-item'>
                         <img
                         className="d-block w-100"
-                        src = "https://info340d-au18.github.io/team-bread/img/burke.jpg"
+                        src = "https://raw.githubusercontent.com/info340d-au18/team-bread/master/src/img/GasWorksPark3.jpg?token=AJBI46OW2HJHNZIECT3UV3C6OATSE"
                         alt="First slide" />
                             {/* <div className = 'place-des'> */}
                             {/* <Carousel.Caption> */}
@@ -67,7 +67,7 @@ export class CarouselPlace extends React.Component {
                     <div className = 'wrap-item'>
                         <img
                         className="d-block w-100"
-                        src = "https://info340d-au18.github.io/team-bread/img/ravenna.jpg"
+                        src = "https://raw.githubusercontent.com/info340d-au18/team-bread/master/src/img/GasWorksPark3.jpg?token=AJBI46OW2HJHNZIECT3UV3C6OATSE"
                         alt="First slide" />
                         {/* <div className = 'place-des'> */}
                             <h3>Ravenna Park Trail</h3>
@@ -81,7 +81,7 @@ export class CarouselPlace extends React.Component {
                     <div className = 'wrap-item'>
                         <img
                         className="d-block w-100"
-                        src = "https://info340d-au18.github.io/team-bread/img/rattlesnake.jpg"
+                        src = "https://raw.githubusercontent.com/info340d-au18/team-bread/master/src/img/GasWorksPark3.jpg?token=AJBI46OW2HJHNZIECT3UV3C6OATSE"
                         alt="First slide" />
                         {/* <div className = 'place-des'> */}
                             <h3>Rattlesnake Ridge Trail</h3>
