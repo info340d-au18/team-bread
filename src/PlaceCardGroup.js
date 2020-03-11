@@ -28,7 +28,6 @@ export class PlaceGroup extends React.Component {
     render() {
         return (
             <div>
-                {/* <CarouselPlace carPlace = {caroPlaces} addFavorite = {this.addFavorite} /> */}
                 <div className = 'row justify-content-center'>
                     {this.props.place.map((place) => {
                         let c = <PlaceCards place = {place} dealWithPlace={this.dealWithPlace.bind(this)} />

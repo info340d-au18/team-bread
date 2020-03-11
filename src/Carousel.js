@@ -9,10 +9,39 @@ import './index.css';
 export class CarouselPlace extends React.Component {
     
     handleClick(event) {
+        console.log(this.carPlace)
         this.props.addToGroups(this.props.place)
     }
 
     render() {
+        // let ci = [];
+        // this.props.carPlace.map((carPlace) => {
+        //     ci.push(<Carousel.Item>
+        //         <div className = 'wrap-item'>
+        //             <img
+        //             className="d-block w-100"
+        //             src = {require('./img/burke.jpg')}
+        //             // src = {require(carPlace.source)}
+        //             // src = {require(`${carPlace.source}`)}
+        //             alt = {carPlace.alt} />
+        //             <div className = 'place-des'>
+        //                 <h3>{carPlace.name}</h3>
+        //                 <p>{carPlace.description}</p>
+        //                 <div className='favbut'>
+        //                     <Button variant = 'dark' 
+        //                             size = 'lg' 
+        //                             className = 'addFav' 
+        //                             onClick = {this.handleClick.bind(this)}>
+        //                         <FontAwesomeIcon icon = {faHeart} />
+        //                         Favorite
+        //                     </Button>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     </Carousel.Item>);
+        // });
+        // console.log(ci)
+
         return (
             <div className = 'container d-flex justify-content-center'>
                 <Carousel style = {{padding: '2rem'}} className = "col-12 col-md-12 col-lg-10 col-xl-9">
@@ -45,6 +74,7 @@ export class CarouselPlace extends React.Component {
                             </Carousel.Item>
                         )
                     })}
+                    {/* {ci} */}
                 </Carousel>
             </div>
         );

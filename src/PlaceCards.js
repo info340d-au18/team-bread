@@ -2,13 +2,18 @@ import React, {Component} from 'react';
 import {Card} from 'react-bootstrap';
 import {NavButton} from './NavButton.js';
 import {Button} from 'react-bootstrap';
-import {Heart} from './Heart.js';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faHeart} from '@fortawesome/free-solid-svg-icons';
 // import Img from 'react-image';
 // import cardPlaces from './data/cardPlaces.json';
 
 export class PlaceCards extends React.Component {
     handleClick(event) {
         this.props.dealWithPlace(this.props.place.lat, this.props.place.long, this.props.place.name);
+    }
+
+    removeCard(event) {
+        this.props.handleDelete(this.props.place.name);
     }
 
     render() {
@@ -26,7 +31,10 @@ export class PlaceCards extends React.Component {
                             onClick = {this.handleClick.bind(this)} >
                             Navigate
                         </Button>
-                        <Heart />
+                        {/* <Heart onClick = {this.removeCard.bind(this)}/> */}
+                        <h2 className = 'favb' onClick = {this.removeCard.bind(this)}>
+                            <FontAwesomeIcon icon = {faHeart} />
+                        </h2>
                     </div>
                 </Card.Body>
             </Card>
