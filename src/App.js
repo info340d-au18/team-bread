@@ -53,8 +53,9 @@ export class App extends React.Component {
 							<Route exact path="/places" component={Place} />
 							<Route exact path="/login" component={Loggin}/>
 							<Route exact path="/findroute" component={FindRoute} />
+							{/* 
 							<Redirect from="findroute" to="/resultsmap" />
-							<Route exact path="/resultsmap" component={ResultsMap} />
+							<Route exact path="/resultsmap" component={ResultsMap} /> */}
 						</Switch>
 					</div>
 

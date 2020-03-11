@@ -30,7 +30,7 @@ export class SearchBar extends React.Component {
             return;
         }
 
-        this.state.place = startLocation;
+        return this.props.startResult(startLocation);
         // console.log(place);
         // console.log(startLocation);
         // this.props.onPlaceLoaded(place);

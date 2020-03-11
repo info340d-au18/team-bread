@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {NavBar} from './NavBar.js';
+// import {NavBar} from './NavBar.js';
 import {Form} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import {InputGroup} from 'react-bootstrap';
 import {SearchBar} from './SearchBar.js';
-import {ResultsMap} from './ResultsMap.js';
+// import {ResultsMap} from './ResultsMap.js';
 import {
     BrowserRouter as Router,
     Switch,
@@ -29,17 +29,22 @@ import './surveyStyle.css';
 //     }
 // }
 
+const amenityTypes = ["bar", "cafe", "cinema", "grave_yard", "ice_cream", "library", "restaurant"];
+const leisureTypes = ["amusement_arcade","dog_park", "fitness_centre", "garden", "park"];
+
 export class FindRoute extends React.Component {
     constructor () {
         super();
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChecks = this.handleChecks.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
+        this.handleDistance = this.handleDistance.bind(this);
 
         this.state = {
-            amenityTypes: ["bar", "cafe", "cinema", "grave_yard", "ice_cream", "library", "restaurant"],
-            //leisureTypes: ["amusement_arcade","dog_park", "fitness_centre", "garden", "park"],
             amenity: {},
-            redirect: false
+            redirect: false,
+            start: {},
+            distance: 5
             //leisure: []
         };
     }
@@ -62,7 +67,7 @@ export class FindRoute extends React.Component {
                     </div>
                     <div id="locationField">
                         {/* <Form.Control type="text" placeholder="Enter a start location" id="searchBox"></Form.Control> */}
-                        <SearchBar/>
+                        <SearchBar startResult={this.handleSearch}/>
                     </div>
                 </Form.Group>
 
@@ -71,7 +76,7 @@ export class FindRoute extends React.Component {
                     
                     <div id="blahblah">
                         <InputGroup>
-                            <Form.Control type="number" id="distanceInput" min={0} step={1}></Form.Control>
+                            <Form.Control type="number" id="distanceInput" min={0} step={1} onChange={this.handleDistance}></Form.Control>
                             <InputGroup.Append>
                                 <InputGroup.Text id="distanceButton">Kilometers</InputGroup.Text>
                             </InputGroup.Append>
@@ -81,7 +86,7 @@ export class FindRoute extends React.Component {
 
                 <Form.Group id="form-group">
                     <Form.Label><strong>What types of places would you like to go to?</strong></Form.Label>
-                    {this.createSurvey("amenityTypes", this.state.amenityTypes, "amenity")}
+                    {this.createSurvey("amenityTypes", amenityTypes, "amenity")}
                     {/* {this.createSurvey("leisureTypes", this.state.leisureTypes, "leisure")} */}
                 </Form.Group>
 
@@ -114,67 +119,31 @@ export class FindRoute extends React.Component {
     }
 
     handleSubmit(e) {
-        this.setState({redirect: true});
-        console.log(e.target);
-        console.log(e);
-        console.log(e.target.elements);
+        // this.setState({redirect: true});
+       
+        console.log("handle submit");
         console.log(this.state);
     }
 
     handleChecks(e) {
-        console.log(e.target);
-        console.log(e.target.checked);
-        console.log(e.target.name);
+        console.log("handle checks");
+
+        // let pT = e.target.name;
+
+
+        // this.setState(prevState => ({
+        //     amenity: {pT: e.target.checked}
+        // }));
+    }
+
+    handleSearch(startLocation) {
+        console.log("handle search");
         console.log(this.state);
-
-        let pT = e.target.name;
-
-
-        this.setState(prevState => ({
-            amenity: {pT: e.target.checked}
-        }));
+        return this.setState({start: startLocation});
+    }
+    handleDistance(e) {
+        console.log("handle distance");
+        console.log(e.target.value);
+        return this.setState({distance:e.target.value});
     }
 }
-
-
-// const google = window.google;
-
-// class SearchBar extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.searchInput = React.createRef();
-//     this.search = null;
-//     this.handlePlaceChanged = this.handlePlaceChanged.bind(this);
-//     this.state = {};
-//   }
-
-//   componentDidMount() {
-//     this.search = new google.maps.places.SearchBox(this.searchInput.current);
-
-//     this.search.addListener('places_changed', this.handlePlaceChanged);
-//   }
-
-//   handlePlaceChanged(){
-//     let place = this.search.getPlaces();
-//     let startLocation = {};
-//     startLocation.name = place[0].name;
-//     startLocation.lat = place[0].geometry.location.lat();
-//     startLocation.long = place[0].geometry.location.lng();
-//     if (place.length == 0) {
-//         return;
-//     }
-
-//     this.state.place = startLocation;
-//     console.log(place);
-//     console.log(startLocation);
-//     // this.props.onPlaceLoaded(place);
-//   }
-
-//   render() {
-//     return (
-//         <input ref={this.searchInput}  id="search" placeholder="Enter your address"
-//          type="text"></input>
-//         // <SearchBox ref={this.searchInput}/>
-//     );
-//   }
-// }

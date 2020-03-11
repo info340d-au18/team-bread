@@ -23,7 +23,7 @@ let dummyState = {
 	start: {name: "USC Village", lat: 34.0256262, long: -118.285044},
 	distance: 5,
 	amenity: {restaurant: true},
-	leisure: {},
+	//leisure: {},
 	end: {name: "Little Galen Center", lat: 34.0228165, long: -118.2870715}
 }
 
@@ -36,7 +36,9 @@ export class ResultsMap extends React.Component {
 		// 	lng: -0.09,
 		// 	zoom: 13,
 		// }
+		//this.state = {test: true};
 		this.state = dummyState;
+		console.log(this.state);
 	}
 
 	render() {
@@ -57,22 +59,24 @@ export class ResultsMap extends React.Component {
 			popupAnchor: [1, -34],
 			shadowSize: [41, 41]
 		  });
+		console.log(this.state);
 		return (
-			<Map center={startPosition} zoom={16}>
-				<TileLayer
-					attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-				<Marker position={startPosition} icon={redIcon}>
-					<Popup>
-						{this.state.start.name}
-					</Popup>
-				</Marker>
-				<Marker position={[this.state.end.lat, this.state.end.long]} icon={blueIcon}>
-					<Popup>
-						{this.state.end.name}
-					</Popup>
-				</Marker>
-			</Map>
+			// <Map center={startPosition} zoom={16}>
+			// 	<TileLayer
+			// 		attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+			// 		url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+			// 	<Marker position={startPosition} icon={redIcon}>
+			// 		<Popup>
+			// 			{this.state.start.name}
+			// 		</Popup>
+			// 	</Marker>
+			// 	<Marker position={[this.state.end.lat, this.state.end.long]} icon={blueIcon}>
+			// 		<Popup>
+			// 			{this.state.end.name}
+			// 		</Popup>
+			// 	</Marker>
+			// </Map>
+			<h1>HIIIIIII</h1>
 		)
 	}
 
