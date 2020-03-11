@@ -29,18 +29,23 @@ export class App extends React.Component {
 		super();
 		this.getResults = this.getResults.bind(this);
 		this.state = {
-			start: {name: "USC Village", lat: 34.0256262, long: -118.285044},
-			distance: 5,
-			amenities: {restaurant: true}
+			// start: {name: "USC Village", lat: 34.0256262, long: -118.285044},
+			// distance: 5,
+			// amenities: {restaurant: true}
+			start: {},
+			distance:0,
+			amenities:"",
+			BB:[]
 		};
 	}
 
-	getResults(start, distance, amenity) {
+	getResults(start, distance, amenity, bb) {
 		console.log("getResults");
 		return this.setState({
 			start: start,
 			distance: distance,
-			amenity: amenity
+			amenity: amenity,
+			BB: bb
 		});
 	}
 

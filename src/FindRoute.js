@@ -42,10 +42,11 @@ export class FindRoute extends React.Component {
 
         this.state = {
             redirect: false,
-            start: {name: "USC Villageasdf", lat: 34.0256262, long: -118.285044},
+            start: {name: "USC Village", lat: 34.0256262, long: -118.285044},
             distance: 5,
             //amenity: {cafe: true, restaurant:true}
-            amenity: "cafe"
+            amenity: "cafe",
+            BB: [["34.003104", "-118.312219"]["34.048149", "-118.257869"]]
             //leisure: []
         };
     }
@@ -125,8 +126,7 @@ export class FindRoute extends React.Component {
     handleSubmit(e) {
         console.log("handle submit");
         console.log(this.state);
-        this.props.getResults(this.state.start, this.state.distance, this.state.amenity);
-        return this.setState({redirect: true});
+        this.getData();
     }
 
     handleChecks(e) {
@@ -158,4 +158,97 @@ export class FindRoute extends React.Component {
         console.log(e.target.value);
         return this.setState({distance:e.target.value});
     }
+
+    getData() {
+        let oLink = this.typeStrings(this.state.amenity, this.state.start.lat, this.state.start.long, this.state.distance);
+
+		fetch(oLink).then((response) =>{
+			let r = response.json();
+			return r;
+		}).then((data) => {
+			let result = [];
+			let y = data.elements;
+			console.log(y);
+			if (y.length > 100) {
+				y = this.findRandom100(y);
+			}
+
+			for(let i = 0; i < y.length; i++) {
+				if (y[i] == undefined){
+					i++;
+				} else {
+					let info = {name: y[i].tags.name, lat: y[i].lat, long: y[i].lon};
+					//console.log(info);
+					// result.push(<ResultsMarkers info={info} icon={icon} start={false}/>);
+					result.push(info);
+				}
+			}
+			console.log(result);
+			// this.setState({results: result});
+			return result;
+		}).then((placeResults)=>{
+            this.props.getResults(this.state.start, this.state.distance, placeResults);
+            return this.setState({redirect: true});
+        });
+    }
+
+    findRandom100(data) {
+		let places = [];
+		let length = data.length;
+		let numsUsed = [];
+		for (let i = 0; i < 100; i++) {
+			let index = Math.round(Math.random() * length);
+			while (numsUsed.includes(index)) {
+				index = Math.round(Math.random() * length);
+			}
+			numsUsed.push(index);
+			places.push(data[index]);
+		}
+		return places;
+	}
+
+    typeStrings(amenity, lat, long, radius) {
+		let link = 'https://overpass-api.de/api/interpreter?data=[out:json];';
+		//l et bounds = '(47.481002,-122.459696,47.734136,-122.224433);' // should be a separate function call in the futuer
+	
+		let bounds = this.calculateBB(lat, long, radius / 2, "overpass") + ';';
+		console.log(bounds);
+		let end = 'out'
+		
+		link += 'node[amenity=' + amenity + ']' + bounds + end + ';';
+		console.log(link);
+		return link;
+    }
+    
+    calculateBB(lat, long, radius, type) {
+		let upperLat = (lat - this.getLatDiff(radius)).toFixed(6);
+		let upperLong = (long - this.getLongDiff(radius, lat)).toFixed(6);
+	
+		let lowerLat = (lat + this.getLatDiff(radius)).toFixed(6);
+		let lowerLong = (long + this.getLongDiff(radius, lat)).toFixed(6);
+	
+		// https://gis.stackexchange.com/questions/172554/calculating-bounding-box-of-given-set-of-coordinates-from-leaflet-draw
+		// create a bounding rectangle that can be used in leaflet
+        let mapBbox = [[upperLat,upperLong],[lowerLat,lowerLong]];
+        console.log('bb');
+        console.log(mapBbox);
+        this.setState({BB: mapBbox});
+	
+		// add the bounding box to the map, and set the map extent to it
+		// L.rectangle(mapBbox).addTo(mymap);
+		//mymap.fitBounds(mapBbox);
+        return '(' + upperLat + ',' + upperLong + ',' + lowerLat + ',' + lowerLong + ')';
+        //return [[upperLat,upperLong],[lowerLat,lowerLong]];
+    }
+    
+
+	getLongDiff(radius, lat) {
+		// return (radius) * Math.cos(((Math.PI/ 180) * lat));
+		return radius / (111 * Math.cos((Math.PI / 180) * lat));
+	}
+	
+	// function dY(radius) {
+	getLatDiff(radius) {
+		return radius / 111;
+	}
 }
