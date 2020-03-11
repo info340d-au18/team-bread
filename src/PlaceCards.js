@@ -6,13 +6,9 @@ import {Heart} from './Heart.js';
 // import cardPlaces from './data/cardPlaces.json';
 
 export class PlaceCards extends React.Component {
-    hello () {
-        console.log(this.props.place.name);
-    }
     render() {
         return (
             <Card className = 'col-xs-auto col-s-4 col-md-5 col-lg-5 col-xl-3'>
-                {this.hello()}
                 {/* <Card.Img variant = 'top' src = "https://info340d-au18.github.io/team-bread/img/arboretum.jpg" style = {{padding: '1rem'}}/> */}
                 {/* <Card.Img variant = 'top' src = {this.props.place.source} style = {{padding: '1rem'}} alt = {this.props.place.alt} /> */}
                 <Card.Img variant = 'top' src = "https://raw.githubusercontent.com/info340d-au18/team-bread/master/src/img/GasWorksPark3.jpg?token=AJBI46OW2HJHNZIECT3UV3C6OATSE" style = {{padding: '1rem'}} alt = {this.props.place.alt} />
