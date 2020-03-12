@@ -351,6 +351,10 @@ footer {
     transition: 0.3s;
 }
 
+.pac-container {
+    z-index: 1100 !important;
+}
+
 /* .favbut  */
 /* small screens */
 @media screen and (min-width: 598px) {

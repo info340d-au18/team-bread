@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-// import {PlaceGroup} from './PlaceCardGroup.js';
 import {PlaceCards} from './PlaceCards.js';
 import {CarouselPlace} from './Carousel.js';
+import {Carousel, CarouselItem} from 'react-bootstrap';
 import cardPlaces from './data/cardPlaces.json';
 import caroPlaces from './data/carouselPlaces.json';
 import {Modal} from 'react-bootstrap';
 import {SearchBar} from './SearchBar.js';
+import './index.css';
 import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
-import {PG} from './PG.JS';
 
 export class Place extends React.Component {
     constructor(props) {
@@ -17,77 +17,88 @@ export class Place extends React.Component {
             lat: '',
             long: '',
             name: '',
-            // cards: ['Washington Park Arboretum', 'Gas Works Park', 'Green Lake Park', 'Pie Bar', 'Sea Wolf Bakery', 'University Village']
-            cards: [],
-            onPage: [{name: 'Washington Park Arboretum', onP: true}, {name: 'Gas Works Parm', onP: true},
-                    {name: 'Green Lake Park', onP: true}, {name: 'Pie Bar', onP: true},
-                    {name: 'Sea Wolf Bakery', onP: true}, {name: 'University Village', onP: true}]
+            favs: cardPlaces,
+            caro: caroPlaces,
+            start: {name: "USC Village", lat: 34.0256262, long: -118.285044},
+            img: './img/burke.jpg'
         }
         this.showMap = this.showMap.bind(this);
-        // this.addToGroups = this.addToGroups.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
+        this.get = this.get.bind(this);
+        this.addToGroup = this.addToGroup.bind(this);
     }
 
+    // shows favorite card on map!
     showMap(l, ll, nn) {
         this.setState({show: true, lat: l, long: ll, name: nn});
     }
 
+    // closes modal
     handleClose = () => this.setState({show: false})
 
-    // addToGroup(place) {
-    addToGroup = (place) => (pp) => {
-        // let cur = this.state.cards;
-        console.log(place)
-        // let ad = (<PlaceCards place = {place} dealWithPlace={this.showMap(place.lat, place.long, place.name)} />);
-        // this.state.cards.push(ad);
-        // console.log(this.state.cards)
-        // this.setState()
-        // console.log(pp)
-        // console.log(place);
+    // add carousel to favorite
+    addToGroup(place) {
+        let ind = this.get(place.name);
+        if (ind === -1) {
+            let cur = this.state.favs;
+            cur.push(place);
+            this.setState({favs: cur});
+        }
+        
     }
 
-    handleDelete(name) {
-        this.state.onPage[this.get(name)].onP = false;
-
-        console.log(name);
-
-
+    // deletes favorite card
+    handleDelete = (name) => {
+        let ind = this.get((name));
+        let cur = this.state.favs;
+        cur.splice(ind, 1);
+        this.setState({favs: cur});
     }
 
-    renderCards() {
-
-    }
-
+    // gets the index at which the place is at
     get(name) {
-        for (let i = 0; i < this.state.onPage.length; i++) {
-            if (this.state.onPage[i].name === name) {
+        for (let i = 0; i < this.state.favs.length; i++) {
+            if (this.state.favs[i].name === name) {
                 return i;
             }
         }
         return -1;
     }
 
+    handleSearch(startLocation) {
+        return this.setState({start: startLocation});
+    }
+
+
     render() {
-        // this.state.cards.push(<PlaceCards place = {place} dealWithPlace={this.showMap.bind(this)} />);
         let c = [];
-        cardPlaces.map((place) => {
-            console.log(place)
-            // console.log(this.state.onPage[this.get(place.name)]);
-            let x = this.state.onPage[this.get(place.name)];
-            // console.log(x.onP)
-            // if (this.state.onPage[this.get(place.name)].onP === true) {
-                c.push(<PlaceCards place = {place} dealWithPlace={this.showMap.bind(this)} handleDelete = {this.handleDelete.bind(this)} />);
-            // }
+        this.state.favs.map((place) => {
+                c.push(<PlaceCards place = {place} 
+                                dealWithPlace={this.showMap.bind(this)} 
+                                handleDelete = {this.handleDelete.bind(this)} />);
         })
+
+        let car = [];
+        this.state.caro.map((place) => {
+            car.push(<CarouselItem>
+                        <CarouselPlace carPlace = {place} 
+                                    addToGroup = {this.addToGroup.bind(this)} />
+                    </CarouselItem>)
+        })
+        
         this.state.cards = c;
-        console.log(this.state.cards)
+        this.state.caroThing = car;
 
         return (
             <div>
-                <CarouselPlace carPlace = {caroPlaces} 
-                    addToGroups = {this.addToGroup} />
+                <div className = 'container d-flex justify-content-center'>
+                    <Carousel stype = {{padding: '2rem'}} className = 'col-12 col-md-12 col-lg-10 col-xl-9'>
+                        {this.state.caroThing}
+                    </Carousel>
+                ></div>
                 <div>
                     <div className = 'row justify-content-center'>
-                        {c}
+                        {this.state.cards}
                     </div>
                     <div>
                         <Modal show = {this.state.show} onHide = {this.handleClose}>
@@ -95,9 +106,9 @@ export class Place extends React.Component {
                                 <Modal.Title>Enter a Start Location!</Modal.Title>
                             </Modal.Header>
                                 <Modal.Body>
-                                    <SearchBar />
+                                    <SearchBar startResult = {this.handleSearch} />
                                     <div id = 'mapContainer'>
-                                        <Map center={[this.state.lat, this.state.long]} zoom={13}>
+                                        <Map center={[this.state.lat, this.state.long]} zoom={15}>
                                             <TileLayer
                                             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -107,6 +118,7 @@ export class Place extends React.Component {
                                                 <h5>{this.state.name}</h5>
                                             </Popup>
                                             </Marker>
+                                            <Marker position = {[this.state.start.lat, this.state.start.long]} />
                                         </Map>
                                     </div>
                                 </Modal.Body>
