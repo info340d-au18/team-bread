@@ -6,17 +6,21 @@ import {
 	TileLayer,
 	Marker,
 	Popup,
-	FeatureGroup
+	FeatureGroup,
+	MapLayer
 } from 'react-leaflet';
 import {Button} from 'react-bootstrap';
 
 
 import L from 'leaflet';
 import 'leaflet-routing-machine'
-import {ResultsMarkers} from './ResultsMarkers.js';
+//import {ResultsMarkers} from './ResultsMarkers.js';
 //import MarkerClusterGroup from 'react-leaflet-markercluster';
-import {Routing} from 'leaflet-routing-machine';
+//import {Routing} from 'leaflet-routing-machine';
+import {RoutingMachine} from './RoutingMachine.js';
 
+import 'leaflet/dist/leaflet.css'
+import 'leaflet-routing-machine/dist/leaflet-routing-machine.css'
 
 import './surveyStyle.css';
 
@@ -40,6 +44,7 @@ export class ResultsMap extends React.Component {
 	constructor(props) {
 		super(props);
 		this.nav = this.nav.bind(this);
+		this.map = React.createRef();
 	}
 
 	render() {
@@ -60,36 +65,80 @@ export class ResultsMap extends React.Component {
 			shadowSize: [41, 41]
 		  });
 		return (
-			<Map center={[this.props.start.lat, this.props.start.long]} zoom={16} bounds={this.props.BB}>
-				<TileLayer
-					attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+			// <Map center={[this.props.start.lat, this.props.start.long]} zoom={16} bounds={this.props.BB} ref={map => this.map = map}>
+			// 	<TileLayer
+			// 		attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+			// 		url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
 				
-				<FeatureGroup>
-					<Marker position={[this.props.start.lat, this.props.start.long]} icon={redIcon}>
-						<Popup>
-							{this.props.start.name}
-						</Popup>
-					</Marker>
+			// 	<FeatureGroup>
+			// 		{/* <Marker position={[this.props.start.lat, this.props.start.long]} icon={redIcon}>
+			// 			<Popup>
+			// 				{this.props.start.name}
+			// 			</Popup>
+			// 		</Marker> */}
 					
-					{this.props.amenity.map((a, id) => 
-						<Marker position={[a.lat, a.long]} icon={blueIcon}>
-							<Popup>
-								{a.name}
-								<br></br>
-								<Button variant="dark" type="button" onClick={this.nav}>Navigate</Button>
-							</Popup>
-						</Marker>
-					)}
-				</FeatureGroup>
-				{/* <Routing from={34.0249743, -118.2852124} to={34.0256262, -118.285044}/> */}
-			</Map>
+			// 		{/* {this.props.amenity.map((a, id) => 
+			// 			<Marker position={[a.lat, a.long]} icon={blueIcon}>
+			// 				<Popup>
+			// 					{a.name}
+			// 					<br></br>
+			// 					<Button variant="dark" type="button" onClick={this.nav}>Navigate</Button>
+			// 				</Popup>
+			// 			</Marker>
+			// 		)} */}
+			// 		{L.Routing.control({
+			// 			waypoints: [
+			// 				L.latLng(34.0249743, -118.2852124),
+			// 				L.latLng(34.0256262, -118.285044)
+			// 			],
+			// 			routeWhileDragging: false,
+			// 			// createMarker: function(i, waypoint, n) {
+			// 			// 	console.log(i);
+			// 			// 	console.log(state.start.group);
+			// 			// 	if (i == 0) {
+			// 			// 		return state.start.group;
+			// 			// 	} else {
+			// 			// 		return end;
+			// 			// 	}
+			// 			// }
+			// 		}).addTo({this._getMap()})}
+					
+			// 	</FeatureGroup>
+			// 	{/* <Routing from={34.0249743, -118.2852124} to={34.0256262, -118.285044}/> */}
+			// </Map>
 
+			this.map ? 
+			<Map 
+				center={[34.0249743, -118.2852124]} 
+				zoom={16}
+				ref='map'> 
+
+			<TileLayer 
+				attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors" 
+				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" 
+			/> 
+			<RoutingMachine map={this._getMap()} from={[34.0249743, -118.2852124]} to={[34.0256262, -118.285044]}
+					/>  
+			</Map> 
+			: 
+			<Map center={[34.0249743, -118.2852124]} 
+				zoom={16}
+				ref='map'> 
+
+			<TileLayer 
+				attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors" 
+				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" 
+			/> 
+			</Map> 
 		);
 	}
 
 	nav() {
 		console.log("hi");
+	}
+
+	_getMap() {
+		return this.map.leafletElement;
 	}
 	
 }
