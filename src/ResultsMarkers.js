@@ -9,10 +9,13 @@ import {Button} from 'react-bootstrap';
 
 
 import L from 'leaflet';
+import {RoutingMachine} from './RoutingMachine.js';
+
 
 export class ResultsMarkers extends React.Component {
     constructor(props) {
         super(props);
+        this.handleRoute = this.handleRoute.bind(this);
     }
 
     render() {
@@ -25,7 +28,7 @@ export class ResultsMarkers extends React.Component {
 
     createPopup() {
         let name = this.props.info.name;
-        if(this.props.start) {
+        if(this.props.start === true) {
             return(
                 <Popup>
                     {name}
@@ -36,8 +39,17 @@ export class ResultsMarkers extends React.Component {
             <Popup>
                 {name}
                 <br></br>
-                <Button variant="dark" type="button">Navigate</Button>
+                <Button variant="dark" type="button" onClick={this.handleRoute}>Navigate</Button>
             </Popup>
         );
+    }
+
+    handleRoute() {
+        console.log('handleROute');
+        console.log(this.props.info);
+        return this.props.route(this.props.info);
+         
+
+        //return this.props.route();
     }
 }

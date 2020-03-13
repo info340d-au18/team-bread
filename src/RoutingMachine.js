@@ -7,7 +7,7 @@ import 'leaflet-routing-machine';
 export class RoutingMachine extends MapLayer{
     
     componentDidMount() {
-        super.componentDidMount();
+        //super.componentDidMount();
         this.leafletElement.addTo(this.props.map);
     }
 
