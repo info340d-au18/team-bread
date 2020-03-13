@@ -8,6 +8,10 @@ import {Modal} from 'react-bootstrap';
 import {SearchBar} from './SearchBar.js';
 import './index.css';
 import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
+import MapComponent from './MapTest';
+import Routing from './RoutingMachine2';
+import L from 'leaflet';
+// import { Marker } from 'leaflet';
 
 export class Place extends React.Component {
     constructor(props) {
@@ -19,8 +23,10 @@ export class Place extends React.Component {
             name: '',
             favs: cardPlaces,
             caro: caroPlaces,
-            start: {name: "USC Village", lat: 34.0256262, long: -118.285044},
-            img: './img/burke.jpg'
+            start: {name: '', lat: '', long: ''},
+            img: './img/burke.jpg',
+            isMapInit: false,
+            hasLocation: false
         }
         this.showMap = this.showMap.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
@@ -66,9 +72,19 @@ export class Place extends React.Component {
     }
 
     handleSearch(startLocation) {
-        return this.setState({start: startLocation});
+        console.log(startLocation)
+        this.setState({start: startLocation});
+        this.setState({hasLocation: true});
     }
 
+    saveMap = map => {
+        this.map = map;
+        this.setState({
+            isMapInit:true
+        });
+    }
+
+    
 
     render() {
         let c = [];
@@ -89,37 +105,44 @@ export class Place extends React.Component {
         this.state.cards = c;
         this.state.caroThing = car;
 
+        const marker = this.state.hasLocation ? (
+            <Marker position={[this.state.start.lat, this.state.start.long]}>
+              <Popup>{this.state.start.name}</Popup>
+            </Marker>
+          ) : null
+
         return (
             <div>
                 <div className = 'container d-flex justify-content-center'>
                     <Carousel stype = {{padding: '2rem'}} className = 'col-12 col-md-12 col-lg-10 col-xl-9'>
                         {this.state.caroThing}
                     </Carousel>
-                ></div>
+                </div>
                 <div>
                     <div className = 'row justify-content-center'>
                         {this.state.cards}
                     </div>
                     <div>
-                        <Modal show = {this.state.show} onHide = {this.handleClose}>
+                        <Modal show = {this.state.show} onHide = {this.handleClose} size = 'lg'>
                             <Modal.Header closeButton>
                                 <Modal.Title>Enter a Start Location!</Modal.Title>
                             </Modal.Header>
                                 <Modal.Body>
                                     <SearchBar startResult = {this.handleSearch} />
                                     <div id = 'mapContainer'>
-                                        <Map center={[this.state.lat, this.state.long]} zoom={15}>
+                                        <Map center = {[this.state.lat, this.state.long]} zoom = {15} ref = {this.saveMap}>
+                                            {/* <Marker position = {[this.state.lat, this.state.long]} /> */}
                                             <TileLayer
-                                            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                             />
-                                            <Marker position={[this.state.lat, this.state.long]}>
-                                            <Popup>
-                                                <h5>{this.state.name}</h5>
-                                            </Popup>
-                                            </Marker>
-                                            <Marker position = {[this.state.start.lat, this.state.start.long]} />
-                                        </Map>
+                                            {marker}
+                                                <Routing map={this.map} 
+                                                        sLat = {this.state.start.lat}
+                                                        sLong = {this.state.start.long}
+                                                        eLat = {this.state.lat}
+                                                        eLong = {this.state.long} />
+                                        </Map>  
                                     </div>
                                 </Modal.Body>
                         </Modal>
