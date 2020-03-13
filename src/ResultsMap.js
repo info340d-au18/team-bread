@@ -14,7 +14,7 @@ import {Button} from 'react-bootstrap';
 
 import L from 'leaflet';
 import 'leaflet-routing-machine'
-//import {ResultsMarkers} from './ResultsMarkers.js';
+import {ResultsMarkers} from './ResultsMarkers.js';
 //import MarkerClusterGroup from 'react-leaflet-markercluster';
 //import {Routing} from 'leaflet-routing-machine';
 import {RoutingMachine} from './RoutingMachine.js';
@@ -43,8 +43,12 @@ import './surveyStyle.css';
 export class ResultsMap extends React.Component {
 	constructor(props) {
 		super(props);
-		this.nav = this.nav.bind(this);
+		this.handleNav = this.handleNav.bind(this);
 		this.map = React.createRef();
+		this.state = {
+			routingReady: false,
+			end: {}
+		}
 	}
 
 	render() {
@@ -64,77 +68,49 @@ export class ResultsMap extends React.Component {
 			popupAnchor: [1, -34],
 			shadowSize: [41, 41]
 		  });
+
+		if (this.state.routingReady) {
+			console.log('test');
+			return(
+				<Map center={[this.props.start.lat, this.props.start.long]} zoom={16} bounds={this.props.BB} ref={map => this.map = map}>
+					<TileLayer
+						attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+					
+					<FeatureGroup>
+						<RoutingMachine 
+							map={this.map} 
+							from={[34.0249743, -118.2852124]} 
+							to={[34.0256262, -118.285044]}
+						/> 
+					</FeatureGroup>
+				</Map>
+			)
+		}
 		return (
-			// <Map center={[this.props.start.lat, this.props.start.long]} zoom={16} bounds={this.props.BB} ref={map => this.map = map}>
-			// 	<TileLayer
-			// 		attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-			// 		url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+			<Map center={[this.props.start.lat, this.props.start.long]} zoom={16} bounds={this.props.BB} ref={map => this.map = map}>
+				<TileLayer
+					attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
 				
-			// 	<FeatureGroup>
-			// 		{/* <Marker position={[this.props.start.lat, this.props.start.long]} icon={redIcon}>
-			// 			<Popup>
-			// 				{this.props.start.name}
-			// 			</Popup>
-			// 		</Marker> */}
+				<FeatureGroup>
+					<ResultsMarkers info={this.props.start} icon={redIcon} start={true}/>
 					
-			// 		{/* {this.props.amenity.map((a, id) => 
-			// 			<Marker position={[a.lat, a.long]} icon={blueIcon}>
-			// 				<Popup>
-			// 					{a.name}
-			// 					<br></br>
-			// 					<Button variant="dark" type="button" onClick={this.nav}>Navigate</Button>
-			// 				</Popup>
-			// 			</Marker>
-			// 		)} */}
-			// 		{L.Routing.control({
-			// 			waypoints: [
-			// 				L.latLng(34.0249743, -118.2852124),
-			// 				L.latLng(34.0256262, -118.285044)
-			// 			],
-			// 			routeWhileDragging: false,
-			// 			// createMarker: function(i, waypoint, n) {
-			// 			// 	console.log(i);
-			// 			// 	console.log(state.start.group);
-			// 			// 	if (i == 0) {
-			// 			// 		return state.start.group;
-			// 			// 	} else {
-			// 			// 		return end;
-			// 			// 	}
-			// 			// }
-			// 		}).addTo({this._getMap()})}
+					{this.props.amenity.map((a, id) => 
+						<ResultsMarkers info={a} icon={blueIcon} start={this.props.start} route={this.handleNav} map={this.map}/>
+					)}
 					
-			// 	</FeatureGroup>
-			// 	{/* <Routing from={34.0249743, -118.2852124} to={34.0256262, -118.285044}/> */}
-			// </Map>
-
-			this.map ? 
-			<Map 
-				center={[34.0249743, -118.2852124]} 
-				zoom={16}
-				ref='map'> 
-
-			<TileLayer 
-				attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors" 
-				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" 
-			/> 
-			<RoutingMachine map={this._getMap()} from={[34.0249743, -118.2852124]} to={[34.0256262, -118.285044]}
-					/>  
-			</Map> 
-			: 
-			<Map center={[34.0249743, -118.2852124]} 
-				zoom={16}
-				ref='map'> 
-
-			<TileLayer 
-				attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors" 
-				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" 
-			/> 
-			</Map> 
+				</FeatureGroup>
+			</Map>
 		);
 	}
 
-	nav() {
+	handleNav(end) {
 		console.log("hi");
+		return this.setState({
+			RoutingReady: true,
+			end: end
+		});
 	}
 
 	_getMap() {
