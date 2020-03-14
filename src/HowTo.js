@@ -1,7 +1,6 @@
 import React from "react";
 import { Parallax } from "react-parallax";
 import {StartSurvey} from './StartSurvey.js';
-// import {NavBar,Footer} from './NavBar.js'
 
 export class HowTo extends React.Component {
     constructor() {
@@ -105,7 +104,6 @@ export class HowTo extends React.Component {
                         {<StartSurvey />}
                     </div>
                 </div>
-                {/* <Footer /> */}
             </div>
         );
     }

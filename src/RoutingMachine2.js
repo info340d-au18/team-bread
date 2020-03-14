@@ -79,7 +79,6 @@ class Routing extends Component {
       this.routing = L.Routing.control({
         plan,
         serviceUrl: this.state.mapbox,
-        // router: L.Routing.mapbox(this.state.token),
         router: L.Routing.graphHopper('43b6f68e-d0b7-4312-933c-8d640f9a92d2' , {
           urlParameters: {
               vehicle: 'foot'

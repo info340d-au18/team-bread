@@ -9,20 +9,12 @@ import {
 	FeatureGroup,
 	MapLayer
 } from 'react-leaflet';
-import {Button} from 'react-bootstrap';
 
 
 import L from 'leaflet';
-//import 'leaflet-routing-machine'
 import {ResultsMarkers} from './ResultsMarkers.js';
-//import MarkerClusterGroup from 'react-leaflet-markercluster';
-//import {Routing} from 'leaflet-routing-machine';
-//import {RoutingMachine} from './RoutingMachine.js';
+
 import Routing from './RoutingMachine2';
-
-
-// import 'leaflet/dist/leaflet.css'
-// import 'leaflet-routing-machine/dist/leaflet-routing-machine.css'
 
 import './surveyStyle.css';
 
@@ -91,7 +83,6 @@ export class ResultsMap extends React.Component {
 									route={this.handleNav}/>
 					
 					{this.props.amenity.map((a, id) => 
-						//<ResultsMarkers info={a} icon={blueIcon} start={this.props.start} route={this.handleNav} map={this.map}/>
 						<ResultsMarkers lat={a.lat} 
 									long={a.long}
 									name={a.name} 
@@ -120,13 +111,4 @@ export class ResultsMap extends React.Component {
             isMapInit:true
         });
 	}
-	
-	// handleFav(endP) {
-	// 	console.log("handleFav");
-	// 	this.setState({
-	// 		fav: endP,
-	// 		addToFavs:true
-	// 	})
-	// }
-	
 }

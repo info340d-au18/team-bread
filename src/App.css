@@ -7,6 +7,17 @@
   pointer-events: none;
 }
 
+footer p {
+  font-size: x-small;
+}
+
+footer {
+  display: block;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

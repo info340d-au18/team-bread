@@ -22,7 +22,6 @@ export class ResultsMarkers extends React.Component {
     }
 
     createPopup() {
-        //let name = this.props.info.name;
         if(this.props.start === true) {
             return(
                 <Popup>
@@ -35,19 +34,15 @@ export class ResultsMarkers extends React.Component {
                 {this.props.name}
                 <br></br>
                 <Button variant="dark" type="button" onClick={this.handleRoute}>Navigate</Button>
-                {/* <br></br>
-                <Button variant="dark" type="button" onClick={this.handleRoute}>FAV</Button> */}
             </Popup>
         );
     }
 
     handleRoute() {
         console.log('handleRoute');
-        //console.log(this.props.info);
         let info = {name: this.props.name,
                     lat: this.props.lat,
                     long: this.props.long}
         return this.props.route(info);
-        //return this.props.route();
     }
 }

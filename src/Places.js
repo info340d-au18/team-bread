@@ -9,8 +9,6 @@ import {SearchBar} from './SearchBar.js';
 import './index.css';
 import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
 import Routing from './RoutingMachine2';
-import L from 'leaflet';
-// import { Marker } from 'leaflet';
 
 export class Place extends React.Component {
     constructor(props) {
@@ -81,8 +79,6 @@ export class Place extends React.Component {
         });
     }
 
-    
-
     render() {
         let c = [];
         this.state.favs.map((place) => {
@@ -140,7 +136,6 @@ export class Place extends React.Component {
                                                         eLat = {this.state.lat}
                                                         eLong = {this.state.long} 
                                                         fromForm= {false}/>
-                                                {/* <Routing map = {this.map} /> */}
                                         </Map>  
                                     </div>
                                 </Modal.Body>

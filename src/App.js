@@ -1,17 +1,11 @@
 import React from 'react';
-// import logo from './logo.svg';
 import './App.css';
 import {Loggin} from './Loggin.js';
 
-// import {NavBar} from './NavBar.js';
 import {StartSurvey} from './StartSurvey.js';
 import {HowTo} from './HowTo.js';
 import {FindRoute} from './FindRoute.js';
 import {ResultsMap} from './ResultsMap.js';
-// import {PlaceGroup} from './PlaceCards';
-import {PlaceGroup} from './PlaceCardGroup';
-import cardPlaces from './data/cardPlaces.json';
-// import {CarouselPlace} from './Carousel.js';
 import {Place} from './Places.js';
 
 
@@ -22,16 +16,13 @@ import {
 	Link,
 	Redirect
 } from 'react-router-dom';
-import {Navbar, NavItem, Nav, NavLink} from 'react-bootstrap';
+import {Navbar, Nav} from 'react-bootstrap';
 
 export class App extends React.Component {
 	constructor() {
 		super();
 		this.getResults = this.getResults.bind(this);
 		this.state = {
-			// start: {name: "USC Village", lat: 34.0256262, long: -118.285044},
-			// distance: 5,
-			// amenities: {restaurant: true}
 			start: {},
 			distance:0,
 			amenities:"",
@@ -67,17 +58,17 @@ export class App extends React.Component {
 							</Navbar.Collapse>
 						</Navbar>
 					</div>
+					<footer>
+						<p>© 2020 Jocelyn Afandi &amp; Anna Zhou</p>
+					</footer>
 
 					<div>
 						<Switch>
 							<Route exact path="/team-bread"><StartSurvey home={true}/></Route>
 							<Route exact path="/"><StartSurvey home={true}/></Route>
 							<Route exact path="/howto" component={HowTo}/>
-							{/* <Route exact path="/places"> <PlaceGroup place = {cardPlaces} /></Route> */}
 							<Route exact path="/places" component={Place} />
 							<Route exact path="/login" component={Loggin}/>
-							{/* <Route exact path="/findroute" component={FindRoute} /> */}
-
 							<Route exact path="/findroute"> <FindRoute getResults={this.getResults}/> </Route>
 							<Redirect from="findroute" to="/resultsmap" />
 							<Route exact path="/resultsmap"> <ResultsMap start={this.state.start} distance={this.state.distance} amenity={this.state.amenity}/> </Route>
@@ -87,7 +78,6 @@ export class App extends React.Component {
 
 				</div>
 			</Router>
-			// <PlaceGroup place = {cardPlaces} />
     	);
   	}
 }

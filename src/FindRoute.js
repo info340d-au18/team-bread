@@ -1,36 +1,15 @@
 import React, {Component} from 'react';
-// import {NavBar} from './NavBar.js';
 import {Form} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import {InputGroup} from 'react-bootstrap';
 import {SearchBar} from './SearchBar.js';
-// import {ResultsMap} from './ResultsMap.js';
 import {
     BrowserRouter as Router,
-    Switch,
-    Route,
-	Link,
 	Redirect
 } from 'react-router-dom';
 import './surveyStyle.css';
 
-// export class FindRoute extends React.Component {
-
-//     render() {
-//         if (this.state.redirect) {
-//             return <Redirect to="/resultsmap" />;
-//         }
-//         return (
-//             <div>
-//                 {/* <NavBar /> */}
-//                 <CreateForm />
-//             </div>
-//         );
-//     }
-// }
-
 const amenityTypes = ["bar", "cafe", "cinema", "grave_yard", "ice_cream", "library", "restaurant"];
-//const leisureTypes = ["amusement_arcade","dog_park", "fitness_centre", "garden", "park"];
 
 export class FindRoute extends React.Component {
     constructor () {
@@ -44,10 +23,8 @@ export class FindRoute extends React.Component {
             redirect: false,
             start: {name: "USC Village", lat: 34.0256262, long: -118.285044},
             distance: 5,
-            //amenity: {cafe: true, restaurant:true}
             amenity: "cafe",
             BB: [["34.003104", "-118.312219"]["34.048149", "-118.257869"]]
-            //leisure: []
         };
     }
 
@@ -167,13 +144,10 @@ export class FindRoute extends React.Component {
 					i++;
 				} else {
 					let info = {name: y[i].tags.name, lat: y[i].lat, long: y[i].lon};
-					//console.log(info);
-					// result.push(<ResultsMarkers info={info} icon={icon} start={false}/>);
 					result.push(info);
 				}
 			}
 			console.log(result);
-			// this.setState({results: result});
 			return result;
 		}).then((placeResults)=>{
             this.props.getResults(this.state.start, this.state.distance, placeResults);
@@ -198,7 +172,6 @@ export class FindRoute extends React.Component {
 
     typeStrings(amenity, lat, long, radius) {
 		let link = 'https://overpass-api.de/api/interpreter?data=[out:json];';
-		//l et bounds = '(47.481002,-122.459696,47.734136,-122.224433);' // should be a separate function call in the futuer
 	
 		let bounds = this.calculateBB(lat, long, radius / 2, "overpass") + ';';
 		console.log(bounds);
@@ -227,7 +200,6 @@ export class FindRoute extends React.Component {
 		// L.rectangle(mapBbox).addTo(mymap);
 		//mymap.fitBounds(mapBbox);
         return '(' + upperLat + ',' + upperLong + ',' + lowerLat + ',' + lowerLong + ')';
-        //return [[upperLat,upperLong],[lowerLat,lowerLong]];
     }
     
 

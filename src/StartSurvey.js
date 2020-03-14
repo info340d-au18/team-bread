@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import {Card,Button} from 'react-bootstrap';
-import {NavBar} from './NavBar.js';
 import {
     BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    withRouter
+    Link
 } from 'react-router-dom';
-
-
 
 export class StartSurvey extends React.Component {
     render() {
@@ -46,5 +40,3 @@ export class StartSurvey extends React.Component {
         );
     }
 }
-
-//export default withRouter(StartSurvey);

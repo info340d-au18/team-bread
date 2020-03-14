@@ -11,12 +11,10 @@ export class CarouselPlace extends React.Component {
     }
 
     render() {              
-        // let img = this.props.carPlace.source;
         return (
             <div className = 'wrap-item'>
                 <img className = 'd-block w-100'
                     src = {require('./img/burke.jpg')}
-                    // src = {require(img)}
                     alt = {this.props.carPlace.alt} />
                 <div className = 'place-des'>
                     <h3>{this.props.carPlace.name}</h3>
