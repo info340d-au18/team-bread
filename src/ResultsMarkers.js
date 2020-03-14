@@ -20,36 +20,39 @@ export class ResultsMarkers extends React.Component {
 
     render() {
         return (
-            <Marker position={[this.props.info.lat, this.props.info.long]} icon={this.props.icon}>
+            <Marker position={[this.props.lat, this.props.long]} icon={this.props.icon}>
                 {this.createPopup()}
             </Marker>
         );
     }
 
     createPopup() {
-        let name = this.props.info.name;
+        //let name = this.props.info.name;
         if(this.props.start === true) {
             return(
                 <Popup>
-                    {name}
+                    {this.props.name}
                 </Popup>
             );
         }
         return(
             <Popup>
-                {name}
+                {this.props.name}
                 <br></br>
                 <Button variant="dark" type="button" onClick={this.handleRoute}>Navigate</Button>
+                <br></br>
+                <Button variant="dark" type="button" onClick={this.handleRoute}>FAV</Button>
             </Popup>
         );
     }
 
     handleRoute() {
-        console.log('handleROute');
-        console.log(this.props.info);
-        return this.props.route(this.props.info);
-         
-
+        console.log('handleRoute');
+        //console.log(this.props.info);
+        let info = {name: this.props.name,
+                    lat: this.props.lat,
+                    long: this.props.long}
+        return this.props.route(info);
         //return this.props.route();
     }
 }
