@@ -31,7 +31,6 @@ export class App extends React.Component {
 	}
 
 	getResults(start, distance, amenity, bb) {
-		console.log("getResults");
 		return this.setState({
 			start: start,
 			distance: distance,

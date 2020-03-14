@@ -22,7 +22,6 @@ import './surveyStyle.css';
 export class ResultsMap extends React.Component {
 	constructor(props) {
 		super(props);
-		console.log(this.props);
 		this.handleNav = this.handleNav.bind(this);
 		this.state = {
 			routingReady: false,
@@ -97,8 +96,6 @@ export class ResultsMap extends React.Component {
 	}
 
 	handleNav(endP) {
-		console.log("hi");
-		console.log(endP);
 		return this.setState({
 			end: endP,
 			routingReady: true

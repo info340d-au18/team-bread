@@ -39,7 +39,6 @@ export class ResultsMarkers extends React.Component {
     }
 
     handleRoute() {
-        console.log('handleRoute');
         let info = {name: this.props.name,
                     lat: this.props.lat,
                     long: this.props.long}

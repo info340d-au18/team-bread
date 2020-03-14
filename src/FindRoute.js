@@ -97,27 +97,19 @@ export class FindRoute extends React.Component {
     }
 
     handleSubmit(e) {
-        console.log("handle submit");
-        console.log(this.state);
         this.getData();
     }
 
     handleChecks(e) {
-        console.log("handle checks");
-        console.log(this.state);
         return this.setState({
             amenity: e.target.value
         })
     }
 
     handleSearch(startLocation) {
-        console.log("handle search");
-        console.log(this.state);
         return this.setState({start: startLocation});
     }
     handleDistance(e) {
-        console.log("handle distance");
-        console.log(e.target.value);
         return this.setState({distance:e.target.value});
     }
 
@@ -130,7 +122,6 @@ export class FindRoute extends React.Component {
 		}).then((data) => {
 			let result = [];
 			let y = data.elements;
-            console.log(y);
             
             if (y < 1) {
                 
@@ -147,7 +138,6 @@ export class FindRoute extends React.Component {
 					result.push(info);
 				}
 			}
-			console.log(result);
 			return result;
 		}).then((placeResults)=>{
             this.props.getResults(this.state.start, this.state.distance, placeResults);
@@ -174,11 +164,9 @@ export class FindRoute extends React.Component {
 		let link = 'https://overpass-api.de/api/interpreter?data=[out:json];';
 	
 		let bounds = this.calculateBB(lat, long, radius / 2, "overpass") + ';';
-		console.log(bounds);
 		let end = 'out'
 		
 		link += 'node[amenity=' + amenity + ']' + bounds + end + ';';
-		console.log(link);
 		return link;
     }
     
@@ -192,8 +180,6 @@ export class FindRoute extends React.Component {
 		// https://gis.stackexchange.com/questions/172554/calculating-bounding-box-of-given-set-of-coordinates-from-leaflet-draw
 		// create a bounding rectangle that can be used in leaflet
         let mapBbox = [[upperLat,upperLong],[lowerLat,lowerLong]];
-        console.log('bb');
-        console.log(mapBbox);
         this.setState({BB: mapBbox});
 	
 		// add the bounding box to the map, and set the map extent to it
@@ -204,7 +190,6 @@ export class FindRoute extends React.Component {
     
 
 	getLongDiff(radius, lat) {
-		// return (radius) * Math.cos(((Math.PI/ 180) * lat));
 		return radius / (111 * Math.cos((Math.PI / 180) * lat));
 	}
 	

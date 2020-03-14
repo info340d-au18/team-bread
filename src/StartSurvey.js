@@ -7,7 +7,6 @@ import {
 
 export class StartSurvey extends React.Component {
     render() {
-        console.log(this.props.home);
         return (
             this.props.home ?
                 <div id="bgImg">

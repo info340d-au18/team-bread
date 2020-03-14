@@ -68,7 +68,6 @@ export class Place extends React.Component {
     }
 
     handleSearch(startLocation) {
-        console.log(startLocation)
         this.setState({start: startLocation});
     }
 
