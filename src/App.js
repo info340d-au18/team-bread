@@ -8,6 +8,10 @@ import {FindRoute} from './FindRoute.js';
 import {ResultsMap} from './ResultsMap.js';
 import {Place} from './Places.js';
 
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
+
 
 import {
     BrowserRouter as Router,
@@ -17,6 +21,19 @@ import {
 	Redirect
 } from 'react-router-dom';
 import {Navbar, Nav} from 'react-bootstrap';
+
+const firebaseConfig = {
+    apiKey: "AIzaSyCVLL1UxsXFkivaYWbQRYffkPgPm_qAPKQ",
+    authDomain: "team-bread2.firebaseapp.com",
+    databaseURL: "https://team-bread2.firebaseio.com",
+    projectId: "team-bread2",
+    storageBucket: "team-bread2.appspot.com",
+    messagingSenderId: "1061902460600",
+    appId: "1:1061902460600:web:35126bb3d81bccc221f64d",
+    measurementId: "G-4S9R2VXWSS"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
 
 export class App extends React.Component {
 	constructor() {
