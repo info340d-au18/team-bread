@@ -12,6 +12,7 @@
     "@testing-library/react": "^9.4.1",
     "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.4.1",
+    "firebase": "^7.11.0",
     "gh-pages": "^2.2.0",
     "leaflet": "^1.6.0",
     "leaflet-control-geocoder": "^1.12.1",
