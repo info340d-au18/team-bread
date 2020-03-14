@@ -8,7 +8,6 @@ import {Modal} from 'react-bootstrap';
 import {SearchBar} from './SearchBar.js';
 import './index.css';
 import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
-import MapComponent from './MapTest';
 import Routing from './RoutingMachine2';
 import L from 'leaflet';
 // import { Marker } from 'leaflet';
@@ -25,8 +24,7 @@ export class Place extends React.Component {
             caro: caroPlaces,
             start: {name: '', lat: '', long: ''},
             img: './img/burke.jpg',
-            isMapInit: false,
-            hasLocation: false
+            isMapInit: false
         }
         this.showMap = this.showMap.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
@@ -74,7 +72,6 @@ export class Place extends React.Component {
     handleSearch(startLocation) {
         console.log(startLocation)
         this.setState({start: startLocation});
-        this.setState({hasLocation: true});
     }
 
     saveMap = map => {
@@ -130,7 +127,7 @@ export class Place extends React.Component {
                                 <Modal.Body>
                                     <SearchBar startResult = {this.handleSearch} />
                                     <div id = 'mapContainer'>
-                                        <Map center = {[this.state.lat, this.state.long]} zoom = {15} ref = {this.saveMap}>
+                                        <Map center = {[this.state.lat, this.state.long]} zoom = {14} ref = {this.saveMap}>
                                             {/* <Marker position = {[this.state.lat, this.state.long]} /> */}
                                             <TileLayer
                                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -142,6 +139,7 @@ export class Place extends React.Component {
                                                         sLong = {this.state.start.long}
                                                         eLat = {this.state.lat}
                                                         eLong = {this.state.long} />
+                                                {/* <Routing map = {this.map} /> */}
                                         </Map>  
                                     </div>
                                 </Modal.Body>
