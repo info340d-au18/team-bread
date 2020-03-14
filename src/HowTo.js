@@ -17,7 +17,6 @@ export class HowTo extends React.Component {
     render() {
         return (
             <div>
-                {/* <NavBar /> */}
                 <Parallax bgImage={this.state.imgs[0]} className="bg-img">
                     <div className="pWrap">
                         <div className="caption">
@@ -102,9 +101,7 @@ export class HowTo extends React.Component {
                 </Parallax>
 
                 <div className="desc-text">
-                    <div className="desc-wrapper">
-                        <h1 className='desc-header'><em>Head to our home page to start relaxing</em></h1>
-                        
+                    <div className="desc-wrapper">                        
                         {<StartSurvey />}
                     </div>
                 </div>

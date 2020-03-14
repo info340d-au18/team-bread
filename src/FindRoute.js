@@ -68,14 +68,12 @@ export class FindRoute extends React.Component {
                         <p>Note: Please only select an address that comes up in the autocomplete below :)</p>
                     </div>
                     <div id="locationField">
-                        {/* <Form.Control type="text" placeholder="Enter a start location" id="searchBox"></Form.Control> */}
                         <SearchBar startResult={this.handleSearch}/>
                     </div>
                 </Form.Group>
 
                 <Form.Group id="form-group">
                     <Form.Label><strong>What is the maximum distance you'd like to walk today?</strong></Form.Label>
-                    
                     <div id="blahblah">
                         <InputGroup>
                             <Form.Control type="number" id="distanceInput" min={0} step={1} onChange={this.handleDistance}></Form.Control>
@@ -89,11 +87,9 @@ export class FindRoute extends React.Component {
                 <Form.Group id="form-group">
                     <Form.Label><strong>What types of places would you like to go to?</strong></Form.Label>
                     {this.createSurvey("amenityTypes", amenityTypes, "amenity")}
-                    {/* {this.createSurvey("leisureTypes", this.state.leisureTypes, "leisure")} */}
                 </Form.Group>
 
                 <Form.Group id="form-group">
-                    {/* <Button variant="primary" type="submit" onClick={this.handleSubmit}>Submit</Button> */}
                     <Button variant="primary" type="button" onClick={this.handleSubmit}>Submit</Button>
                 </Form.Group>
             </Form>
@@ -131,17 +127,6 @@ export class FindRoute extends React.Component {
 
     handleChecks(e) {
         console.log("handle checks");
-        // let name = e.target.name;
-        // let checked = e.target.checked;
-        // let temp = {};
-        // temp[name] = checked;
-
-        // const {name, checked} = e.target;
-        // console.log(this.state);
-        // return this.setState({
-        //     amenity: {[name]: checked}
-        // })
-        //const {name, checked} = e.target;
         console.log(this.state);
         return this.setState({
             amenity: e.target.value
@@ -168,7 +153,11 @@ export class FindRoute extends React.Component {
 		}).then((data) => {
 			let result = [];
 			let y = data.elements;
-			console.log(y);
+            console.log(y);
+            
+            if (y < 1) {
+                
+            }
 			if (y.length > 100) {
 				y = this.findRandom100(y);
 			}

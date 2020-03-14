@@ -27,7 +27,11 @@ class Routing extends Component {
     this.destroyRouting = this.destroyRouting.bind(this);
     this.setRoutingPopUp = this.setRoutingPopUp.bind(this);
   }
-
+  componentDidMount() {
+    if(this.props.fromForm === true) {
+      this.initializeRouting();
+    }
+  }
 
   componentDidUpdate() {
     this.initializeRouting();
@@ -39,12 +43,36 @@ class Routing extends Component {
 
   // 43b6f68e-d0b7-4312-933c-8d640f9a92d2
   initializeRouting() {
+    let redIcon = new L.Icon({
+      iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+      iconSize: [35, 51],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41]
+      });
+    let blueIcon = new L.Icon({
+      iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41]
+      });
+      
     if (this.props.map && !this.routing) {
       const plan = new L.Routing.Plan([
         L.latLng(this.props.sLat, this.props.sLong),
         L.latLng(this.props.eLat, this.props.eLong)
       ], {
         routeWhileDragging: false,
+        createMarker: function(i, wp, n) {        
+          if (i == 0) {
+              return L.marker(wp.latLng, {icon: redIcon});
+          } else {
+              return L.marker(wp.latLng, {icon: blueIcon})
+          }
+        },
         geocoder: L.Control.Geocoder.nominatim(),
       });
 

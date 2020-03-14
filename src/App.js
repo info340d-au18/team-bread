@@ -70,8 +70,8 @@ export class App extends React.Component {
 
 					<div>
 						<Switch>
-							<Route exact path="/team-bread" component={StartSurvey}/>
-							<Route exact path="/" component={StartSurvey}/>
+							<Route exact path="/team-bread"><StartSurvey home={true}/></Route>
+							<Route exact path="/"><StartSurvey home={true}/></Route>
 							<Route exact path="/howto" component={HowTo}/>
 							{/* <Route exact path="/places"> <PlaceGroup place = {cardPlaces} /></Route> */}
 							<Route exact path="/places" component={Place} />
@@ -81,9 +81,7 @@ export class App extends React.Component {
 							<Route exact path="/findroute"> <FindRoute getResults={this.getResults}/> </Route>
 							<Redirect from="findroute" to="/resultsmap" />
 							<Route exact path="/resultsmap"> <ResultsMap start={this.state.start} distance={this.state.distance} amenity={this.state.amenity}/> </Route>
-							{/* 
-							<Redirect from="findroute" to="/resultsmap" />
-							<Route exact path="/resultsmap" component={ResultsMap} /> */}
+
 						</Switch>
 					</div>
 

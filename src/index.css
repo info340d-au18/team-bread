@@ -19,8 +19,8 @@ body {
     font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-#background-index {
-    /* background-image: url('../img/plain_map.png'); */
+#bgImg{
+    background-image: url('./img/plain_map.png');
     height: 100vh;
 }
 
@@ -33,7 +33,7 @@ p {
 }
 
 #beginWrap {
-  position:absolute;
+  position:relative;
   width: 100%;
   height: 50vh;
 }
@@ -60,7 +60,7 @@ p {
 
 #begin .card{
     width: 50vw;
-    height: 25vh;
+    height: 20vh;
     justify-content: center;
 }
 

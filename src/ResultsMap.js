@@ -13,7 +13,7 @@ import {Button} from 'react-bootstrap';
 
 
 import L from 'leaflet';
-import 'leaflet-routing-machine'
+//import 'leaflet-routing-machine'
 import {ResultsMarkers} from './ResultsMarkers.js';
 //import MarkerClusterGroup from 'react-leaflet-markercluster';
 //import {Routing} from 'leaflet-routing-machine';
@@ -21,25 +21,10 @@ import {ResultsMarkers} from './ResultsMarkers.js';
 import Routing from './RoutingMachine2';
 
 
-import 'leaflet/dist/leaflet.css'
-import 'leaflet-routing-machine/dist/leaflet-routing-machine.css'
+// import 'leaflet/dist/leaflet.css'
+// import 'leaflet-routing-machine/dist/leaflet-routing-machine.css'
 
 import './surveyStyle.css';
-
-// let State = {
-//   lat: number,
-//   lng: number,
-//   zoom: number,
-// }
-// <{}, State> arg for Component?
-
-// let dummyState = {
-// 	start: {name: "USC Village", lat: 34.0256262, long: -118.285044},
-// 	distance: 5,
-// 	amenity: {restaurant: true},
-// 	//leisure: {},
-// 	end: {name: "Little Galen Center", lat: 34.0228165, long: -118.2870715}
-// }
 
 
 export class ResultsMap extends React.Component {
@@ -47,7 +32,6 @@ export class ResultsMap extends React.Component {
 		super(props);
 		console.log(this.props);
 		this.handleNav = this.handleNav.bind(this);
-		//this.map = React.createRef();
 		this.state = {
 			routingReady: false,
 			end: {},
@@ -74,22 +58,22 @@ export class ResultsMap extends React.Component {
 		  });
 
 		if (this.state.routingReady) {
-			console.log('test');
+
 			return(
-				<Map center={[this.props.start.lat, this.props.start.long]} zoom={16} bounds={this.props.BB} ref={this.saveMap}>
-					<TileLayer
-						attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-					
-					<Routing map={this.map} 
-						//sName = {this.props.start.name}
-						sLat = {this.props.start.lat}
-						sLong = {this.props.start.long}
-						// sIcon = {redIcon}
-						//eName = {this.state.end.name}
-						eLat = {this.state.end.lat}
-						eLong = {this.state.end.long} />
-				</Map>
+				<div id = 'mapContainer'>
+					<Map center={[this.props.start.lat, this.props.start.long]} zoom={14} ref={this.saveMap}>
+						<TileLayer
+							attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+							url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+						
+						<Routing map={this.map} 
+							sLat = {this.props.start.lat}
+							sLong = {this.props.start.long}
+							eLat = {this.state.end.lat}
+							eLong = {this.state.end.long} 
+							fromForm = {true}/>
+					</Map>
+				</div>
 			)
 		}
 		return (
@@ -127,7 +111,6 @@ export class ResultsMap extends React.Component {
 		return this.setState({
 			end: endP,
 			routingReady: true
-			
 		});
 	}
 
@@ -136,6 +119,14 @@ export class ResultsMap extends React.Component {
         this.setState({
             isMapInit:true
         });
-    }
+	}
+	
+	// handleFav(endP) {
+	// 	console.log("handleFav");
+	// 	this.setState({
+	// 		fav: endP,
+	// 		addToFavs:true
+	// 	})
+	// }
 	
 }

@@ -107,7 +107,7 @@ export class Place extends React.Component {
               <Popup>{this.state.start.name}</Popup>
             </Marker>
           ) : null
-
+        
         return (
             <div>
                 <div className = 'container d-flex justify-content-center'>
@@ -138,7 +138,8 @@ export class Place extends React.Component {
                                                         sLat = {this.state.start.lat}
                                                         sLong = {this.state.start.long}
                                                         eLat = {this.state.lat}
-                                                        eLong = {this.state.long} />
+                                                        eLong = {this.state.long} 
+                                                        fromForm= {false}/>
                                                 {/* <Routing map = {this.map} /> */}
                                         </Map>  
                                     </div>

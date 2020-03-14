@@ -79,6 +79,13 @@ footer {
 #BEGINNN {
     color:white;
 }
+#mapid {
+    height: 800px;
+    width: 1150px;
+    /* height: 70%; */
+    /* width: 100%; */
+
+}
 
 /* small screens */
 @media screen and (min-width: 598px) {

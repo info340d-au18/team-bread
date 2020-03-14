@@ -7,11 +7,6 @@ import {
 } from 'react-leaflet';
 import {Button} from 'react-bootstrap';
 
-
-import L from 'leaflet';
-import {RoutingMachine} from './RoutingMachine.js';
-
-
 export class ResultsMarkers extends React.Component {
     constructor(props) {
         super(props);
@@ -40,8 +35,8 @@ export class ResultsMarkers extends React.Component {
                 {this.props.name}
                 <br></br>
                 <Button variant="dark" type="button" onClick={this.handleRoute}>Navigate</Button>
-                <br></br>
-                <Button variant="dark" type="button" onClick={this.handleRoute}>FAV</Button>
+                {/* <br></br>
+                <Button variant="dark" type="button" onClick={this.handleRoute}>FAV</Button> */}
             </Popup>
         );
     }
