@@ -87,7 +87,8 @@ export class ResultsMap extends React.Component {
 									name={a.name} 
 									icon={blueIcon} 
 									start={false}
-									route={this.handleNav}/>
+									route={this.handleNav}
+									fav={this.handleFav}/>
 					)}
 					
 				</FeatureGroup>
@@ -100,6 +101,10 @@ export class ResultsMap extends React.Component {
 			end: endP,
 			routingReady: true
 		});
+	}
+
+	handleFav(fav) {
+
 	}
 
 	saveMap = map => {

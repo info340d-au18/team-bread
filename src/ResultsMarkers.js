@@ -5,12 +5,22 @@ import {
     Marker,
     Popup
 } from 'react-leaflet';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faHeart} from '@fortawesome/free-regular-svg-icons';
 import {Button} from 'react-bootstrap';
 
 export class ResultsMarkers extends React.Component {
     constructor(props) {
         super(props);
         this.handleRoute = this.handleRoute.bind(this);
+        this.addFav = this.addFav.bind(this);
+        this.state = {
+            favorited: false,
+            info: {name: this.props.name,
+                    lat: this.props.lat,
+                    long: this.props.long}
+        }
+        console.log(this.state);
     }
 
     render() {
@@ -29,19 +39,37 @@ export class ResultsMarkers extends React.Component {
                 </Popup>
             );
         }
+        //console.log(this.props);
         return(
-            <Popup>
+            <Popup >
                 {this.props.name}
                 <br></br>
                 <Button variant="dark" type="button" onClick={this.handleRoute}>Navigate</Button>
+                {!this.state.favorited ?
+                    <Button variant = "dark"
+                            //className = 'addFav'
+                            onClick = {this.addFav}
+                            >
+                        <FontAwesomeIcon icon = {faHeart} />
+                        Favorite    
+                    </Button> :
+                    <Button variant = "success">
+                        Favorited!    
+                    </Button>
+                }
+                
             </Popup>
         );
     }
 
     handleRoute() {
-        let info = {name: this.props.name,
-                    lat: this.props.lat,
-                    long: this.props.long}
-        return this.props.route(info);
+        return this.props.route(this.state.info);
+    }
+    addFav() {
+        console.log(this.state);
+        this.setState({
+            favorited:true
+        });
+        //this.forceUpdate();
     }
 }

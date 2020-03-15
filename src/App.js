@@ -8,6 +8,7 @@ import {HowTo} from './HowTo.js';
 import {FindRoute} from './FindRoute.js';
 import {ResultsMap} from './ResultsMap.js';
 import {Place} from './Places.js';
+import {Button} from 'react-bootstrap';
 
 import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -40,7 +41,7 @@ const firebaseConfig = {
     // Popup signin flow rather than redirect flow.
     signInFlow: 'popup',
     // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-    signInSuccessUrl: '',
+    signInSuccessUrl: '/',
     // We will display Google and Facebook as auth providers.
     signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID        
@@ -58,6 +59,7 @@ export class App extends React.Component {
 			BB:[],
 			isSignedIn: false
 		};
+		this.favoritesRef = firebase.database().ref('favorites');
 	}
 
 	componentDidMount() {
@@ -70,8 +72,8 @@ export class App extends React.Component {
 					this.setState({ isSignedIn: !!user, onSignInPage: false, usern: user })
                 })  
             }        
-            this.setState({ isSignedIn: !!user })          
-           
+			this.setState({ isSignedIn: !!user })
+			//this.setState({ isSignedIn: true})
         })
     }
 
@@ -97,7 +99,13 @@ export class App extends React.Component {
 									<Link to="/" className="nav-link" exact>Home</Link>
 									<Link to="/howto" className="nav-link" exact>How-To</Link>
 									<Link to="/places" className="nav-link" exact>Places</Link>
-									<Link to="/login" className="nav-link" exact>Login</Link>
+									{/* <Button> <Link to="/login" className="nav-link" exact>Login</Link> </Button> */}
+									<div>
+										{this.state.isSignedIn ? 
+											<Button onClick={() => firebase.auth().signOut()}>Sign-Out</Button> :
+											<Button> <Link to="/login" className="nav-link" exact>Login</Link> </Button>}
+									</div>
+									
 								</Nav>
 							</Navbar.Collapse>
 						</Navbar>
@@ -113,10 +121,10 @@ export class App extends React.Component {
 							<Route exact path="/howto" component={HowTo}/>
 							{/* <Route exact path="/places" component={Place} /> */}
 							<Route exact path="/places" >
-								{!!firebase.auth().currentUser ? <Place /> : <Redirect to="/login" /> }  
+								{!!firebase.auth().currentUser ? <Loggin uiConfig ={uiConfig} fbAuth={firebase.auth}/> : <Place />}  
 							</Route>
 							<Route exact path = '/login'>
-								{!!firebase.auth().currentUser ? <Redirect to="/" /> : <Loggin uiConfig ={uiConfig} fbAuth = {firebase.auth}/> }
+								{!!firebase.auth().currentUser ? <Redirect to="/" /> : <Loggin uiConfig ={uiConfig} fbAuth={firebase.auth}/>}
 							</Route>
 							<Route exact path="/findroute"> <FindRoute getResults={this.getResults}/> </Route>
 							<Redirect from="findroute" to="/resultsmap" />
