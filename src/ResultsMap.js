@@ -23,11 +23,14 @@ export class ResultsMap extends React.Component {
 	constructor(props) {
 		super(props);
 		this.handleNav = this.handleNav.bind(this);
+		this.handleFav = this.handleFav.bind(this);
 		this.state = {
 			routingReady: false,
 			end: {},
 			isMapInit: false,
 		}
+		console.log('resultsMap');
+		//console.log(this.props.addFav(this.props.start));
 	}
 
 	render() {
@@ -104,7 +107,10 @@ export class ResultsMap extends React.Component {
 	}
 
 	handleFav(fav) {
-
+		// this.props.addFav(fav);
+		console.log(this.props);
+		console.log(fav);
+		return this.props.addFav(fav);
 	}
 
 	saveMap = map => {

@@ -9,18 +9,25 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faHeart} from '@fortawesome/free-regular-svg-icons';
 import {Button} from 'react-bootstrap';
 
+// Firebase 
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
+
 export class ResultsMarkers extends React.Component {
     constructor(props) {
         super(props);
         this.handleRoute = this.handleRoute.bind(this);
-        this.addFav = this.addFav.bind(this);
+        this.addNewFav = this.addNewFav.bind(this);
         this.state = {
             favorited: false,
             info: {name: this.props.name,
                     lat: this.props.lat,
                     long: this.props.long}
         }
-        console.log(this.state);
+        this.personRef = firebase.database().ref('person');
+        
+        //console.log(this.state);
     }
 
     render() {
@@ -48,7 +55,7 @@ export class ResultsMarkers extends React.Component {
                 {!this.state.favorited ?
                     <Button variant = "dark"
                             //className = 'addFav'
-                            onClick = {this.addFav}
+                            onClick = {this.addNewFav}
                             >
                         <FontAwesomeIcon icon = {faHeart} />
                         Favorite    
@@ -65,11 +72,20 @@ export class ResultsMarkers extends React.Component {
     handleRoute() {
         return this.props.route(this.state.info);
     }
-    addFav() {
+    addNewFav() {
         console.log(this.state);
         this.setState({
             favorited:true
         });
-        //this.forceUpdate();
+        return this.props.fav(this.state.info);
+        // let curUser = firebase.auth().currentUser;
+        // console.log(curUser);
+        // // curUser.push({
+        // //     hello: "did it work"
+        // // });
+
+        // this.personRef.push({
+        //     user: curUser
+        // });
     }
 }
