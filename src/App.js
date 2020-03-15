@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import {Loggin} from './Loggin.js';
+// import {Loggin} from './Loggin.js';
+import Loggin from './Loggin.js';
 
 import {StartSurvey} from './StartSurvey.js';
 import {HowTo} from './HowTo.js';
@@ -35,6 +36,17 @@ const firebaseConfig = {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+  const uiConfig = {
+    // Popup signin flow rather than redirect flow.
+    signInFlow: 'popup',
+    // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
+    signInSuccessUrl: '',
+    // We will display Google and Facebook as auth providers.
+    signInOptions: [
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID        
+    ]
+};
+
 export class App extends React.Component {
 	constructor() {
 		super();
@@ -43,9 +55,25 @@ export class App extends React.Component {
 			start: {},
 			distance:0,
 			amenities:"",
-			BB:[]
+			BB:[],
+			isSignedIn: false
 		};
 	}
+
+	componentDidMount() {
+        this.unregisterAuthObserver = firebase.auth().onAuthStateChanged((user) => {                        
+            if(user) {
+                const userRef = this.favoritesRef.child(user.uid);
+                userRef.on("value", (snapshot) => {
+                    console.log("the value of favorites/userid changed, so i reset the state")
+					// this.setState({ favorites: snapshot.val() })
+					this.setState({ isSignedIn: !!user, onSignInPage: false, usern: user })
+                })  
+            }        
+            this.setState({ isSignedIn: !!user })          
+           
+        })
+    }
 
 	getResults(start, distance, amenity, bb) {
 		return this.setState({
@@ -83,8 +111,13 @@ export class App extends React.Component {
 							<Route exact path="/team-bread"><StartSurvey home={true}/></Route>
 							<Route exact path="/"><StartSurvey home={true}/></Route>
 							<Route exact path="/howto" component={HowTo}/>
-							<Route exact path="/places" component={Place} />
-							<Route exact path="/login" component={Loggin}/>
+							{/* <Route exact path="/places" component={Place} /> */}
+							<Route exact path="/places" >
+								{!!firebase.auth().currentUser ? <Place /> : <Redirect to="/login" /> }  
+							</Route>
+							<Route exact path = '/login'>
+								{!!firebase.auth().currentUser ? <Redirect to="/" /> : <Loggin uiConfig ={uiConfig} fbAuth = {firebase.auth}/> }
+							</Route>
 							<Route exact path="/findroute"> <FindRoute getResults={this.getResults}/> </Route>
 							<Redirect from="findroute" to="/resultsmap" />
 							<Route exact path="/resultsmap"> <ResultsMap start={this.state.start} distance={this.state.distance} amenity={this.state.amenity}/> </Route>

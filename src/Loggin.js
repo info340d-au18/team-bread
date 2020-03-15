@@ -1,33 +1,13 @@
 import React, { Component } from 'react';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
-export class Loggin extends React.Component {
-    render() {
-        return (
-            <div className="login">
-                <div className="card">
-                    <form>
-                        <div className="form-group row">
-                            <label for="inputEmail3" className="col-sm-2 col-form-label">Email</label>
-                            <div className="col-sm-10">
-                                <input type="email" className="form-control" id="inputEmail3" placeholder="ex: johnsmith@aol.com">
-                                    </input>
-                            </div>
-
-                            <label for="inputEmail3" className="col-sm-2 col-form-label">Password</label>
-                            <div className="col-sm-10">
-                                <input type="password" className="form-control" id="inputEmail3" placeholder="Password">
-                                    </input>
-                            </div>
-                        </div>
-
-                        <div className="form-group row">
-                        <div className="col-sm-10 offset-sm-2">
-                            <button type="submit" className="btn btn-primary">Sign in</button>
-                        </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        );
-    }
+export default function Loggin(props) {
+    return (
+        <div style={{margin: "20px", marginTop:"50px"}}>
+            {/* <h1>My App</h1> */}
+            <p>Please sign-in:</p>
+            <StyledFirebaseAuth uiConfig={props.uiConfig} firebaseAuth={props.fbAuth()} />
+        </div>
+    );
+    // ss
 }
