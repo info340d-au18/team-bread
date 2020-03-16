@@ -89,6 +89,7 @@ export class App extends React.Component {
                     console.log("the value of favorites/userid changed, so i reset the state")
 					// this.setState({ favorites: snapshot.val() })
 					var favSS = snapshot.toJSON();
+					
 					console.log(favSS);
 					this.setState({ 
 						isSignedIn: !!user, 
@@ -101,6 +102,14 @@ export class App extends React.Component {
 				let hRef = this.homeRef.child(user.uid);
 				hRef.on("value", (snapshot) => {
 					let hSS = snapshot.toJSON();
+					if (hSS == null) {
+						//this.state.firstTime = true;
+						//set default to seattle
+						hSS = {lat: 47.66142440000001,
+						 		long: -122.2683743,
+								name: "98105"
+							}
+					}
 					this.setState({
 						homezip: hSS
 					})
@@ -133,7 +142,7 @@ export class App extends React.Component {
 						let result = [];
 						let y = data.elements;
 
-						if (y.length > 5) {
+						if (y.length > 1) {
 							y = this.findRandom10(y);
 						}
 				
@@ -155,6 +164,7 @@ export class App extends React.Component {
 						this.setState({caroPlaces: placeResults});
 						console.log(this.state.caroPlaces);
 					});
+					
 				})
 				
 			}
@@ -276,7 +286,7 @@ export class App extends React.Component {
 							<Route exact path="/howto" component={HowTo}/>
 							{/* <Route exact path="/places" component={Place} /> */}
 							<Route exact path="/places" >
-								{!!firebase.auth().currentUser ? <Place favs={this.state.favs} add={this.addFav} delete={this.removeFav} caro={this.state.caroPlaces}/> : <Loggin uiConfig ={uiConfig} fbAuth={firebase.auth}/>}  
+								{!!firebase.auth().currentUser ? <Place favs={this.state.favs} add={this.addFav} delete={this.removeFav} caro={this.state.caroPlaces} zip={this.state.homezip.name}/> : <Loggin uiConfig ={uiConfig} fbAuth={firebase.auth}/>}  
 							</Route>
 							{/* if not logged in, go to log in page, if first time user go to new user else just go to profile page */}
 							<Route exact path="/profile">
@@ -286,9 +296,7 @@ export class App extends React.Component {
 											zip = {this.state.homezip}
 											submitHome = {this.submitHome} />
 									: 
-									<Loggin uiConfig = {uiConfig} fbAuth = {firebase.auth}>
-										<Redirect to="/profile" />
-									</Loggin>}
+									<Loggin uiConfig = {uiConfig} fbAuth = {firebase.auth}/>}
 							</Route>
 ─							<Route exact path = '/login'>
 								{!!firebase.auth().currentUser ? <Redirect to="/" /> : <Loggin uiConfig ={uiConfig} fbAuth={firebase.auth}/>}

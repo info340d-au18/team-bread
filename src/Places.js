@@ -128,6 +128,11 @@ export class Place extends React.Component {
             console.log(this.state.caroThing);
         } 
 
+        if (this.props.zip != null || this.props.zip != undefined) {
+            console.log(this.props.zip);
+            this.state.zip = this.props.zip;
+        } 
+
         const marker = this.state.hasLocation ? (
             <Marker position={[this.state.start.lat, this.state.start.long]}>
               <Popup>{this.state.start.name}</Popup>
@@ -136,10 +141,18 @@ export class Place extends React.Component {
         
         return (
             <div>
+                <div>
+                    <h2>Places near zip: {this.state.zip} </h2>
+                    <p>Customize your zip in profile!</p>
+                </div>
                 <div className = 'container d-flex justify-content-center'>
                     <Carousel stype = {{padding: '2rem'}} className = 'col-12 col-md-12 col-lg-10 col-xl-9'>
                         {this.state.caroThing}
                     </Carousel>
+                </div>
+                <div>
+                    <h2>My Favorited Places!</h2>
+                    <p>Add and remove places by pressing the heart!</p>
                 </div>
                 <div>
                     <div className = 'row justify-content-center'>
