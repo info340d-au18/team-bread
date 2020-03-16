@@ -10,6 +10,11 @@ import './index.css';
 import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
 import Routing from './RoutingMachine2';
 
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
+
+
 export class Place extends React.Component {
     constructor(props) {
         super(props);
@@ -19,15 +24,47 @@ export class Place extends React.Component {
             long: '',
             name: '',
             favs: cardPlaces,
+            favKeys: [],
             caro: caroPlaces,
+            //fav2: {},
             start: {name: '', lat: '', long: ''},
             img: './img/burke.jpg',
             isMapInit: false
         }
+    
+        // console.log(this.state);
+        // //console.log(this.props.favs);
+        // console.log(this.props.favs);
+        // console.log(this.state.favs)
+        // let temp = [];
+        // for (var key in this.props.favs){
+        //     temp.push(this.props.favs[key]);
+        // }
+        // console.log(temp);
+        // this.state.favs = temp;
+        // console.log(cardPlaces);
+
+        //this.favoritesRef = firebase.database().ref('favorites');
+        //console.log(this.props.favs);
+        //this.userRef = this.favoritesRef.child(this.props.favs);
+        //console.log(this.userRef);
+        // this.userRef.on('value', function(snapshot) {
+        //     var favSS = snapshot.val();
+        //     console.log(favSS);
+        //     //this.setState({fav2: snapshot.toJSON()});
+        //     console.log(this.state);
+
+        //     this.state.fav2 = favSS;
+        // }).bind(this);
+        // console.log(this.state);
+
         this.showMap = this.showMap.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
         this.get = this.get.bind(this);
         this.addToGroup = this.addToGroup.bind(this);
+
+        console.log('places constructor');
+        console.log(this.props);
     }
 
     // shows favorite card on map!
@@ -46,15 +83,11 @@ export class Place extends React.Component {
             cur.push(place);
             this.setState({favs: cur});
         }
-        
     }
 
     // deletes favorite card
-    handleDelete = (name) => {
-        let ind = this.get((name));
-        let cur = this.state.favs;
-        cur.splice(ind, 1);
-        this.setState({favs: cur});
+    handleDelete = (key) => {
+        this.props.delete(key);
     }
 
     // gets the index at which the place is at
@@ -79,12 +112,34 @@ export class Place extends React.Component {
     }
 
     render() {
-        let c = [];
-        this.state.favs.map((place) => {
-                c.push(<PlaceCards place = {place} 
+
+        // let FAV = [this.props.favs];
+        // console.log(FAV);
+        console.log('render places');
+        console.log(this.props);
+        //console.log(this.state.favs2.then(val => {return val}));
+
+        // let FAV = this.props.favs;
+        // let favsUndone = Object.keys(FAV);
+        // console.log(favsUndone);
+
+        if (this.props.favs != null || this.props.favs != undefined) {let c = [];
+            let favKeys = Object.keys(this.props.favs)
+            favKeys.map((key) => { // place = array of keys ie: a;ifhwiua123
+                    console.log(key);
+                    //console.log();
+                    c.push(<PlaceCards
+                                place = {this.props.favs[key]} 
+                                placeKey = {key}
                                 dealWithPlace={this.showMap.bind(this)} 
                                 handleDelete = {this.handleDelete.bind(this)} />);
-        })
+            })
+            this.state.cards = c;
+            console.log(this.state.cards);
+        } else {
+            this.state.cards = <h1 id="no-favs">Head over to our carousel or home page to add things to your favorites!</h1>
+        }
+
 
         let car = [];
         this.state.caro.map((place) => {
@@ -93,8 +148,7 @@ export class Place extends React.Component {
                                     addToGroup = {this.addToGroup.bind(this)} />
                     </CarouselItem>)
         })
-        
-        this.state.cards = c;
+    
         this.state.caroThing = car;
 
         const marker = this.state.hasLocation ? (

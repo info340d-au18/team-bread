@@ -10,13 +10,13 @@ export class PlaceCards extends React.Component {
     }
 
     removeCard(event) {
-        this.props.handleDelete(this.props.place.name);
+        this.props.handleDelete(this.props.placeKey);
     }
 
     render() {
         return (
             <Card className = 'col-xs-auto col-s-4 col-md-5 col-lg-5 col-xl-3'>
-                <Card.Img variant = 'top' src = "https://raw.githubusercontent.com/info340d-au18/team-bread/master/src/img/GasWorksPark3.jpg?token=AJBI46OW2HJHNZIECT3UV3C6OATSE" style = {{padding: '1rem'}} alt = {this.props.place.alt} />
+                <Card.Img variant = 'top' src = "https://raw.githubusercontent.com/info340d-au18/team-bread/master/src/img/GasWorksPark3.jpg?token=AJBI46OW2HJHNZIECT3UV3C6OATSE" style = {{padding: '1rem'}} />
                 <Card.Body>
                     <Card.Title><h3>{this.props.place.name}</h3></Card.Title>
                     <Card.Text>{this.props.place.description}</Card.Text>

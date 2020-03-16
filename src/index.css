@@ -64,6 +64,11 @@ p {
     justify-content: center;
 }
 
+#no-favs {
+    font-size:20px;
+    margin-top: 5vh;
+}
+
 .login {
     width: 75vw;
     height: 25vh;
