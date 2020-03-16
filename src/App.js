@@ -61,6 +61,7 @@ export class App extends React.Component {
 		this.calculateBB = this.calculateBB.bind(this);
 		this.getLatDiff = this.getLatDiff.bind(this);
 		this.getLongDiff = this.getLongDiff.bind(this);
+		this.findRandom10 = this.findRandom10.bind(this);
 		//this.getFavs = this.getFavs.bind(this);
 
 		this.state = {
@@ -71,11 +72,11 @@ export class App extends React.Component {
 			isSignedIn: false,
 			favs:[],
 			homezip: '',
-			bbLink: ''
+			bbLink: '',
+			caroPlaces: []
 		};
 		this.favoritesRef = firebase.database().ref('favorites');
 		this.homeRef = firebase.database().ref('home');
-		//this.personRef = firebase.database().ref('person');
 	}
 
 	componentDidMount() {
@@ -83,6 +84,7 @@ export class App extends React.Component {
             if(user) {
 				const userRef = this.favoritesRef.child(user.uid);
 				console.log(user);
+				// keeps track of user's favorites
                 userRef.on("value", (snapshot) => {
                     console.log("the value of favorites/userid changed, so i reset the state")
 					// this.setState({ favorites: snapshot.val() })
@@ -94,7 +96,8 @@ export class App extends React.Component {
 						userId: user.uid,
 						favs: favSS
 					});
-				})
+				}); 
+				// keeps track of user's home (for rendering carousel)
 				let hRef = this.homeRef.child(user.uid);
 				hRef.on("value", (snapshot) => {
 					let hSS = snapshot.toJSON();
@@ -102,6 +105,8 @@ export class App extends React.Component {
 						homezip: hSS
 					})
 					console.log(this.state.homezip)
+
+					// creating carousel places (randomizes w/ each new address change)
 					let bb = this.calculateBB(hSS.lat, hSS.long, 5);
 					let op = 'http://overpass-api.de/api/interpreter?data=[out:json];node[leisure=dog_park]' + 
 							bb + 
@@ -113,8 +118,43 @@ export class App extends React.Component {
 							bb + ';out;node[leisure=track]' + bb +
 							';out;'
 					this.setState({bbLink: op});
-
 					console.log(op)
+
+					fetch(op).then((response) =>{
+						let r = response.json();
+						// figure out way to generalize if no results
+						// if (r.length < 1) {
+						// 	let op2 = 'http://overpass-api.de/api/interpreter?data=[out:json];node[leisure]' + 
+						// 				bb + ';out;';
+						// 	fetch(op2).then((r2) => {return r2.json()})
+						// }
+						return r;
+					}).then((data) => {
+						let result = [];
+						let y = data.elements;
+
+						if (y.length > 5) {
+							y = this.findRandom10(y);
+						}
+				
+						for(let i = 0; i < y.length; i++) {
+							//handles empty places
+							if (y[i] == undefined){
+								i++;
+							} else if (y[i].tags.name == undefined) {
+								i++;
+							} else {
+								let info = {name: y[i].tags.name, lat: y[i].lat, long: y[i].lon};
+								result.push(info);
+							}
+						}
+						return result;
+					}).then((placeResults)=>{
+						console.log('carousel places?');
+						console.log(placeResults);
+						this.setState({caroPlaces: placeResults});
+						console.log(this.state.caroPlaces);
+					});
 				})
 				
 			}
@@ -124,6 +164,7 @@ export class App extends React.Component {
         })
     }
 
+	// gets results from form to pass into the results map
 	getResults(start, distance, amenity, bb) {
 		return this.setState({
 			start: start,
@@ -133,6 +174,7 @@ export class App extends React.Component {
 		});
 	}
 
+	// add new fav to places
 	addFav(place) {
 		console.log('passed up fav');
 		let userRef = this.favoritesRef.child(this.state.userId);
@@ -141,31 +183,20 @@ export class App extends React.Component {
 		);
 	}
 
+	// remove fav from places & db
 	removeFav(key) {
 		this.favoritesRef.child(this.state.userId).child(key).remove();
 	}
 
+	// profile page - submit new home loc
 	submitHome(home) {
 		let user = this.homeRef.child(firebase.auth().currentUser.uid);
 		// user.setState({homezip})
 		// let place = 
 		user.set(home)
-
-		// let bb = this.calculateBB(home.lat, home.long, 10);
-		// console.log(bb)
-		// let op = 'http://overpass-api.de/api/interpreter?data=[out:json];node[amenity=ice_cream]' 
-		// 			bb + ';node[amenity=bar]' +
-		// 			bb + ';node[amenty='
-		// 			+ ';out;';
-		
-		// let uRef = this.homeRef.child(user.uid);
-		// console.log('hello');
-		// uRef.push({home: event});
 	}
 
-	// http://overpass-api.de/api/interpreter?data=[out:json];node[amenity=ice_cream](47.481002,-122.459696,47.734136,-122.224433);
-    // node[amenity=bar](47.481002,-122.459696,47.734136,-122.224433);out;
-
+	// gets bounding box for operpass fetching
     calculateBB(lat, long, radius) {
 		let upperLat = (lat - this.getLatDiff(radius)).toFixed(6);
 		let upperLong = (long - this.getLongDiff(radius, lat)).toFixed(6);
@@ -177,16 +208,32 @@ export class App extends React.Component {
         return '(' + upperLat + ',' + upperLong + ',' + lowerLat + ',' + lowerLong + ')';
     }
     
-
+	// bb helper for longitudes
 	getLongDiff(radius, lat) {
 		return radius / (111 * Math.cos((Math.PI / 180) * lat));
 	}
 	
-	// function dY(radius) {
+	// bb helper for latitudes
 	getLatDiff(radius) {
 		return radius / 111;
 	}
 
+	findRandom10(data) {
+		let places = [];
+		let length = data.length;
+		let numsUsed = [];
+		for (let i = 0; i < 10; i++) {
+			let index = Math.round(Math.random() * length);
+			while (numsUsed.includes(index)) {
+				index = Math.round(Math.random() * length);
+			}
+			numsUsed.push(index);
+			places.push(data[index]);
+		}
+		return places;
+	}
+
+	// handle sign out
 	test() {		
 		firebase.auth().signOut()
 	}
@@ -229,7 +276,7 @@ export class App extends React.Component {
 							<Route exact path="/howto" component={HowTo}/>
 							{/* <Route exact path="/places" component={Place} /> */}
 							<Route exact path="/places" >
-								{!!firebase.auth().currentUser ? <Place favs={this.state.favs} delete={this.removeFav}/> : <Loggin uiConfig ={uiConfig} fbAuth={firebase.auth}/>}  
+								{!!firebase.auth().currentUser ? <Place favs={this.state.favs} add={this.addFav} delete={this.removeFav} caro={this.state.caroPlaces}/> : <Loggin uiConfig ={uiConfig} fbAuth={firebase.auth}/>}  
 							</Route>
 							{/* if not logged in, go to log in page, if first time user go to new user else just go to profile page */}
 							<Route exact path="/profile">

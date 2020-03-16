@@ -122,18 +122,18 @@ export class FindRoute extends React.Component {
 		}).then((data) => {
 			let result = [];
 			let y = data.elements;
-            
             if (y < 1) {
                 
             }
 			if (y.length > 100) {
 				y = this.findRandom100(y);
 			}
-
 			for(let i = 0; i < y.length; i++) {
 				if (y[i] == undefined){
 					i++;
-				} else {
+				} else if (y[i].tags.name == undefined) {
+                    i++;
+                } else {
 					let info = {name: y[i].tags.name, lat: y[i].lat, long: y[i].lon};
 					result.push(info);
 				}

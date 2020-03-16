@@ -51,12 +51,8 @@ export class Place extends React.Component {
 
     // add carousel to favorite
     addToGroup(place) {
-        let ind = this.get(place.name);
-        if (ind === -1) {
-            let cur = this.state.favs;
-            cur.push(place);
-            this.setState({favs: cur});
-        }
+        console.log('CAROUSELLLL ADDDDDDD');
+        this.props.add(place);
     }
 
     // deletes favorite card
@@ -99,7 +95,9 @@ export class Place extends React.Component {
         // let favsUndone = Object.keys(FAV);
         // console.log(favsUndone);
 
-        if (this.props.favs != null || this.props.favs != undefined) {let c = [];
+        // handling props changes & resetting state if changed
+        if (this.props.favs != null || this.props.favs != undefined) {
+            let c = [];
             let favKeys = Object.keys(this.props.favs)
             favKeys.map((key) => { // place = array of keys ie: a;ifhwiua123
                     console.log(key);
@@ -109,23 +107,26 @@ export class Place extends React.Component {
                                 placeKey = {key}
                                 dealWithPlace={this.showMap.bind(this)} 
                                 handleDelete = {this.handleDelete.bind(this)} />);
-            })
+            });
             this.state.cards = c;
             console.log(this.state.cards);
         } else {
             this.state.cards = <h1 id="no-favs">Head over to our carousel or home page to add things to your favorites!</h1>
         }
 
-
-        let car = [];
-        this.state.caro.map((place) => {
-            car.push(<CarouselItem>
-                        <CarouselPlace carPlace = {place} 
-                                    addToGroup = {this.addToGroup.bind(this)} />
-                    </CarouselItem>)
-        })
-    
-        this.state.caroThing = car;
+        if (this.props.caro != null || this.props.caro != undefined) {
+            console.log(this.props.caro);
+            let car = [];
+            this.props.caro.map((place) => {
+                car.push(<CarouselItem>
+                            <CarouselPlace carPlace = {place} 
+                                        addToGroup = {this.addToGroup.bind(this)} />
+                        </CarouselItem>)
+            });
+            this.state.caroThing = car;
+            console.log('caroPlaces prop works now????')
+            console.log(this.state.caroThing);
+        } 
 
         const marker = this.state.hasLocation ? (
             <Marker position={[this.state.start.lat, this.state.start.long]}>
