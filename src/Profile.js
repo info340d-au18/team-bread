@@ -2,16 +2,13 @@ import React, {Component} from 'react';
 import {NewUser} from './NewUser';
 import firebase, { firestore } from 'firebase/app';
 import {ProfileCard} from './ProfileCard';
-import 'firebase/auth';
-import 'firebase/database';
-
 export class Profile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             show: false,
             home: '',
-            zip: this.props.zipcode
+            // zip: this.props.zipcode
             // BB: '',
 
         };
@@ -19,6 +16,7 @@ export class Profile extends React.Component {
         this.submit = this.submit.bind(this);
         this.homeRef = firebase.database().ref('home');
         this.handleEdit = this.handleEdit.bind(this);
+        // console.log(this.state.zip)
     }
 
     handleEdit = () => {
@@ -30,27 +28,26 @@ export class Profile extends React.Component {
     }
 
     handleSearch(homePlace) {
-        // let bb = this.calculateBB(homePlace.lat, homePlace.long, 10);
-        // let places = 'http://overpass-api.de/'
-
         this.setState({home: homePlace});
-        
-
     }
 
-    submit(event) {
-        let userRef = this.homeRef.child(firebase.auth().currentUser.uid);
-        userRef.set(this.state.home)
+    submit() {
         this.setState({show: false})
+        return this.props.submitHome(this.state.home);
     }
 
     render() {
-        return(
+        let zipzip = '';
+        if (this.props.zip !== null) {
+            console.log(this.props.zip)
+            zipzip = this.props.zip.name;
+        }
+        return (
             <div>
                 <ProfileCard 
                     email = {this.props.email} 
                     handleEdit = {this.handleEdit.bind(this)} 
-                    homeName = {this.state.home.name} />
+                    homeName = {zipzip} />
         
                 <NewUser 
                     show = {this.state.show} 

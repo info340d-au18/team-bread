@@ -31,32 +31,6 @@ export class Place extends React.Component {
             img: './img/burke.jpg',
             isMapInit: false
         }
-    
-        // console.log(this.state);
-        // //console.log(this.props.favs);
-        // console.log(this.props.favs);
-        // console.log(this.state.favs)
-        // let temp = [];
-        // for (var key in this.props.favs){
-        //     temp.push(this.props.favs[key]);
-        // }
-        // console.log(temp);
-        // this.state.favs = temp;
-        // console.log(cardPlaces);
-
-        //this.favoritesRef = firebase.database().ref('favorites');
-        //console.log(this.props.favs);
-        //this.userRef = this.favoritesRef.child(this.props.favs);
-        //console.log(this.userRef);
-        // this.userRef.on('value', function(snapshot) {
-        //     var favSS = snapshot.val();
-        //     console.log(favSS);
-        //     //this.setState({fav2: snapshot.toJSON()});
-        //     console.log(this.state);
-
-        //     this.state.fav2 = favSS;
-        // }).bind(this);
-        // console.log(this.state);
 
         this.showMap = this.showMap.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
@@ -110,6 +84,8 @@ export class Place extends React.Component {
             isMapInit:true
         });
     }
+
+    
 
     render() {
 

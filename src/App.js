@@ -57,6 +57,10 @@ export class App extends React.Component {
 		this.test = this.test.bind(this);
 		this.addFav = this.addFav.bind(this);
 		this.removeFav = this.removeFav.bind(this);
+		this.submitHome = this.submitHome.bind(this);
+		this.calculateBB = this.calculateBB.bind(this);
+		this.getLatDiff = this.getLatDiff.bind(this);
+		this.getLongDiff = this.getLongDiff.bind(this);
 		//this.getFavs = this.getFavs.bind(this);
 
 		this.state = {
@@ -65,7 +69,9 @@ export class App extends React.Component {
 			amenities:"",
 			BB:[],
 			isSignedIn: false,
-			favs:[]
+			favs:[],
+			homezip: '',
+			bbLink: ''
 		};
 		this.favoritesRef = firebase.database().ref('favorites');
 		this.homeRef = firebase.database().ref('home');
@@ -96,8 +102,23 @@ export class App extends React.Component {
 						homezip: hSS
 					})
 					console.log(this.state.homezip)
-				})  
-            }        
+					let bb = this.calculateBB(hSS.lat, hSS.long, 5);
+					let op = 'http://overpass-api.de/api/interpreter?data=[out:json];node[leisure=dog_park]' + 
+							bb + 
+							';out;node[leisure=fire_pit]' +
+							bb + ';out;node[leisure=garden]' +
+							bb + ';out;node[leisure=nature_reserve]' +
+							bb + ';out;node[leisure=park]' +
+							bb + ';out;node[leisure=playground]' +
+							bb + ';out;node[leisure=track]' + bb +
+							';out;'
+					this.setState({bbLink: op});
+
+					console.log(op)
+				})
+				
+			}
+			
 			this.setState({ isSignedIn: !!user })
 			//this.setState({ isSignedIn: true})
         })
@@ -123,11 +144,47 @@ export class App extends React.Component {
 	removeFav(key) {
 		this.favoritesRef.child(this.state.userId).child(key).remove();
 	}
-	submitHome(event) {
-		let user = this.state.usern;
-		let uRef = this.homeRef.child(user.uid);
-		console.log('hello');
-		uRef.push({home: event});
+
+	submitHome(home) {
+		let user = this.homeRef.child(firebase.auth().currentUser.uid);
+		// user.setState({homezip})
+		// let place = 
+		user.set(home)
+
+		// let bb = this.calculateBB(home.lat, home.long, 10);
+		// console.log(bb)
+		// let op = 'http://overpass-api.de/api/interpreter?data=[out:json];node[amenity=ice_cream]' 
+		// 			bb + ';node[amenity=bar]' +
+		// 			bb + ';node[amenty='
+		// 			+ ';out;';
+		
+		// let uRef = this.homeRef.child(user.uid);
+		// console.log('hello');
+		// uRef.push({home: event});
+	}
+
+	// http://overpass-api.de/api/interpreter?data=[out:json];node[amenity=ice_cream](47.481002,-122.459696,47.734136,-122.224433);
+    // node[amenity=bar](47.481002,-122.459696,47.734136,-122.224433);out;
+
+    calculateBB(lat, long, radius) {
+		let upperLat = (lat - this.getLatDiff(radius)).toFixed(6);
+		let upperLong = (long - this.getLongDiff(radius, lat)).toFixed(6);
+	
+		let lowerLat = (lat + this.getLatDiff(radius)).toFixed(6);
+        let lowerLong = (long + this.getLongDiff(radius, lat)).toFixed(6);
+        
+        // this.setState({BB: mapBbox});
+        return '(' + upperLat + ',' + upperLong + ',' + lowerLat + ',' + lowerLong + ')';
+    }
+    
+
+	getLongDiff(radius, lat) {
+		return radius / (111 * Math.cos((Math.PI / 180) * lat));
+	}
+	
+	// function dY(radius) {
+	getLatDiff(radius) {
+		return radius / 111;
 	}
 
 	test() {		
@@ -177,7 +234,11 @@ export class App extends React.Component {
 							{/* if not logged in, go to log in page, if first time user go to new user else just go to profile page */}
 							<Route exact path="/profile">
 								{/* {!!firebase.auth().currentUser ? <Profile /> : <NewUser usern = {this.state.usern} homeRef = {this.homeRef} />} */}
-								{!!firebase.auth().currentUser ? <Profile email = {firebase.auth().currentUser && firebase.auth().currentUser.displayName}/> : 
+								{!!firebase.auth().currentUser ? 
+									<Profile email = {firebase.auth().currentUser && firebase.auth().currentUser.displayName} 
+											zip = {this.state.homezip}
+											submitHome = {this.submitHome} />
+									: 
 									<Loggin uiConfig = {uiConfig} fbAuth = {firebase.auth}>
 										<Redirect to="/profile" />
 									</Loggin>}
