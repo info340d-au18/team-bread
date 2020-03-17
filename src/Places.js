@@ -141,7 +141,7 @@ export class Place extends React.Component {
         
         return (
             <div>
-                <div>
+                <div style = {{'text-align': 'center'}}>
                     <h2>Places near zip: {this.state.zip} </h2>
                     <p>Customize your zip in profile!</p>
                 </div>
@@ -150,7 +150,7 @@ export class Place extends React.Component {
                         {this.state.caroThing}
                     </Carousel>
                 </div>
-                <div>
+                <div style = {{'text-align': 'center'}}>
                     <h2>My Favorited Places!</h2>
                     <p>Add and remove places by pressing the heart!</p>
                 </div>

@@ -1,25 +1,31 @@
 import React, {Component} from 'react';
 import {Card} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
+import './index.css';
 
 export class ProfileCard extends React.Component {
     render() {
         return (
-            <Card style = {{width: '28rem'}}>
-                <Card.Title>
-                    <h3>
-                        {this.props.email}
-                        <Button variant="outline-primary" style = {{float: 'right'}}
-                                onClick = {this.props.handleEdit}>
-                                Edit
-                        </Button>
-                    </h3>
-                </Card.Title>
-                <Card.Text>
-                    <p> Home Zipcode: {this.props.homeName} </p>
-                    
-                </Card.Text>
-            </Card>
+                <div id = 'profileBack'>
+                    <div id = 'profile'>
+                        <Card>
+                            <Card.Title>
+                                <h2>
+                                    {this.props.email}
+                                </h2>
+                            </Card.Title>
+                            <Card.Text>
+                                <p> 
+                                    Home Zipcode: {this.props.homeName} 
+                                </p>
+                                <Button variant="outline-primary"
+                                        onClick = {this.props.handleEdit} size = 'lg'>
+                                        Edit Zipcode
+                                </Button>
+                            </Card.Text>
+                        </Card>
+                    </div>
+                </div>
         )
     }
 }

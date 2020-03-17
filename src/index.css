@@ -20,7 +20,7 @@ body {
 }
 
 #bgImg{
-    background-image: url('./img/plain_map.png');
+    background-image: url('./img/usmap.png');
     height: 100vh;
 }
 
@@ -59,8 +59,9 @@ p {
 }
 
 #begin .card{
-    width: 50vw;
+    width: 40vh;
     height: 20vh;
+    
     justify-content: center;
 }
 
@@ -358,6 +359,31 @@ footer {
 
 .pac-container {
     z-index: 1100 !important;
+}
+
+#profile .card {
+    
+    justify-content: center;
+    /* background-image: url('./img/usmap.png');
+    height: 100vh; */
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, 30%);
+    transform: translate(-50%, 30%);
+    width: 40%;
+    height: 50vh;
+    
+}
+
+#profileBack {
+    background-image: url('./img/cherry.jpeg');
+    max-width: 100%;
+    height: auto;
+    height: 100vh;
 }
 
 /* .favbut  */

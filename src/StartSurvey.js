@@ -16,7 +16,7 @@ export class StartSurvey extends React.Component {
                                 <Card.Body>
                                     <Card.Title className="text-center">Let's Take a Walk...</Card.Title>
                                     <Link to="/findroute">
-                                        <Button variant="primary" className="shadow" id="BEGINNN">Begin</Button>
+                                        <Button variant="primary" className="shadow" id="BEGINNN" size = 'lg'>Begin</Button>
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -30,7 +30,7 @@ export class StartSurvey extends React.Component {
                         <Card.Body>
                             <Card.Title className="text-center">Let's Take a Walk...</Card.Title>
                             <Link to="/findroute">
-                                <Button variant="primary" className="shadow" id="BEGINNN">Begin</Button>
+                                <Button variant="primary" className="shadow" id="BEGINNN" size = 'lg'>Begin</Button>
                             </Link>
                         </Card.Body>
                     </Card>
