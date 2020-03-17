@@ -266,6 +266,7 @@ export class App extends React.Component {
 						<Switch>
 							<Route exact path="/team-bread"><StartSurvey home={true}/></Route>
 							<Route exact path="/"><StartSurvey home={true}/></Route>
+							<Route exact path=""><StartSurvey home={true}/></Route>
 							<Route exact path="/howto" component={HowTo}/>
 							<Route exact path="/places" >
 								{!!firebase.auth().currentUser ? <Place favs={this.state.favs} add={this.addFav} delete={this.removeFav} caro={this.state.caroPlaces} zip={this.state.homezip.name}/> : <Loggin uiConfig ={uiConfig} fbAuth={firebase.auth}/>}  
