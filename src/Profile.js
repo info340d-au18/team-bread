@@ -7,16 +7,12 @@ export class Profile extends React.Component {
         super(props);
         this.state = {
             show: false,
-            home: '',
-            // zip: this.props.zipcode
-            // BB: '',
-
+            home: ''
         };
         this.handleSearch = this.handleSearch.bind(this);
         this.submit = this.submit.bind(this);
         this.homeRef = firebase.database().ref('home');
         this.handleEdit = this.handleEdit.bind(this);
-        // console.log(this.state.zip)
     }
 
     handleEdit = () => {

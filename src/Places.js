@@ -26,7 +26,6 @@ export class Place extends React.Component {
             favs: cardPlaces,
             favKeys: [],
             caro: caroPlaces,
-            //fav2: {},
             start: {name: '', lat: '', long: ''},
             img: './img/burke.jpg',
             isMapInit: false
@@ -60,16 +59,6 @@ export class Place extends React.Component {
         this.props.delete(key);
     }
 
-    // gets the index at which the place is at
-    get(name) {
-        for (let i = 0; i < this.state.favs.length; i++) {
-            if (this.state.favs[i].name === name) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
     handleSearch(startLocation) {
         this.setState({start: startLocation});
     }
@@ -79,29 +68,14 @@ export class Place extends React.Component {
         this.setState({
             isMapInit:true
         });
-    }
-
-    
+    } 
 
     render() {
-
-        // let FAV = [this.props.favs];
-        // console.log(FAV);
-        console.log('render places');
-        console.log(this.props);
-        //console.log(this.state.favs2.then(val => {return val}));
-
-        // let FAV = this.props.favs;
-        // let favsUndone = Object.keys(FAV);
-        // console.log(favsUndone);
-
         // handling props changes & resetting state if changed
         if (this.props.favs != null || this.props.favs != undefined) {
             let c = [];
             let favKeys = Object.keys(this.props.favs)
             favKeys.map((key) => { // place = array of keys ie: a;ifhwiua123
-                    console.log(key);
-                    //console.log();
                     c.push(<PlaceCards
                                 place = {this.props.favs[key]} 
                                 placeKey = {key}
@@ -109,13 +83,11 @@ export class Place extends React.Component {
                                 handleDelete = {this.handleDelete.bind(this)} />);
             });
             this.state.cards = c;
-            console.log(this.state.cards);
         } else {
             this.state.cards = <h1 id="no-favs">Head over to our carousel or home page to add things to your favorites!</h1>
         }
 
         if (this.props.caro != null || this.props.caro != undefined) {
-            console.log(this.props.caro);
             let car = [];
             this.props.caro.map((place) => {
                 car.push(<CarouselItem>
@@ -124,20 +96,11 @@ export class Place extends React.Component {
                         </CarouselItem>)
             });
             this.state.caroThing = car;
-            console.log('caroPlaces prop works now????')
-            console.log(this.state.caroThing);
         } 
 
         if (this.props.zip != null || this.props.zip != undefined) {
-            console.log(this.props.zip);
             this.state.zip = this.props.zip;
         } 
-
-        const marker = this.state.hasLocation ? (
-            <Marker position={[this.state.start.lat, this.state.start.long]}>
-              <Popup>{this.state.start.name}</Popup>
-            </Marker>
-          ) : null
         
         return (
             <div>
@@ -172,13 +135,12 @@ export class Place extends React.Component {
                                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                                                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                             />
-                                            {marker}
-                                                <Routing map={this.map} 
-                                                        sLat = {this.state.start.lat}
-                                                        sLong = {this.state.start.long}
-                                                        eLat = {this.state.lat}
-                                                        eLong = {this.state.long} 
-                                                        fromForm= {false}/>
+                                            <Routing map={this.map} 
+                                                    sLat = {this.state.start.lat}
+                                                    sLong = {this.state.start.long}
+                                                    eLat = {this.state.lat}
+                                                    eLong = {this.state.long} 
+                                                    fromForm= {false}/>
                                         </Map>  
                                     </div>
                                 </Modal.Body>
