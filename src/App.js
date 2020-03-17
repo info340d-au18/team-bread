@@ -17,7 +17,8 @@ import 'firebase/database';
 
 
 import {
-    BrowserRouter as Router,
+	//BrowserRouter as Router,
+	HashRouter as Router,
     Switch,
     Route,
 	Link,

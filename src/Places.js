@@ -33,7 +33,7 @@ export class Place extends React.Component {
 
         this.showMap = this.showMap.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
-        this.get = this.get.bind(this);
+        //this.get = this.get.bind(this);
         this.addToGroup = this.addToGroup.bind(this);
 
         console.log('places constructor');
