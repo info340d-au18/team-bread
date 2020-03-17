@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/team-bread/static/css/main.e8c62692.chunk.css",
-    "main.js": "/team-bread/static/js/main.9de9143d.chunk.js",
-    "main.js.map": "/team-bread/static/js/main.9de9143d.chunk.js.map",
-    "runtime-main.js": "/team-bread/static/js/runtime-main.d3b39b16.js",
-    "runtime-main.js.map": "/team-bread/static/js/runtime-main.d3b39b16.js.map",
-    "static/css/2.d0ae37c1.chunk.css": "/team-bread/static/css/2.d0ae37c1.chunk.css",
-    "static/js/2.6057121b.chunk.js": "/team-bread/static/js/2.6057121b.chunk.js",
-    "static/js/2.6057121b.chunk.js.map": "/team-bread/static/js/2.6057121b.chunk.js.map",
-    "index.html": "/team-bread/index.html",
-    "precache-manifest.ee120fc32e1c0c49cdc6a5e8f4993009.js": "/team-bread/precache-manifest.ee120fc32e1c0c49cdc6a5e8f4993009.js",
-    "service-worker.js": "/team-bread/service-worker.js",
-    "static/css/2.d0ae37c1.chunk.css.map": "/team-bread/static/css/2.d0ae37c1.chunk.css.map",
-    "static/css/main.e8c62692.chunk.css.map": "/team-bread/static/css/main.e8c62692.chunk.css.map",
-    "static/js/2.6057121b.chunk.js.LICENSE.txt": "/team-bread/static/js/2.6057121b.chunk.js.LICENSE.txt",
-    "static/media/arboretum.jpg": "/team-bread/static/media/arboretum.56a5eafb.jpg",
-    "static/media/index.css": "/team-bread/static/media/usmap.ef733332.png",
-    "static/media/walking.jpg": "/team-bread/static/media/walking.7b139594.jpg"
+    "main.css": "/team-bread2/static/css/main.0db169cc.chunk.css",
+    "main.js": "/team-bread2/static/js/main.82980ebb.chunk.js",
+    "main.js.map": "/team-bread2/static/js/main.82980ebb.chunk.js.map",
+    "runtime-main.js": "/team-bread2/static/js/runtime-main.50df0edd.js",
+    "runtime-main.js.map": "/team-bread2/static/js/runtime-main.50df0edd.js.map",
+    "static/css/2.d0ae37c1.chunk.css": "/team-bread2/static/css/2.d0ae37c1.chunk.css",
+    "static/js/2.fad1a583.chunk.js": "/team-bread2/static/js/2.fad1a583.chunk.js",
+    "static/js/2.fad1a583.chunk.js.map": "/team-bread2/static/js/2.fad1a583.chunk.js.map",
+    "index.html": "/team-bread2/index.html",
+    "precache-manifest.8f30187c797b2236c3d0346ad7af6d0b.js": "/team-bread2/precache-manifest.8f30187c797b2236c3d0346ad7af6d0b.js",
+    "service-worker.js": "/team-bread2/service-worker.js",
+    "static/css/2.d0ae37c1.chunk.css.map": "/team-bread2/static/css/2.d0ae37c1.chunk.css.map",
+    "static/css/main.0db169cc.chunk.css.map": "/team-bread2/static/css/main.0db169cc.chunk.css.map",
+    "static/js/2.fad1a583.chunk.js.LICENSE.txt": "/team-bread2/static/js/2.fad1a583.chunk.js.LICENSE.txt",
+    "static/media/arboretum.jpg": "/team-bread2/static/media/arboretum.56a5eafb.jpg",
+    "static/media/index.css": "/team-bread2/static/media/usmap.ef733332.png",
+    "static/media/walking.jpg": "/team-bread2/static/media/walking.7b139594.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.d3b39b16.js",
+    "static/js/runtime-main.50df0edd.js",
     "static/css/2.d0ae37c1.chunk.css",
-    "static/js/2.6057121b.chunk.js",
-    "static/css/main.e8c62692.chunk.css",
-    "static/js/main.9de9143d.chunk.js"
+    "static/js/2.fad1a583.chunk.js",
+    "static/css/main.0db169cc.chunk.css",
+    "static/js/main.82980ebb.chunk.js"
   ]
 }
