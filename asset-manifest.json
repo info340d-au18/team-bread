@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/team-bread/static/css/main.daed38a5.chunk.css",
-    "main.js": "/team-bread/static/js/main.ff781376.chunk.js",
-    "main.js.map": "/team-bread/static/js/main.ff781376.chunk.js.map",
+    "main.js": "/team-bread/static/js/main.8d729f86.chunk.js",
+    "main.js.map": "/team-bread/static/js/main.8d729f86.chunk.js.map",
     "runtime-main.js": "/team-bread/static/js/runtime-main.d3b39b16.js",
     "runtime-main.js.map": "/team-bread/static/js/runtime-main.d3b39b16.js.map",
     "static/css/2.d0ae37c1.chunk.css": "/team-bread/static/css/2.d0ae37c1.chunk.css",
     "static/js/2.1920604e.chunk.js": "/team-bread/static/js/2.1920604e.chunk.js",
     "static/js/2.1920604e.chunk.js.map": "/team-bread/static/js/2.1920604e.chunk.js.map",
     "index.html": "/team-bread/index.html",
-    "precache-manifest.947f8c28d6a0b451465f46084eae88cd.js": "/team-bread/precache-manifest.947f8c28d6a0b451465f46084eae88cd.js",
+    "precache-manifest.4ab0357b35ad54a4b2b0d3acccc66d0f.js": "/team-bread/precache-manifest.4ab0357b35ad54a4b2b0d3acccc66d0f.js",
     "service-worker.js": "/team-bread/service-worker.js",
     "static/css/2.d0ae37c1.chunk.css.map": "/team-bread/static/css/2.d0ae37c1.chunk.css.map",
     "static/css/main.daed38a5.chunk.css.map": "/team-bread/static/css/main.daed38a5.chunk.css.map",
@@ -23,6 +23,6 @@
     "static/css/2.d0ae37c1.chunk.css",
     "static/js/2.1920604e.chunk.js",
     "static/css/main.daed38a5.chunk.css",
-    "static/js/main.ff781376.chunk.js"
+    "static/js/main.8d729f86.chunk.js"
   ]
 }
