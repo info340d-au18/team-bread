@@ -13,6 +13,7 @@ import Routing from './RoutingMachine2';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
+import './index.css';
 
 
 export class Place extends React.Component {

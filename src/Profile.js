@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {NewUser} from './NewUser';
 import firebase, { firestore } from 'firebase/app';
 import {ProfileCard} from './ProfileCard';
+import './index.css';
 export class Profile extends React.Component {
     constructor(props) {
         super(props);
