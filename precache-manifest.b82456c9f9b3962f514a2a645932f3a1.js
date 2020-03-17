@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "735a574a5bdea81a09b9545ed4baa291",
+    "revision": "34c898f670812b7f0130f9c8d551fb3f",
     "url": "/team-bread/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/team-bread/static/css/2.d0ae37c1.chunk.css"
   },
   {
-    "revision": "f020afe88381cef9d799",
+    "revision": "f0105cf29acfca03d129",
     "url": "/team-bread/static/css/main.e8c62692.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/team-bread/static/js/2.2808fec7.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f020afe88381cef9d799",
-    "url": "/team-bread/static/js/main.c3f51a52.chunk.js"
+    "revision": "f0105cf29acfca03d129",
+    "url": "/team-bread/static/js/main.4e34452c.chunk.js"
   },
   {
     "revision": "9fc4088a66c0ffdd76e3",
