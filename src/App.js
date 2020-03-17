@@ -17,8 +17,7 @@ import 'firebase/database';
 
 
 import {
-	BrowserRouter as Router,
-	//HashRouter as Router,
+	HashRouter as Router,
     Switch,
     Route,
 	Link,
@@ -43,12 +42,11 @@ const firebaseConfig = {
     // Popup signin flow rather than redirect flow.
     signInFlow: 'popup',
     // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-    signInSuccessUrl: process.env.PUBLIC_URL + '/team-bread',
+    signInSuccessUrl: '/',
     // We will display Google and Facebook as auth providers.
     signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID        
-	]
-	// signInSuccessUrl: process.env.PUBLIC_URL + '/isauw-pay',
+    ]
 };
 
 export class App extends React.Component {
@@ -236,24 +234,23 @@ export class App extends React.Component {
 	}
 
 	render() {
-		console.log(process.env.PUBLIC_URL);
     	return (				
 			<Router>
 				<div>
 					<div>
 						<Navbar bg="light" expand="sm">
-							<Navbar.Brand as={Link} to={process.env.PUBLIC_URL + "/"} id="navbar-brand">Walk Buddy</Navbar.Brand>
+							<Navbar.Brand as={Link} to="/" id="navbar-brand">Walk Buddy</Navbar.Brand>
 							<Navbar.Toggle area-controls="basic-navbar-nav" />
 							<Navbar.Collapse>
 								<Nav>
-									<Link to={process.env.PUBLIC_URL + "/"} className="nav-link" exact>Home</Link>
-									<Link to={process.env.PUBLIC_URL + "/howto"} className="nav-link" exact>How-To</Link>
-									<Link to={process.env.PUBLIC_URL + "/places"} className="nav-link" exact>Places</Link>
-									<Link to={process.env.PUBLIC_URL + "/profile"} className="nav-link exact">Profile</Link>
+									<Link to="/" className="nav-link" exact>Home</Link>
+									<Link to="/howto" className="nav-link" exact>How-To</Link>
+									<Link to="/places" className="nav-link" exact>Places</Link>
+									<Link to="profile" className="nav-link exact">Profile</Link>
 									<div>
 										{this.state.isSignedIn ? 
 											<Button onClick={this.test}>Sign-Out</Button> :
-										<Link to={process.env.PUBLIC_URL + '/login'} className="nav-link" exact>Login</Link> }
+										<Link to="/login" className="nav-link" exact>Login</Link> }
 											
 									</div>
 									
@@ -267,14 +264,14 @@ export class App extends React.Component {
 
 					<div>
 						<Switch>
-							<Route exact path={process.env.PUBLIC_URL + "/team-bread"}><StartSurvey home={true}/></Route>
-							<Route exact path={process.env.PUBLIC_URL + "/"}><StartSurvey home={true}/></Route>
-							<Route exact path={process.env.PUBLIC_URL + "/howto"} component={HowTo}/>
-							<Route exact path={process.env.PUBLIC_URL + "/places"} >
+							<Route exact path="/team-bread"><StartSurvey home={true}/></Route>
+							<Route exact path="/"><StartSurvey home={true}/></Route>
+							<Route exact path="/howto" component={HowTo}/>
+							<Route exact path="/places" >
 								{!!firebase.auth().currentUser ? <Place favs={this.state.favs} add={this.addFav} delete={this.removeFav} caro={this.state.caroPlaces} zip={this.state.homezip.name}/> : <Loggin uiConfig ={uiConfig} fbAuth={firebase.auth}/>}  
 							</Route>
 							{/* if not logged in, go to log in page, if first time user go to new user else just go to profile page */}
-							<Route exact path={process.env.PUBLIC_URL + "/profile"}>
+							<Route exact path="/profile">
 								{!!firebase.auth().currentUser ? 
 									<Profile email = {firebase.auth().currentUser && firebase.auth().currentUser.displayName} 
 											zip = {this.state.homezip}
@@ -282,12 +279,12 @@ export class App extends React.Component {
 									: 
 									<Loggin uiConfig = {uiConfig} fbAuth = {firebase.auth}/>}
 							</Route>
-─							<Route exact path={process.env.PUBLIC_URL + '/login'}>
-								{!!firebase.auth().currentUser ? <Redirect to={process.env.PUBLIC_URL + "/"} /> : <Loggin uiConfig ={uiConfig} fbAuth={firebase.auth}/>}
+─							<Route exact path = '/login'>
+								{!!firebase.auth().currentUser ? <Redirect to="/" /> : <Loggin uiConfig ={uiConfig} fbAuth={firebase.auth}/>}
 							</Route>
-							<Route exact path={process.env.PUBLIC_URL + "/findroute"}> <FindRoute getResults={this.getResults}/> </Route>
-							<Redirect from={process.env.PUBLIC_URL + "/findroute"} to={process.env.PUBLIC_URL + "/resultsmap"} />
-							<Route exact path={process.env.PUBLIC_URL + "/resultsmap"}> 
+							<Route exact path="/findroute"> <FindRoute getResults={this.getResults}/> </Route>
+							<Redirect from="findroute" to="/resultsmap" />
+							<Route exact path="/resultsmap"> 
 								<ResultsMap start={this.state.start} 
 											distance={this.state.distance} 
 											amenity={this.state.amenity}
