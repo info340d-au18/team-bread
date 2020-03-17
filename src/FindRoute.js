@@ -30,7 +30,7 @@ export class FindRoute extends React.Component {
 
     render() {
         if (this.state.redirect) {
-            return <Redirect to="/resultsmap" />;
+            return <Redirect to={process.env.PUBLIC_URL + "/resultsmap"} />;
         }
         return (
             <Form id="form">
