@@ -241,18 +241,18 @@ export class App extends React.Component {
 				<div>
 					<div>
 						<Navbar bg="light" expand="sm">
-							<Navbar.Brand as={Link} to="/" id="navbar-brand">Walk Buddy</Navbar.Brand>
+							<Navbar.Brand as={Link} to={process.env.PUBLIC_URL + "/"} id="navbar-brand">Walk Buddy</Navbar.Brand>
 							<Navbar.Toggle area-controls="basic-navbar-nav" />
 							<Navbar.Collapse>
 								<Nav>
-									<Link to="/" className="nav-link" exact>Home</Link>
-									<Link to="/howto" className="nav-link" exact>How-To</Link>
-									<Link to="/places" className="nav-link" exact>Places</Link>
-									<Link to="profile" className="nav-link exact">Profile</Link>
+									<Link to={process.env.PUBLIC_URL + "/"} className="nav-link" exact>Home</Link>
+									<Link to={process.env.PUBLIC_URL + "/howto"} className="nav-link" exact>How-To</Link>
+									<Link to={process.env.PUBLIC_URL + "/places"} className="nav-link" exact>Places</Link>
+									<Link to={process.env.PUBLIC_URL + "/profile"} className="nav-link exact">Profile</Link>
 									<div>
 										{this.state.isSignedIn ? 
 											<Button onClick={this.test}>Sign-Out</Button> :
-										<Link to="/login" className="nav-link" exact>Login</Link> }
+										<Link to={process.env.PUBLIC_URL + '/login'} className="nav-link" exact>Login</Link> }
 											
 									</div>
 									
