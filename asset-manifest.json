@@ -1,27 +1,28 @@
 {
   "files": {
-    "main.css": "/team-bread/static/css/main.c87553e7.chunk.css",
-    "main.js": "/team-bread/static/js/main.ce0e4ab3.chunk.js",
-    "main.js.map": "/team-bread/static/js/main.ce0e4ab3.chunk.js.map",
+    "main.css": "/team-bread/static/css/main.e8c62692.chunk.css",
+    "main.js": "/team-bread/static/js/main.3e6f1295.chunk.js",
+    "main.js.map": "/team-bread/static/js/main.3e6f1295.chunk.js.map",
     "runtime-main.js": "/team-bread/static/js/runtime-main.d3b39b16.js",
     "runtime-main.js.map": "/team-bread/static/js/runtime-main.d3b39b16.js.map",
     "static/css/2.d0ae37c1.chunk.css": "/team-bread/static/css/2.d0ae37c1.chunk.css",
-    "static/js/2.11695307.chunk.js": "/team-bread/static/js/2.11695307.chunk.js",
-    "static/js/2.11695307.chunk.js.map": "/team-bread/static/js/2.11695307.chunk.js.map",
+    "static/js/2.fd89363a.chunk.js": "/team-bread/static/js/2.fd89363a.chunk.js",
+    "static/js/2.fd89363a.chunk.js.map": "/team-bread/static/js/2.fd89363a.chunk.js.map",
     "index.html": "/team-bread/index.html",
-    "precache-manifest.675c013c344b37811078e376ca41f08d.js": "/team-bread/precache-manifest.675c013c344b37811078e376ca41f08d.js",
+    "precache-manifest.01d99b6bcf0a6c1379306853899b9ec7.js": "/team-bread/precache-manifest.01d99b6bcf0a6c1379306853899b9ec7.js",
     "service-worker.js": "/team-bread/service-worker.js",
     "static/css/2.d0ae37c1.chunk.css.map": "/team-bread/static/css/2.d0ae37c1.chunk.css.map",
-    "static/css/main.c87553e7.chunk.css.map": "/team-bread/static/css/main.c87553e7.chunk.css.map",
-    "static/js/2.11695307.chunk.js.LICENSE.txt": "/team-bread/static/js/2.11695307.chunk.js.LICENSE.txt",
-    "static/media/burke.jpg": "/team-bread/static/media/burke.42d091a5.jpg",
-    "static/media/index.css": "/team-bread/static/media/plain_map.08e7320c.png"
+    "static/css/main.e8c62692.chunk.css.map": "/team-bread/static/css/main.e8c62692.chunk.css.map",
+    "static/js/2.fd89363a.chunk.js.LICENSE.txt": "/team-bread/static/js/2.fd89363a.chunk.js.LICENSE.txt",
+    "static/media/arboretum.jpg": "/team-bread/static/media/arboretum.56a5eafb.jpg",
+    "static/media/index.css": "/team-bread/static/media/usmap.ef733332.png",
+    "static/media/walking.jpg": "/team-bread/static/media/walking.7b139594.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.d3b39b16.js",
     "static/css/2.d0ae37c1.chunk.css",
-    "static/js/2.11695307.chunk.js",
-    "static/css/main.c87553e7.chunk.css",
-    "static/js/main.ce0e4ab3.chunk.js"
+    "static/js/2.fd89363a.chunk.js",
+    "static/css/main.e8c62692.chunk.css",
+    "static/js/main.3e6f1295.chunk.js"
   ]
 }
