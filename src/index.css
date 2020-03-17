@@ -1,17 +1,3 @@
-/* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
-
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap');
 
 body {
@@ -144,36 +130,6 @@ footer {
   min-height: 100vh;
 }
 
-/* 
-.bg-img-1, .bg-img-2, .bg-img-3, .bg-img-4 {
-    position: relative;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 100vh;
-}
-
-.bg-img-1 {
-    background-image: url("../img/walking.jpg");
-    min-height: 100vh;
-}
-
-.bg-img-2 {
-    background-image: url("../img/many-sign-posts.jpg");
-    min-height: 100vh;
-}
-
-.bg-img-3 {
-    background-image: url("../img/coffee.jpg");
-    min-height: 100vh;
-}
-
-.bg-img-4 {
-    background-image: url("../img/park.jpg");
-    min-height: 100vh;
-} */
-
 .caption {
   position: absolute;
   left: 0;
@@ -218,7 +174,6 @@ footer {
 
 .unsplash-credit {
     position: absolute;
-    /* width:100%; */
     bottom:0;
     color: white;
     background-color: black;
@@ -287,9 +242,6 @@ footer {
 #mapid {
     height: 800px;
     width: 1150px;
-    /* height: 70%; */
-    /* width: 100%; */
-
 }
 
 .navb {
@@ -362,10 +314,7 @@ footer {
 }
 
 #profile .card {
-    
     justify-content: center;
-    /* background-image: url('./img/usmap.png');
-    height: 100vh; */
     align-items: center;
     display: flex;
     justify-content: center;
@@ -376,7 +325,6 @@ footer {
     transform: translate(-50%, 30%);
     width: 40%;
     height: 50vh;
-    
 }
 
 #profileBack {
@@ -402,10 +350,6 @@ footer {
     }
 
     .modal {
-        /* display: none; */
-        /* position: fixed; */
-        /* z-index: 1; */
-        /* padding-top: 100px; */
         height: 800px;
         width: 800px;
         align-items: center;
@@ -436,10 +380,6 @@ footer {
     }
 
     .modal {
-        /* display: none; */
-        /* position: fixed; */
-        /* z-index: 1; */
-        /* padding-top: 100px; */
         height: 900px;
         width: 900px;
         align-items: center;
@@ -448,8 +388,6 @@ footer {
     #pMap {
         height: 450px;
     }
-
-    
 }
 
 
@@ -467,9 +405,6 @@ footer {
     }
 
     .modal {
-        /* display: none; */
-        /* position: fixed; */
-        /* z-index: 1; */
         padding-top: 100px;
         height: 1000px;
         width: 1000px;
@@ -488,9 +423,6 @@ footer {
     }
 
     .modal {
-        /* display: none; */
-        /* position: fixed; */
-        /* z-index: 1; */
         padding-top: 100px;
         height: 1200px;
         width: 1200px;

@@ -181,10 +181,6 @@ export class FindRoute extends React.Component {
 		// create a bounding rectangle that can be used in leaflet
         let mapBbox = [[upperLat,upperLong],[lowerLat,lowerLong]];
         this.setState({BB: mapBbox});
-	
-		// add the bounding box to the map, and set the map extent to it
-		// L.rectangle(mapBbox).addTo(mymap);
-		//mymap.fitBounds(mapBbox);
         return '(' + upperLat + ',' + upperLong + ',' + lowerLat + ',' + lowerLong + ')';
     }
     

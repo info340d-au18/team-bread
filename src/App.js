@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-// import {Loggin} from './Loggin.js';
 import Loggin from './Loggin.js';
 
 import {StartSurvey} from './StartSurvey.js';
@@ -62,7 +61,6 @@ export class App extends React.Component {
 		this.getLatDiff = this.getLatDiff.bind(this);
 		this.getLongDiff = this.getLongDiff.bind(this);
 		this.findRandom10 = this.findRandom10.bind(this);
-		//this.getFavs = this.getFavs.bind(this);
 
 		this.state = {
 			start: {},
@@ -83,14 +81,9 @@ export class App extends React.Component {
         this.unregisterAuthObserver = firebase.auth().onAuthStateChanged((user) => {                        
             if(user) {
 				const userRef = this.favoritesRef.child(user.uid);
-				console.log(user);
 				// keeps track of user's favorites
                 userRef.on("value", (snapshot) => {
-                    console.log("the value of favorites/userid changed, so i reset the state")
-					// this.setState({ favorites: snapshot.val() })
 					var favSS = snapshot.toJSON();
-					
-					console.log(favSS);
 					this.setState({ 
 						isSignedIn: !!user, 
 						onSignInPage: false, 
@@ -112,8 +105,7 @@ export class App extends React.Component {
 					}
 					this.setState({
 						homezip: hSS
-					})
-					console.log(this.state.homezip)
+					});
 
 					// creating carousel places (randomizes w/ each new address change)
 					let bb = this.calculateBB(hSS.lat, hSS.long, 5);
@@ -127,7 +119,6 @@ export class App extends React.Component {
 							bb + ';out;node[leisure=track]' + bb +
 							';out;'
 					this.setState({bbLink: op});
-					console.log(op)
 
 					fetch(op).then((response) =>{
 						let r = response.json();
@@ -159,18 +150,13 @@ export class App extends React.Component {
 						}
 						return result;
 					}).then((placeResults)=>{
-						console.log('carousel places?');
-						console.log(placeResults);
 						this.setState({caroPlaces: placeResults});
-						console.log(this.state.caroPlaces);
 					});
 					
 				})
 				
 			}
-			
 			this.setState({ isSignedIn: !!user })
-			//this.setState({ isSignedIn: true})
         })
     }
 
@@ -186,7 +172,6 @@ export class App extends React.Component {
 
 	// add new fav to places
 	addFav(place) {
-		console.log('passed up fav');
 		let userRef = this.favoritesRef.child(this.state.userId);
 		userRef.push(
 			place
@@ -262,11 +247,9 @@ export class App extends React.Component {
 									<Link to="/howto" className="nav-link" exact>How-To</Link>
 									<Link to="/places" className="nav-link" exact>Places</Link>
 									<Link to="profile" className="nav-link exact">Profile</Link>
-									{/* <Button> <Link to="/login" className="nav-link" exact>Login</Link> </Button> */}
 									<div>
 										{this.state.isSignedIn ? 
 											<Button onClick={this.test}>Sign-Out</Button> :
-										
 										<Link to="/login" className="nav-link" exact>Login</Link> }
 											
 									</div>
@@ -284,13 +267,11 @@ export class App extends React.Component {
 							<Route exact path="/team-bread"><StartSurvey home={true}/></Route>
 							<Route exact path="/"><StartSurvey home={true}/></Route>
 							<Route exact path="/howto" component={HowTo}/>
-							{/* <Route exact path="/places" component={Place} /> */}
 							<Route exact path="/places" >
 								{!!firebase.auth().currentUser ? <Place favs={this.state.favs} add={this.addFav} delete={this.removeFav} caro={this.state.caroPlaces} zip={this.state.homezip.name}/> : <Loggin uiConfig ={uiConfig} fbAuth={firebase.auth}/>}  
 							</Route>
 							{/* if not logged in, go to log in page, if first time user go to new user else just go to profile page */}
 							<Route exact path="/profile">
-								{/* {!!firebase.auth().currentUser ? <Profile /> : <NewUser usern = {this.state.usern} homeRef = {this.homeRef} />} */}
 								{!!firebase.auth().currentUser ? 
 									<Profile email = {firebase.auth().currentUser && firebase.auth().currentUser.displayName} 
 											zip = {this.state.homezip}
