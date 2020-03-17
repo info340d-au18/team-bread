@@ -1,7 +1,18 @@
-# Course Project
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This repository contains code for an interactive web app, created for the _Client-Side Development_ course at the UW iSchool. All CSS files should be written in a `css/` folder, while all JavaScript files should be created in a `js/` folder.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-The included `test.spec.js` script will check for syntax and style errors in your `.html`, `.css`, and `.js` files. Simply run the `jest` command to check this. We also suggest that you use the [WAVE accessibility tool](https://wave.webaim.org/) to assess the accessibility of your project at each stage
+# Walk Buddy
 
-Once you create a `gh-pages` branch, the site can be viewed at <https://info340d-au18.github.io/project-YOUR_USER_NAME/>.
+This project is deployed [here](https://info340d-au18.github.io/team-bread/#/)
+
+## Summary
+This application helps people who like taking walks find new paths to enjoy! Our Application is able to find nearby walking locations based on your starting location and will provide some places at the walking distance of your desire. There is also randomly generated places for users to find based on their home zipcode. Users are able to save and add places to their favorites, and find walking paths.
+
+This project uses:
+    - [Leaflet](https://react-leaflet.js.org/)
+    - [Leaflet Routing Machine](https://www.liedman.net/leaflet-routing-machine/tutorials/integration/) 
+    - React Bootstrap
+    - [Overpass](http://overpass-api.de/)
+    - Firebase
+    - Google Places API
