@@ -42,7 +42,7 @@ export class NewUser extends React.Component {
 
     render() {
         return (
-            <Modal show = {this.props.show} animation = {true} onHide = {this.props.hide}>
+            <Modal show = {this.props.show} animation = {false} onHide = {this.props.hide}>
                 <Modal.Header closeButton>
                     <Modal.Title>Enter your home zip code!</Modal.Title>
                 </Modal.Header>

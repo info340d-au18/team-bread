@@ -4,8 +4,9 @@ import {Button} from 'react-bootstrap';
 import {InputGroup} from 'react-bootstrap';
 import {SearchBar} from './SearchBar.js';
 import {
-    BrowserRouter as Router,
-	Redirect
+    Hash as Router,
+    Redirect,
+    Link
 } from 'react-router-dom';
 import './surveyStyle.css';
 
