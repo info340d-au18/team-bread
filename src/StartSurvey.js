@@ -15,7 +15,7 @@ export class StartSurvey extends React.Component {
                             <Card className="bg-light border-light text-center p-1">
                                 <Card.Body>
                                     <Card.Title className="text-center">Let's Take a Walk...</Card.Title>
-                                    <Link to={process.env.PUBLIC_URL + "/findroute"}>
+                                    <Link to="/findroute">
                                         <Button variant="primary" className="shadow" id="BEGINNN" size = 'lg'>Begin</Button>
                                     </Link>
                                 </Card.Body>
@@ -29,7 +29,7 @@ export class StartSurvey extends React.Component {
                     <Card className="bg-light border-light text-center p-1">
                         <Card.Body>
                             <Card.Title className="text-center">Let's Take a Walk...</Card.Title>
-                            <Link to={process.env.PUBLIC_URL + "/findroute"}>
+                            <Link to="/findroute">
                                 <Button variant="primary" className="shadow" id="BEGINNN" size = 'lg'>Begin</Button>
                             </Link>
                         </Card.Body>

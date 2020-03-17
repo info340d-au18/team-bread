@@ -17,6 +17,7 @@ import 'firebase/database';
 
 
 import {
+	// BrowserRouter as Router,
 	HashRouter as Router,
     Switch,
     Route,
@@ -42,11 +43,13 @@ const firebaseConfig = {
     // Popup signin flow rather than redirect flow.
     signInFlow: 'popup',
     // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-    signInSuccessUrl: '/',
+	// signInSuccessUrl: process.env.PUBLIC_URL,
+	signInSuccessUrl: '',
     // We will display Google and Facebook as auth providers.
     signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID        
-    ]
+	]
+	// signInSuccessUrl: process.env.PUBLIC_URL + '/isauw-pay',
 };
 
 export class App extends React.Component {
@@ -109,7 +112,7 @@ export class App extends React.Component {
 
 					// creating carousel places (randomizes w/ each new address change)
 					let bb = this.calculateBB(hSS.lat, hSS.long, 5);
-					let op = 'http://overpass-api.de/api/interpreter?data=[out:json];node[leisure=dog_park]' + 
+					let op = 'https://overpass-api.de/api/interpreter?data=[out:json];node[leisure=dog_park]' + 
 							bb + 
 							';out;node[leisure=fire_pit]' +
 							bb + ';out;node[leisure=garden]' +
@@ -234,6 +237,7 @@ export class App extends React.Component {
 	}
 
 	render() {
+		console.log(process.env.PUBLIC_URL);
     	return (				
 			<Router>
 				<div>
@@ -246,11 +250,11 @@ export class App extends React.Component {
 									<Link to="/" className="nav-link" exact>Home</Link>
 									<Link to="/howto" className="nav-link" exact>How-To</Link>
 									<Link to="/places" className="nav-link" exact>Places</Link>
-									<Link to="profile" className="nav-link exact">Profile</Link>
+									<Link to="/profile" className="nav-link exact">Profile</Link>
 									<div>
 										{this.state.isSignedIn ? 
 											<Button onClick={this.test}>Sign-Out</Button> :
-										<Link to="/login" className="nav-link" exact>Login</Link> }
+										<Link to='/login' className="nav-link" exact>Login</Link> }
 											
 									</div>
 									
@@ -279,11 +283,11 @@ export class App extends React.Component {
 									: 
 									<Loggin uiConfig = {uiConfig} fbAuth = {firebase.auth}/>}
 							</Route>
-─							<Route exact path = '/login'>
-								{!!firebase.auth().currentUser ? <Redirect to="/" /> : <Loggin uiConfig ={uiConfig} fbAuth={firebase.auth}/>}
+─							<Route exact path='/login'>
+								{!!firebase.auth().currentUser ? <Redirect to="/"/> : <Loggin uiConfig ={uiConfig} fbAuth={firebase.auth}/>}
 							</Route>
 							<Route exact path="/findroute"> <FindRoute getResults={this.getResults}/> </Route>
-							<Redirect from="findroute" to="/resultsmap" />
+							<Redirect from="/findroute" to="/resultsmap" />
 							<Route exact path="/resultsmap"> 
 								<ResultsMap start={this.state.start} 
 											distance={this.state.distance} 
